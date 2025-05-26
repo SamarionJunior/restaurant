@@ -1,17 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { Order } from "../../../../typescript/types";
+
+const initialState: Order[] = [];
 
 const ordersSlice = createSlice({
     name: "orders",
-    initialState: [],
+    initialState: initialState,
     reducers: {
-        updateOrders: (state, action) => {
+        updateOrders: ( _ , action) => {
             return action.payload
         },
         addOrder: (state, action) => {
-            const newState = [{
-                ...action.payload
-            }, ...state]
-            return newState;
+            // state.push()
+            //  = [action.payload, ...state]
+            state.unshift(action.payload);
+            return state;
         }
     }
 });

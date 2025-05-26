@@ -1,34 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { Product } from "../../../../typescript/types";
+
+const initialState: Product[] = []
 
 const productsSlice = createSlice({
     name: "products",
-    initialState: [],
+    initialState: initialState,
     reducers: {
-        updateProducts: (state, action) => {
+        updateProducts: ( _ , action) => {
             return action.payload
         },
         addProduct: (state, action) => {
-            return state.unshift({
-                ...action.payload
-            });
+            state.unshift(action.payload);
+            return state;
         },
         deleteProduct: (state, action) => {
             return state.filter(
-                todo => 
-                    todo.index != action.payload
+                product => 
+                    product.index != action.payload
             );
         },
         updateProduct: (state, action) => {
             // console.log(action.payload);
             return state.map(
-                todo => 
-                    todo.index == action.payload.index ? {
+                product => 
+                    product.index == action.payload.index ? {
                         ...action.payload
-                    } : todo
+                    } : product
             );
         },
         updateProductShow: (state, action) => {
-            const newState = state.map(
+            return state.map(
                 product => 
                     product.index == action.payload ? {
                         ...product,
@@ -40,7 +42,7 @@ const productsSlice = createSlice({
             );
             // console.log(action.payload.index);
             // console.log(newState);
-            return newState;
+            // return newState;
         }
     }
 });

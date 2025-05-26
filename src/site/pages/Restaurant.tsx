@@ -272,7 +272,8 @@ const ProductsTemplate: FunctionComponent<any> = _ => {
   const items = useSelector((state: any) => state.products);
 
   const [show, setShow] = useState(false);
-  const [title, setTitle] = useState("Menu");
+  // const [title, setTitle] = useState("Menu");
+  const [, ] = useState("Menu");
 
   useEffect(() => {
     if(!arrayIsEmpty(items)){
@@ -338,9 +339,11 @@ const ProductsTemplate: FunctionComponent<any> = _ => {
 const ProductTemplate: FunctionComponent<any> = _ => {
 
   const [QTD, setQTD] = useState(0);
-  const [totalLocal, setTotalLocal] = useState(0);
+  // const [totalLocal, setTotalLocal] = useState(0);
+  const [, setTotalLocal] = useState(0);
   const [product, setProduct] = useState<any>(null);
-  const [title, setTitle] = useState("Information");
+  // const [title, setTitle] = useState("Information");
+  const [title, ] = useState("Information");
 
   const products = useSelector((state: any) => state.products);
   const selectedProduct = products.filter((product: any) => product.show);
@@ -484,7 +487,8 @@ const ShoppingCartTemplate: FunctionComponent<any> = _ => {
 
   const [selectedProduct, setSelectedProduct] = useState([]);
 
-  const [title, setTitle] = useState("Cart");
+  // const [title, setTitle] = useState("Cart");
+  const [title, ] = useState("Cart");
 
   const products = useSelector((state: any) => state.products);
 
@@ -644,7 +648,8 @@ const ConfirmationTemplate: FunctionComponent<any> = _ => {
 
   const [selectedProduct, setSelectedProduct] = useState<any>([]);
 
-  const [title, setTitle] = useState<any>("Confirmation");
+  // const [title, setTitle] = useState<any>("Confirmation");
+  const [title, ] = useState<any>("Confirmation");
 
   const products = useSelector((state: any) => state.products);
 
@@ -716,7 +721,7 @@ const ConfirmationTemplate: FunctionComponent<any> = _ => {
               <Label className="Flex Confirmation-Form-SubForm-Label">
                 Precisa de troco?
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="checkbox" value={precisaTroco} checked={precisaTroco} onChange={e => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
+              <input className="Flex Confirmation-Form-SubForm-Input" type="checkbox" value={precisaTroco} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
               <input className="Flex Confirmation-Form-SubForm-Input" onChange={e => setTroco(e.target.value)}/>
             </SubForm>
             <SubForm className="Flex Confirmation-Form-SubForm">
@@ -821,7 +826,8 @@ const StatusTemplate: FunctionComponent<any> = _ => {
 
   const orders = useSelector((state: any) => state.orders);
 
-  const [title, setTitle] = useState("Status");
+  // const [title, setTitle] = useState("Status");
+  const [title, ] = useState("Status");
 
   return (
     <Status className="Flex Status">
@@ -906,7 +912,8 @@ const StatusTemplate: FunctionComponent<any> = _ => {
 
 const Restaurant: FunctionComponent<any> = () => {
 
-  const [productsOrigin, _] = useState(getAllProducts());
+  // const [productsOrigin, setProductsOrigin] = useState(getAllProducts());
+  const [productsOrigin, ] = useState(getAllProducts());
 
   const dispatch = useDispatch();
 
