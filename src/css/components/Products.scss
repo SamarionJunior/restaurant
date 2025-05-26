@@ -1,0 +1,102 @@
+@use "../variable.scss" as *;
+@use "../pre-sets.scss" as *;
+
+.Products{
+  @extend .Flex;
+  @extend .Bottom-Space-Children;
+  @extend .Padding-Vertical;
+  @extend .Collumn;
+  // width: calc(100% - (2 * 1rem));
+  // height: calc(100dvh - (2 * 1rem));
+  // padding: 1rem;
+  // height: calc(100dvh - (0 * 1rem));
+
+  width: calc(100% - (0 * 1rem));
+  min-height: calc(200px - (0 * 1rem));
+  height: auto;
+
+  // overflow-y: auto;
+
+  .Products-Product{
+    @extend .Flex;
+    @extend .Right-Space-Children;
+    @extend .WH-Default;
+
+    .Products-Product-Image{
+      @extend .Flex;
+      @extend .Image-Size;
+      @extend .Flex-Center;
+  
+      .Products-Product-Image-Img{
+        @extend .Flex;
+        @extend .Image-Size;
+        @extend .Flex-Center;
+      }
+    }
+
+    .Products-Product-Information{
+      @extend .Flex;
+      @extend .WH-Default;
+      @extend .Collumn;
+      width: calc(100% - $imageSize - 1rem);
+      height: auto;
+
+      .Products-Product-Information-Title{
+        @extend .Flex;
+        @extend .WH-Default;
+
+        .Products-Product-Information-Title-Text{
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Name-Size;
+        }
+      }
+      
+      .Products-Product-Information-Description{
+        @extend .Flex;
+        @extend .WH-Default;
+
+        .Products-Product-Information-Description-Text{
+          @extend .Ellipse;
+        }
+      }
+
+      .Products-Product-Information-Data{
+        @extend .Flex;
+        @extend .WH-Default;
+        @extend .Data-Size ;
+        flex-wrap: wrap;
+      
+        .Products-Product-Information-Data-Price{
+          @extend .Flex;
+          @extend .WH-Auto;
+          
+          .Products-Product-Information-Data-Price-Label{
+            @extend .Flex;
+            @extend .WH-Auto;
+          }
+
+          .Products-Product-Information-Data-Price-Text{
+            @extend .Flex;
+            @extend .WH-Auto;
+          }
+        }
+        
+        .Products-Product-Information-Data-Count{
+          @extend .Flex;
+          @extend .WH-Auto;
+        
+          .Products-Product-Information-Data-Count-Label{
+            @extend .Flex;
+            @extend .WH-Auto;
+          }
+
+          .Products-Product-Information-Data-Count-Text{
+            @extend .Flex;
+            @extend .WH-Auto;
+          }
+        }
+      }
+    }
+  }
+}

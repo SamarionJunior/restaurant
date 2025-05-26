@@ -1,0 +1,66 @@
+@use "variable.scss" as *;
+
+.Products{
+  // width: calc(100% - (2 * 1rem));
+  // height: calc(100dvh - (2 * 1rem));
+  // padding: 1rem;
+  // height: calc(100dvh - (0 * 1rem));
+
+  width: calc(100% - (0 * 1rem));
+  min-height: calc(200px - (0 * 1rem));
+  height: auto;
+
+  // overflow-y: auto;
+}
+
+  .Products-Title{
+  }
+
+    .Products-Title-Text{
+    }
+
+  .Products-Product{
+  }
+
+    .Products-Product-Image{
+    }
+  
+      .Products-Product-Image-Img{
+      }
+
+    .Products-Product-Information{
+      width: calc(100% - $imageSize - 1rem);
+      height: auto;
+    }
+
+      .Products-Product-Information-Title{
+      }
+
+        .Products-Product-Information-Title-Text{
+        }
+      
+      .Products-Product-Information-Description{
+      }
+
+        .Products-Product-Information-Description-Text{
+        }
+
+      .Products-Product-Information-Data{
+          flex-wrap: wrap;
+      }
+      
+        .Products-Product-Information-Data-Price{
+        }
+          .Products-Product-Information-Data-Price-Label{
+          }
+
+          .Products-Product-Information-Data-Price-Text{
+          }
+        
+        .Products-Product-Information-Data-Count{
+        }
+          .Products-Product-Information-Data-Count-Label{
+          }
+
+          .Products-Product-Information-Data-Count-Text{
+          }
