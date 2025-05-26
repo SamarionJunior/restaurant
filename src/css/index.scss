@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root{
+  font-size: 62.5%;
+  --painel-size: 1080px;
+}
+
+* {
+  font-size: 1.6rem;
+  padding: 0rem;
+  margin: 0rem;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+  color: #000000;
+}
+html{
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+
+body{
+  width: 100%;
+  /* min-height: 100dvh; */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+#root{
+  width: 100%;
+  height: calc(100% - (2 * 1rem));
+  /* height: 100%; */
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  align-items: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem;
+  /* align-items: flex-start; */
+}
