@@ -235,7 +235,7 @@ const Content: FunctionComponent<any> = props => {
   );
 }
 
-const NavegationTemplate: FunctionComponent<any> = props => {
+const NavegationTemplate: FunctionComponent<any> = _ => {
 
   const [items, setItems] = useState(NavegationItems);
 
@@ -265,7 +265,7 @@ const NavegationTemplate: FunctionComponent<any> = props => {
     </Navegation>
   );
 }
-const ProductsTemplate: FunctionComponent<any> = props => {
+const ProductsTemplate: FunctionComponent<any> = _ => {
 
   const dispatch = useDispatch();
 
@@ -335,7 +335,7 @@ const ProductsTemplate: FunctionComponent<any> = props => {
     </Products>
   );
 }
-const ProductTemplate: FunctionComponent<any> = props => {
+const ProductTemplate: FunctionComponent<any> = _ => {
 
   const [QTD, setQTD] = useState(0);
   const [totalLocal, setTotalLocal] = useState(0);
@@ -480,7 +480,7 @@ const ProductTemplate: FunctionComponent<any> = props => {
     </Product>
   );
 }
-const ShoppingCartTemplate: FunctionComponent<any> = props => {
+const ShoppingCartTemplate: FunctionComponent<any> = _ => {
 
   const [selectedProduct, setSelectedProduct] = useState([]);
 
@@ -633,7 +633,7 @@ const ShoppingCartTemplate: FunctionComponent<any> = props => {
     </ShoppingCart>
   );
 }
-const ConfirmationTemplate: FunctionComponent<any> = props => {
+const ConfirmationTemplate: FunctionComponent<any> = _ => {
 
   const [nome, setNome] = useState<any>("");
   const [formaDePagamento, setFormaDePagamento] = useState<any>("");
@@ -817,7 +817,7 @@ const ConfirmationTemplate: FunctionComponent<any> = props => {
     </Confirmation>
   );
 }
-const StatusTemplate: FunctionComponent<any> = props => {
+const StatusTemplate: FunctionComponent<any> = _ => {
 
   const orders = useSelector((state: any) => state.orders);
 
@@ -904,9 +904,9 @@ const StatusTemplate: FunctionComponent<any> = props => {
   );
 }
 
-const Restaurant: FunctionComponent<any> = props => {
+const Restaurant: FunctionComponent<any> = () => {
 
-  const [productsOrigin, setProductsOrigin] = useState(getAllProducts());
+  const [productsOrigin, _] = useState(getAllProducts());
 
   const dispatch = useDispatch();
 
