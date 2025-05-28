@@ -1,151 +1,239 @@
 @use "../variable.scss" as *;
 @use "../pre-sets.scss" as *;
 
-.Product {
-  @extend .Flex;
-  @extend .Bottom-Space-Children;
-  @extend .Padding-Vertical;
-  @extend .Collumn;
-  width: calc(100% - (0 * 1rem));
-
-  .Product-Image {
+.Detail{
+  @extend .Flex, .WH-Default;
+  
+  & > .Product-Vertical {
     @extend .Flex;
-    @extend .WH-Default;
-
-    .Product-Image-Img {
-      @extend .Flex;
-      @extend .WH-Default;
-    }
-  }
-
-  .Product-Information {
-    @extend .Flex;
-    @extend .WH-Default;
+    @extend .Bottom-Space-Children;
+    @extend .Padding-Vertical;
     @extend .Collumn;
+    width: calc(100% - (0 * 1rem));
 
-    .Product-Information-Title {
+    & > .Image {
       @extend .Flex;
-      @extend .Image-Size;
       @extend .WH-Default;
 
-      .Product-Information-Title-Text {
+      & > .Img {
+        @extend .Flex;
+        @extend .WH-Default;
+      }
+    }
+
+    & > .Information {
+      @extend .Flex;
+      @extend .WH-Default;
+      @extend .Collumn;
+
+      & > .Title {
         @extend .Flex;
         @extend .Image-Size;
         @extend .WH-Default;
+
+        & > .Text {
+          @extend .Flex;
+          @extend .Image-Size;
+          @extend .WH-Default;
+        }
       }
-    }
 
-    .Product-Information-Description {
-      @extend .Flex;
-      @extend .WH-Default;
-
-      .Product-Information-Description-Paragraph {
+      & > .Description {
         @extend .Flex;
         @extend .WH-Default;
-        @extend .Height-Line;
+
+        & > .Paragraph {
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Height-Line;
+        }
+      }
+
+      & > .Data {
+        @extend .Flex;
+        @extend .WH-Default;
+
+        & > .Price {
+          @extend .Flex;
+          @extend .WH-Auto;
+
+          & > .Label {
+            @extend .Flex;
+            @extend .WH-Auto;
+          }
+
+          & > .Text {
+            @extend .Flex;
+            @extend .WH-Auto;
+          }
+        }
       }
     }
 
-    .Product-Information-Data {
+    & > .Actions {
       @extend .Flex;
       @extend .WH-Default;
+      @extend .Bottom-Space-Children;
 
-      .Product-Information-Data-Price {
+      flex-wrap: wrap;
+
+      & > .SubActions{
         @extend .Flex;
-        @extend .WH-Auto;
+        @extend .WH-Default;
+        // border: 3px solid black;
 
-        .Product-Information-Data-Price-Label {
+        & > .Action{
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          & > .Button{
+            padding: 0;
+            line-height: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            cursor: pointer;
+
+            &:active{
+              background-color: white;
+
+              & > .Icon{
+                color: black;
+              }
+            }
+
+            & > .Icon{
+              width: 100%;
+              height: 100%;
+              padding: 0;
+              line-height: 0;
+              white-space: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: white;
+              cursor: pointer;
+            }
+          }
+        }
+
+        & > .Display{
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          & > .Text{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        & > .Total{
           @extend .Flex;
-          @extend .WH-Auto;
-        }
-
-        .Product-Information-Data-Price-Text {
-          @extend .Flex;
-          @extend .WH-Auto;
-        }
-      }
-    }
-  }
-
-
-  .Product-Actions {
-    @extend .Flex;
-    @extend .WH-Default;
-
-    flex-wrap: wrap;
-
-    .Product-Actions-SubActions {
-      @extend .Flex;
-      @extend .WH-Auto;
-
-      .Product-Actions-SubActions-Action {
-        @extend .Flex;
-        @extend .WH-Auto;
-        @extend .Flex-Center;
-
-        .Product-Actions-SubActions-Action-Button {
-          @extend .Button-Square;
-        }
-      }
-
-      .Product-Actions-SubActions-Display {
-        @extend .Flex;
-        @extend .WH-Auto;
-
-        .Input-Default {
-
-        }
-
-        .Product-Actions-SubActions-Display-Text {
-          @extend .Flex;
-          @extend .WH-Auto;
           @extend .Flex-Center;
-          @extend .Display-Text;
-        }
-      }
 
-      .Product-Actions-SubActions-Total {
-        @extend .Flex;
-        @extend .WH-Auto;
+          justify-content: flex-start;
+          padding-left: calc(1rem );
+          width: calc(100% - (3 * 3rem));
+          height: 3rem;
+          
 
-        .Product-Actions-SubActions-Total-Label {
-          @extend .Flex;
-          @extend .WH-Auto;
-        }
+          & > .Label{
 
-        .Product-Actions-SubActions-Total-Text {
-          @extend .Flex;
-          @extend .WH-Auto;
-        }
-      }
-    }
+          }
 
-    .SubActions {
-      .Action {
-        .Button .Border-Half-Circle-Left {
-          .Icon {
+          & > .Text{
 
           }
         }
       }
 
-      .Display {
-        .Text {
-
-        }
-      }
-    }
-
-    .Product-Actions-Action {
-      @extend .Flex;
-      @extend .Flex-Center;
-
-      .WH-Default .Product-Actions-Action-Button {
+      & > .Action {
         @extend .Flex;
         @extend .Flex-Center;
         @extend .WH-Default;
-        @extend .Button-Default
+        
+        & > .Button {
+          @extend .Flex;
+          @extend .Flex-Center;
+          @extend .WH-Default;
+          @extend .Button-Default
+        }
       }
     }
   }
 }
+
+// .Product-Actions-SubActions {
+//   @extend .Flex;
+//   @extend .WH-Auto;
+
+//   .Product-Actions-SubActions-Action {
+//     @extend .Flex;
+//     @extend .WH-Auto;
+//     @extend .Flex-Center;
+
+//     .Product-Actions-SubActions-Action-Button {
+//       @extend .Button-Square;
+//     }
+//   }
+
+//   .Product-Actions-SubActions-Display {
+//     @extend .Flex;
+//     @extend .WH-Auto;
+
+//     .Input-Default {
+
+//     }
+
+//     .Product-Actions-SubActions-Display-Text {
+//       @extend .Flex;
+//       @extend .WH-Auto;
+//       @extend .Flex-Center;
+//       @extend .Display-Text;
+//     }
+//   }
+
+//   .Product-Actions-SubActions-Total {
+//     @extend .Flex;
+//     @extend .WH-Auto;
+
+//     .Product-Actions-SubActions-Total-Label {
+//       @extend .Flex;
+//       @extend .WH-Auto;
+//     }
+
+//     .Product-Actions-SubActions-Total-Text {
+//       @extend .Flex;
+//       @extend .WH-Auto;
+//     }
+//   }
+// }
+
+// .SubActions {
+//   .Action {
+//     .Button {
+//       .Icon {
+
+//       }
+//     }
+//   }
+
+//   .Display {
+//     .Text {
+
+//     }
+//   }
+// }

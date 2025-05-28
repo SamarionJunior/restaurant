@@ -1,199 +1,323 @@
-/// CSS ///
+@use "../variable.scss" as *;
+@use "../pre-sets.scss" as *;
 
-import "../../css/pre-sets.scss"
-import "../../css/restaurant.scss"
+.Confirmation{
+	@extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children, .Padding-Vertical;
 
-import { useEffect, useState, type FunctionComponent } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { addOrder } from "../../data/redux/slices/restaurant/ordersSlice.ts";
-import { arrayIsEmpty, checkIfUndefined, createOrder } from "../../typescript/functions.ts";
-import { Action, Actions, Confirmation, Count, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Painel, Price, Product, Products, SubForm, Text, Title, Total } from "../components/components.tsx";
+	& > .Form{
+    @extend .Flex, .WH-Default, .Bottom-Space-Children, .Collumn;
 
-const ConfirmationLayout: FunctionComponent<any> = _ => {
+		& > .SubForm-Name{
+    	@extend .Flex, .WH-Default, .Collumn;
 
-  const [nome, setNome] = useState<any>("");
-  const [formaDePagamento, setFormaDePagamento] = useState<any>("");
-  const [precisaTroco, setPrecisaTroco] = useState<any>(false);
-  const [troco, setTroco] = useState<any>(0);
-  const [formaDeRecebimento, setFormaDeRecebimento] = useState<any>("");
-  const [endereco, setEndereco] = useState<any>("");
+			& > .Label{
+				@extend .WH-Default;
 
-  const [selectedProduct, setSelectedProduct] = useState<any>([]);
+				margin-bottom: 0.5rem;
+				
+			}
+			& > .Input-Text{
+				width: calc(100% - (2 * 3px) - (2 * 1rem));
+				height: 3rem;
+				border: 3px solid black;
+				padding: 0 1rem;
+				
+			}
+		}
+		& > .Title{
+			@extend .Flex, .WH-Default, .Collumn;
 
-  // const [title, setTitle] = useState<any>("Confirmation");
-  const [title, ] = useState<any>("Confirmation");
+			margin-bottom: 0.5rem;
 
-  const products = useSelector((state: any) => state.products);
+			& > .Text{
+				@extend .Flex, .WH-Default, .Collumn;
 
-  const dispatch = useDispatch();
+			}
+		}
+		& > .SubForm-Payment{
+    	@extend .Flex, .WH-Default, .Right-Space-Children;
 
-  useEffect(() => {
-    if(products != null){
-      setSelectedProduct(products.filter((product: any) => product.itIsInCart));
+			& > .Label{
+    		@extend .Flex, .WH-Auto;
+			}
+			& > .Input{
+    		@extend .Flex, .WH-Auto;
+			}
+			& > .Label{
+    		@extend .Flex, .WH-Auto;
+			}
+			& > .Input{
+    		@extend .Flex, .WH-Auto;
+			}
+			& > .Label{
+    		@extend .Flex, .WH-Auto;
+			}
+			& > .Input{
+    		@extend .Flex, .WH-Auto;
+			}
+		}
+		& > .Title{
+			@extend .Flex, .WH-Default, .Collumn;
+
+			margin-bottom: 0.5rem;
+
+			& > .Text{
+				@extend .Flex, .WH-Default, .Collumn;
+
+			}
+		}
+		& > .SubForm-Troco{
+    	@extend .Flex, .WH-Default, .Right-Space-Children;
+
+			flex-wrap: wrap;
+
+			& > *{
+				margin-bottom: 0.5rem;
+			}
+			
+			& > .Label{
+    		@extend .Flex, .WH-Auto;
+			}
+			& > .Input-CheckBox{
+    		@extend .Flex, .WH-Auto;
+			}
+			& > .Input-Text{
+    		@extend .Flex, .WH-Default;
+					width: calc(100% - (2 * 3px) - (2 * 1rem));
+					height: 3rem;
+					border: 3px solid black;
+					padding: 0 1rem;
+
+				flex-grow: 1;
+			}
+		}
+		& > .Title{
+			@extend .Flex, .WH-Default, .Collumn;
+
+			margin-bottom: 0.5rem;
+
+			& > .Text{
+				@extend .Flex, .WH-Default, .Collumn;
+
+			}
+		}
+		& > .SubForm-Delivery{
+    	@extend .Flex, .WH-Default, .Right-Space-Children;
+
+			& > .Label{
+    		@extend .Flex, .WH-Auto, .Right-Space-Children;
+
+			}
+			& > .Input{
+    		@extend .Flex, .WH-Auto, .Right-Space-Children;
+				
+			}
+			& > .Label{
+    		@extend .Flex, .WH-Auto, .Right-Space-Children;
+				
+			}
+			& > .Input{
+    		@extend .Flex, .WH-Auto, .Right-Space-Children;
+				
+			}
+		}
+		& > .SubForm-Address{
+    	@extend .Flex, .WH-Default, .Collumn;
+
+			& > .Label{
+				@extend .WH-Default;
+
+				margin-bottom: 0.5rem;
+				
+			}
+			& > .Input-Text{
+				width: calc(100% - (2 * 3px) - (2 * 1rem));
+				height: 3rem;
+				border: 3px solid black;
+				padding: 0 1rem;
+				
+			}
+		}
+	}
+
+	& > .Products{
+    @extend .Flex, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+
+    width: calc(100% - (0 * 1rem));
+    height: auto;
+
+    & > .Product-Horizontal{
+      @extend .Flex, .Right-Space-Children, .WH-Default;
+
+      & > .Image{
+        @extend .Flex;
+        @extend .Image-Size;
+        @extend .Flex-Center;
+    
+        & > .Img{
+          @extend .Flex;
+          @extend .Image-Size;
+          @extend .Flex-Center;
+        }
+      }
+
+      & > .Information{
+        @extend .Flex;
+        @extend .WH-Default;
+        @extend .Collumn;
+        width: calc(100% - $imageSize - 1rem);
+        height: auto;
+
+        & > .Title{
+          @extend .Flex;
+          @extend .WH-Default;
+
+          & > .Text{
+            @extend .Flex;
+            @extend .WH-Default;
+            @extend .Name-Size;
+          }
+        }
+        
+        & > .Description{
+          @extend .Flex;
+          @extend .WH-Default;
+
+          & > .Text{
+            @extend .Ellipse;
+          }
+        }
+
+        & > .Data{
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Data-Size ;
+          flex-wrap: wrap;
+        
+          & > .Price{
+            @extend .Flex;
+            @extend .WH-Auto;
+            
+            & > .Label{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+
+            & > .Text{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+          }
+
+					& > .Count{
+            @extend .Flex;
+            @extend .WH-Auto;
+            
+            & > .Label{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+
+            & > .Text{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+          }
+
+					& > .Total{
+            @extend .Flex;
+            @extend .WH-Auto;
+            
+            & > .Label{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+
+            & > .Text{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+          }
+
+        }
+			}
+		}
+	}
+
+  & > .Content{
+    @extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children;
+
+    & > .Resume{
+      @extend .Flex, .WH-Default;
+    
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
     }
-  }, [products]);
+    
+    & > .Actions{
+      @extend .Flex, .WH-Default, .Right-Space-Children;
+    
+      & > .Action{
+        @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
 
-  const handleSetOrder = () => {
-    dispatch(addOrder(createOrder(selectedProduct, {
-      name: nome,
-      formaDePagamento: formaDePagamento,
-      precisaTroco: precisaTroco,
-      troco: troco,
-      formaDeRecebimento: formaDeRecebimento,
-      endereco: endereco
-    })));
-    dispatch(updateProducts([...products.map((oldProduct: any) => ({
-      ...oldProduct,
-      count: oldProduct.count - oldProduct.preSelected,
-      preSelected: 0,
-      total: 0,
-      itIsInCart: false
-    }))]));
+        & > .Button{
+          @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
+
+          & > i{
+            @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
+
+
+          }
+        }
+      }
+    }
   }
+	// & > .Painel{
+	// 	& > .Display{
+	// 		& > .Text{
 
-  return (
-    <Confirmation className="Flex Collumn Confirmation">
-      <Title>
-        <Text>
-          {title}
-        </Text>
-      </Title>
-      {!arrayIsEmpty(selectedProduct) ? (
-        <>
-          <Form className="Flex Collumn Confirmation-Form">
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                Nome
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" onChange={e => setNome(e.target.value)}/>
-            </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Title className="Flex Confirmation-Form-SubForm-Title">
-                <Text className="Flex Confirmation-Form-SubForm-Title-text">
-                  Forma de pagamento
-                </Text>
-              </Title>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                dinheiro
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="dinheiro" checked={formaDePagamento == "dinheiro"} onChange={e => setFormaDePagamento(e.target.value)}/>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                cartão
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="cartão" checked={formaDePagamento == "cartão"} onChange={e => setFormaDePagamento(e.target.value)}/>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                pix
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="pix" checked={formaDePagamento == "pix"} onChange={e => setFormaDePagamento(e.target.value)}/>
-            </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                Toco
-              </Label>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                Precisa de troco?
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="checkbox" value={precisaTroco} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
-              <input className="Flex Confirmation-Form-SubForm-Input" onChange={e => setTroco(e.target.value)}/>
-            </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Title className="Flex Confirmation-Form-SubForm-Title">
-                <Text className="Flex Confirmation-Form-SubForm-Title-text">
-                  Forma de Recebimento
-                </Text>
-              </Title>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                Retirada
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="Retirada" checked={formaDeRecebimento == "Retirada"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                Entegra
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="Entegra" checked={formaDeRecebimento == "Entegra"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
-            </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Label className="Flex Confirmation-Form-SubForm-Label">
-                Endereço
-              </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" onChange={e => setEndereco(e.target.value)}/>
-            </SubForm>
-          </Form>
-          <Products className="Flex Collumn Confirmation-Products">
-            {selectedProduct.map((product: any) => (
-              <Product className="Flex Confirmation-Products-Product" key={checkIfUndefined(product?.key)}>
-                <ImageDiv className="Flex Image-Size Flex-Center Confirmation-Products-Product-Image">
-                  <Image className="Flex Image-Size Flex-Center Confirmation-Products-Product-Image-Img" src={checkIfUndefined(product?.image)}/>
-                </ImageDiv>
-                <Information className="Flex Collumn Confirmation-Products-Product-Information">
-                  <Description className="Flex Confirmation-Products-Product-Information-Description">
-                    <Text className="Flex Confirmation-Products-Product-Information-Description-Paragraph">
-                      {checkIfUndefined(product?.description)}
-                    </Text>
-                  </Description>
-                  <Data className="Flex">
-                    <Price className="Flex Confirmation-Products-Product-Information-Price">
-                      <Label className="Flex Confirmation-Products-Product-Information-Price-Label">
-                        Price: &#20;
-                      </Label>
-                      <Text className="Flex Confirmation-Products-Product-Information-Price-Text">
-                        {checkIfUndefined(product?.price)} &#20;
-                      </Text>
-                    </Price>
-                    <Count className="Flex Confirmation-Products-Product-Information-Count">
-                      <Label className="Flex Confirmation-Products-Product-Information-Count-Label">
-                        count: &#20;
-                      </Label>
-                      <Text className="Flex Confirmation-Products-Product-Information-Count-Text">
-                        {checkIfUndefined(product?.preSelected)} &#20;
-                      </Text>
-                    </Count>
-                    <Total className="Flex Confirmation-Products-Product-Information-Total">
-                      <Label className="Flex Confirmation-Products-Product-Information-Total-Label">
-                        Total: &#20;
-                      </Label>
-                      <Text className="Flex Confirmation-Products-Product-Information-Total-Text">
-                        {checkIfUndefined(product?.total)} &#20;
-                      </Text>
-                    </Total>
-                  </Data>
-                </Information>
-              </Product>
-            ))}
-          </Products>
-          <Painel>
-            <Display className="Flex Cart-Products-Product-Actions-Display">
-              <Text className="Flex Cart-Products-Product-Actions-Display-Text">
-                {"Itens: " + selectedProduct.length}
-              </Text>
-            </Display>
-            <Display className="Flex Cart-Products-Product-Actions-Display">
-              <Text className="Flex Cart-Products-Product-Actions-Display-Text">
-                {"Número: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)}
-              </Text>
-            </Display>
-            <Display className="Flex Cart-Products-Product-Actions-Display">
-              <Text className="Flex Cart-Products-Product-Actions-Display-Text">
-                {"Preço Total: " + selectedProduct.reduce((a: any, b: any) => a + b.total, 0)}
-              </Text>
-            </Display>
-          </Painel>
-          <Actions className="Flex Confirmation-Actions">
-            <Action className="Flex Confirmation-Actions-Action-Button">
-              <button className="Flex Confirmation-Actions-Action-Button">
-                Voltar
-              </button>
-            </Action>
-            <Action className="Flex Confirmation-Actions-Action-Button">
-              <button className="Flex Confirmation-Actions-Button" onClick={handleSetOrder}>
-                Confimar
-              </button>
-            </Action>
-          </Actions>
-        </>
-      ) : null}
-    </Confirmation>
-  );
+	// 		}
+	// 	}
+	// 	& > .Display{
+	// 		& > .Text{
+
+	// 		}
+	// 	}
+	// 	& > .Display{
+	// 		& > .Text{
+
+	// 		}
+	// 	}
+	// }
+	// & > .Actions{
+	// 	& > .Button{
+	// 		& > .Button{
+				
+	// 		}
+	// 	}
+	// 	& > .Button{
+	// 		& > .Button{
+
+	// 		}
+	// 	}
+	// }
 }
-
-export default ConfirmationLayout;

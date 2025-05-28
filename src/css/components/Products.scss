@@ -1,99 +1,92 @@
 @use "../variable.scss" as *;
 @use "../pre-sets.scss" as *;
 
-.Products{
-  @extend .Flex;
-  @extend .Bottom-Space-Children;
-  @extend .Padding-Vertical;
-  @extend .Collumn;
-  // width: calc(100% - (2 * 1rem));
-  // height: calc(100dvh - (2 * 1rem));
-  // padding: 1rem;
-  // height: calc(100dvh - (0 * 1rem));
+.Store{
+  @extend .Flex, .WH-Default;
 
-  width: calc(100% - (0 * 1rem));
-  min-height: calc(200px - (0 * 1rem));
-  height: auto;
+  & > .Products{
+    @extend .Flex, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
 
-  // overflow-y: auto;
+    width: calc(100% - (0 * 1rem));
+    min-height: calc(200px - (0 * 1rem));
+    height: auto;
 
-  .Products-Product{
-    @extend .Flex;
-    @extend .Right-Space-Children;
-    @extend .WH-Default;
+    & > .Product-Horizontal{
+      @extend .Flex, .Right-Space-Children, .WH-Default;
 
-    .Products-Product-Image{
-      @extend .Flex;
-      @extend .Image-Size;
-      @extend .Flex-Center;
-  
-      .Products-Product-Image-Img{
+      & > .Image{
         @extend .Flex;
         @extend .Image-Size;
         @extend .Flex-Center;
+    
+        & > .Img{
+          @extend .Flex;
+          @extend .Image-Size;
+          @extend .Flex-Center;
+        }
       }
-    }
 
-    .Products-Product-Information{
-      @extend .Flex;
-      @extend .WH-Default;
-      @extend .Collumn;
-      width: calc(100% - $imageSize - 1rem);
-      height: auto;
-
-      .Products-Product-Information-Title{
+      & > .Information{
         @extend .Flex;
         @extend .WH-Default;
+        @extend .Collumn;
+        width: calc(100% - $imageSize - 1rem);
+        height: auto;
 
-        .Products-Product-Information-Title-Text{
+        & > .Title{
           @extend .Flex;
           @extend .WH-Default;
-          @extend .Name-Size;
-        }
-      }
-      
-      .Products-Product-Information-Description{
-        @extend .Flex;
-        @extend .WH-Default;
 
-        .Products-Product-Information-Description-Text{
-          @extend .Ellipse;
+          & > .Title-Text{
+            @extend .Flex;
+            @extend .WH-Default;
+            @extend .Name-Size;
+          }
         }
-      }
-
-      .Products-Product-Information-Data{
-        @extend .Flex;
-        @extend .WH-Default;
-        @extend .Data-Size ;
-        flex-wrap: wrap;
-      
-        .Products-Product-Information-Data-Price{
+        
+        & > .Description{
           @extend .Flex;
-          @extend .WH-Auto;
+          @extend .WH-Default;
+
+          & > .Description-Text{
+            @extend .Ellipse;
+          }
+        }
+
+        & > .Data{
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Data-Size ;
+          flex-wrap: wrap;
+        
+          & > .Price{
+            @extend .Flex;
+            @extend .WH-Auto;
+            
+            & > .Price-Label{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+
+            & > .Price-Text{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+          }
           
-          .Products-Product-Information-Data-Price-Label{
+          & > .Count{
             @extend .Flex;
             @extend .WH-Auto;
-          }
+          
+            & > .Count-Label{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
 
-          .Products-Product-Information-Data-Price-Text{
-            @extend .Flex;
-            @extend .WH-Auto;
-          }
-        }
-        
-        .Products-Product-Information-Data-Count{
-          @extend .Flex;
-          @extend .WH-Auto;
-        
-          .Products-Product-Information-Data-Count-Label{
-            @extend .Flex;
-            @extend .WH-Auto;
-          }
-
-          .Products-Product-Information-Data-Count-Text{
-            @extend .Flex;
-            @extend .WH-Auto;
+            & > .Count-Text{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
           }
         }
       }

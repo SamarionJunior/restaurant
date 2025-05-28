@@ -80,3 +80,5 @@ export const NavegationItems = [
 export const isNotNullAndUndefined = (value: any): boolean => (value != null && value != undefined)
 
 export const isNaturalNumber = (number: number): boolean => isNotNullAndUndefined(number) && number >= 0
+
+export const converteToMoney = (value: number): string => value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})

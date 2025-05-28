@@ -72,6 +72,21 @@
   height: auto;
 }
 
+.WH-Full{
+  width: 100%;
+  height: 100%;
+}
+
+.WH-Button-Half{
+  width: 100%;
+  height: 3rem;
+}
+
+.WH-Button-Half-Space{
+  width: calc(100% - (1rem / 2));
+  height: 3rem;
+}
+
 .Grow{
   flex-grow: 1;
 }
@@ -137,60 +152,23 @@
   height: 3rem;
 }
 
-.SubActions{
-  width: auto;
-  height: auto;
-  display: flex;
-  border: 3px solid black;
-  .Action{
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .Button{
-      padding: 0;
-      line-height: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: black;
-      cursor: pointer;
-      &:active{
-        background-color: white;
-        & > .Icon{
-          color: black;
-        }
-      }
-      .Icon{
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        line-height: 0;
-        white-space: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        cursor: pointer;
-      }
+.Button-Base{
+  background-color: black;
+  color: white;
+  border:none;
+  border: 1px solid black;
+  cursor: pointer;
+
+  &:active{
+    background-color: white;
+    color: black;
+
+    & > .Icon{
+      color: black;
     }
   }
-  .Display{
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .Text{
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+}
+
+.Icon-Button{
+  color: white;
 }

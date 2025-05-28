@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Product } from "../../../../typescript/types";
+import type { ProductType } from "../../../../typescript/types";
 
-const initialState: Product[] = []
+const initialState: ProductType[] = []
 
 const productsSlice = createSlice({
     name: "products",

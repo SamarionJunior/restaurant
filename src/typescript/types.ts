@@ -1,4 +1,4 @@
-export type Product = {
+export type ProductType = {
     index: number;
     key: number;
     image: string;
@@ -26,5 +26,5 @@ export type Order = {
     status: number;
     date: String;
     formulario: Form;
-    products: Product;
+    products: ProductType;
 };

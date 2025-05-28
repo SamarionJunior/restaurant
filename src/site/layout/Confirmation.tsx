@@ -1,14 +1,14 @@
 /// CSS ///
 
 import "../../css/pre-sets.scss"
-import "../../css/restaurant.scss"
+import "../../css/components/Confirmation.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
 import { addOrder } from "../../data/redux/slices/restaurant/ordersSlice.ts";
-import { arrayIsEmpty, checkIfUndefined, createOrder } from "../../typescript/functions.ts";
-import { Action, Actions, Confirmation, Count, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Painel, Price, Product, Products, SubForm, Text, Title, Total } from "../components/components.tsx";
+import { arrayIsEmpty, checkIfUndefined, converteToMoney, createOrder } from "../../typescript/functions.ts";
+import { Action, Actions, Confirmation, Content, Count, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, SubForm, Text, Title, Total } from "../components/components.tsx";
 
 const ConfirmationLayout: FunctionComponent<any> = _ => {
 
@@ -20,9 +20,6 @@ const ConfirmationLayout: FunctionComponent<any> = _ => {
   const [endereco, setEndereco] = useState<any>("");
 
   const [selectedProduct, setSelectedProduct] = useState<any>([]);
-
-  // const [title, setTitle] = useState<any>("Confirmation");
-  const [title, ] = useState<any>("Confirmation");
 
   const products = useSelector((state: any) => state.products);
 
@@ -53,107 +50,109 @@ const ConfirmationLayout: FunctionComponent<any> = _ => {
   }
 
   return (
-    <Confirmation className="Flex Collumn Confirmation">
-      <Title>
-        <Text>
-          {title}
-        </Text>
-      </Title>
+    <Confirmation className="Confirmation">
       {!arrayIsEmpty(selectedProduct) ? (
         <>
-          <Form className="Flex Collumn Confirmation-Form">
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+          <Form className="Form">
+            <SubForm className="SubForm-Name">
+              <Label className="Label">
                 Nome
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" onChange={e => setNome(e.target.value)}/>
+              <input className="Input-Text" onChange={e => setNome(e.target.value)}/>
             </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Title className="Flex Confirmation-Form-SubForm-Title">
-                <Text className="Flex Confirmation-Form-SubForm-Title-text">
-                  Forma de pagamento
-                </Text>
-              </Title>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+            <Title className="Title">
+              <Text className="Text">
+                Forma de pagamento
+              </Text>
+            </Title>
+            <SubForm className="SubForm-Payment">
+              <Label className="Label">
                 dinheiro
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="dinheiro" checked={formaDePagamento == "dinheiro"} onChange={e => setFormaDePagamento(e.target.value)}/>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+              <input className="Input" type="radio" value="dinheiro" checked={formaDePagamento == "dinheiro"} onChange={e => setFormaDePagamento(e.target.value)}/>
+              <Label className="Label">
                 cartão
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="cartão" checked={formaDePagamento == "cartão"} onChange={e => setFormaDePagamento(e.target.value)}/>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+              <input className="Input" type="radio" value="cartão" checked={formaDePagamento == "cartão"} onChange={e => setFormaDePagamento(e.target.value)}/>
+              <Label className="Label">
                 pix
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="pix" checked={formaDePagamento == "pix"} onChange={e => setFormaDePagamento(e.target.value)}/>
+              <input className="Input" type="radio" value="pix" checked={formaDePagamento == "pix"} onChange={e => setFormaDePagamento(e.target.value)}/>
             </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+            <Title className="Title">
+              <Text className="Text">
                 Toco
-              </Label>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+              </Text>
+            </Title>
+            <SubForm className="SubForm-Troco">
+              <Label className="Label">
                 Precisa de troco?
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="checkbox" value={precisaTroco} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
-              <input className="Flex Confirmation-Form-SubForm-Input" onChange={e => setTroco(e.target.value)}/>
+              <input className="Input-CheckBox" type="checkbox" value={precisaTroco} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
+              <input className="Input-Text" type="text" placeholder="Quanto?" onChange={e => setTroco(e.target.value)}/>
             </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Title className="Flex Confirmation-Form-SubForm-Title">
-                <Text className="Flex Confirmation-Form-SubForm-Title-text">
-                  Forma de Recebimento
-                </Text>
-              </Title>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+            <Title className="Title">
+              <Text className="Text">
+                Forma de Recebimento
+              </Text>
+            </Title>
+            <SubForm className="SubForm-Delivery">
+              <Label className="Label">
                 Retirada
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="Retirada" checked={formaDeRecebimento == "Retirada"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+              <input className="Input" type="radio" value="Retirada" checked={formaDeRecebimento == "Retirada"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
+              <Label className="Label">
                 Entegra
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" type="radio" value="Entegra" checked={formaDeRecebimento == "Entegra"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
+              <input className="Input" type="radio" value="Entegra" checked={formaDeRecebimento == "Entegra"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
             </SubForm>
-            <SubForm className="Flex Confirmation-Form-SubForm">
-              <Label className="Flex Confirmation-Form-SubForm-Label">
+            <SubForm className="SubForm-Address">
+              <Label className="Label">
                 Endereço
               </Label>
-              <input className="Flex Confirmation-Form-SubForm-Input" onChange={e => setEndereco(e.target.value)}/>
+              <input className="Input-Text" onChange={e => setEndereco(e.target.value)}/>
             </SubForm>
           </Form>
-          <Products className="Flex Collumn Confirmation-Products">
+          <Products className="Products">
             {selectedProduct.map((product: any) => (
-              <Product className="Flex Confirmation-Products-Product" key={checkIfUndefined(product?.key)}>
-                <ImageDiv className="Flex Image-Size Flex-Center Confirmation-Products-Product-Image">
-                  <Image className="Flex Image-Size Flex-Center Confirmation-Products-Product-Image-Img" src={checkIfUndefined(product?.image)}/>
+              <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>
+                <ImageDiv className="Image">
+                  <Image className="Img" src={checkIfUndefined(product?.image)}/>
                 </ImageDiv>
-                <Information className="Flex Collumn Confirmation-Products-Product-Information">
-                  <Description className="Flex Confirmation-Products-Product-Information-Description">
-                    <Text className="Flex Confirmation-Products-Product-Information-Description-Paragraph">
+                <Information className="Information">
+                  <Title className="Title">
+                    <Text className="Text">
+                      {checkIfUndefined(product?.name)}
+                    </Text>
+                  </Title>
+                  <Description className="Description">
+                    <Text className="Text">
                       {checkIfUndefined(product?.description)}
                     </Text>
                   </Description>
-                  <Data className="Flex">
-                    <Price className="Flex Confirmation-Products-Product-Information-Price">
-                      <Label className="Flex Confirmation-Products-Product-Information-Price-Label">
+                  <Data className="Data">
+                    <Price className="Price">
+                      <Label className="Label">
                         Price: &#20;
                       </Label>
-                      <Text className="Flex Confirmation-Products-Product-Information-Price-Text">
-                        {checkIfUndefined(product?.price)} &#20;
+                      <Text className="Text">
+                        {converteToMoney(checkIfUndefined(product?.price))} &#20;
                       </Text>
                     </Price>
-                    <Count className="Flex Confirmation-Products-Product-Information-Count">
-                      <Label className="Flex Confirmation-Products-Product-Information-Count-Label">
+                    <Count className="Count">
+                      <Label className="Label">
                         count: &#20;
                       </Label>
-                      <Text className="Flex Confirmation-Products-Product-Information-Count-Text">
+                      <Text className="Text">
                         {checkIfUndefined(product?.preSelected)} &#20;
                       </Text>
                     </Count>
-                    <Total className="Flex Confirmation-Products-Product-Information-Total">
-                      <Label className="Flex Confirmation-Products-Product-Information-Total-Label">
+                    <Total className="Total">
+                      <Label className="Label">
                         Total: &#20;
                       </Label>
-                      <Text className="Flex Confirmation-Products-Product-Information-Total-Text">
-                        {checkIfUndefined(product?.total)} &#20;
+                      <Text className="Text">
+                        {converteToMoney(checkIfUndefined(product?.total))} &#20;
                       </Text>
                     </Total>
                   </Data>
@@ -161,35 +160,66 @@ const ConfirmationLayout: FunctionComponent<any> = _ => {
               </Product>
             ))}
           </Products>
-          <Painel>
-            <Display className="Flex Cart-Products-Product-Actions-Display">
-              <Text className="Flex Cart-Products-Product-Actions-Display-Text">
+          <Content className="Content">
+            <Resume className="Resume">
+              <Display className="Display">
+                <Text className="Text">
+                  {"Itens: " + selectedProduct.length} &#20;
+                </Text>
+              </Display>
+              <Display className="Display">
+                <Text className="Text">
+                  {"Tipos: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
+                </Text>
+              </Display>
+              <Display className="Display">
+                <Text className="Text">
+                  {"Preço Total: " + converteToMoney(selectedProduct.reduce((a: any, b: any) => a + b.total, 0))} &#20;
+                </Text>
+              </Display>
+            </Resume>
+            <Actions className="Actions">
+              <Action className="Action">
+                <button className="Button">
+                  Voltar
+                </button>
+              </Action>
+              <Action className="Action">
+                <button className="Button" onClick={handleSetOrder}>
+                  Confimar
+                </button>
+              </Action>
+            </Actions>
+          </Content>
+          {/* <Painel>
+            <Display className="Display">
+              <Text className="Text">
                 {"Itens: " + selectedProduct.length}
               </Text>
             </Display>
-            <Display className="Flex Cart-Products-Product-Actions-Display">
-              <Text className="Flex Cart-Products-Product-Actions-Display-Text">
+            <Display className="Display">
+              <Text className="Text">
                 {"Número: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)}
               </Text>
             </Display>
-            <Display className="Flex Cart-Products-Product-Actions-Display">
-              <Text className="Flex Cart-Products-Product-Actions-Display-Text">
+            <Display className="Display">
+              <Text className="Text">
                 {"Preço Total: " + selectedProduct.reduce((a: any, b: any) => a + b.total, 0)}
               </Text>
             </Display>
           </Painel>
-          <Actions className="Flex Confirmation-Actions">
-            <Action className="Flex Confirmation-Actions-Action-Button">
-              <button className="Flex Confirmation-Actions-Action-Button">
+          <Actions className="Actions">
+            <Action className="Button">
+              <button className="Button">
                 Voltar
               </button>
             </Action>
-            <Action className="Flex Confirmation-Actions-Action-Button">
-              <button className="Flex Confirmation-Actions-Button" onClick={handleSetOrder}>
+            <Action className="Button">
+              <button className="Button" onClick={handleSetOrder}>
                 Confimar
               </button>
             </Action>
-          </Actions>
+          </Actions> */}
         </>
       ) : null}
     </Confirmation>

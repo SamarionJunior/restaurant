@@ -1,99 +1,155 @@
-/// CSS ///
+@use "../variable.scss" as *;
+@use "../pre-sets.scss" as *;
 
-import "../../css/pre-sets.scss"
-import "../../css/restaurant.scss"
+.Status{
+  @extend .Flex, .WH-Default, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
 
-import { useState, type FunctionComponent } from "react";
-import { useSelector } from "react-redux";
-import { Count, DateAndHour, Description, Display, History, Image, ImageDiv, Information, Order, Price, Product, Products, Status, Text, Title, Total } from "../components/components.tsx";
-import { checkIfUndefined, statusImage, statusMenssage } from "../../typescript/functions.ts";
+  & > .Order{
+    @extend .Flex, .WH-Default, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
 
-const StatusLayout: FunctionComponent<any> = _ => {
+    & > .Image{
+      @extend .Flex;
+      @extend .Image-Size;
+      @extend .Flex-Center;
+  
+      & > .Img{
+        @extend .Flex;
+        @extend .Image-Size;
+        @extend .Flex-Center;
+      }
+    }
+    & > .Display{
+      @extend .Flex;
+      @extend .WH-Default;
 
-  const orders = useSelector((state: any) => state.orders);
+      & > .Text{
+        @extend .Flex;
+        @extend .WH-Default;
+        @extend .Name-Size;
+      }
+    }
+    & > .History{
+      @extend .Flex, .WH-Default, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+      
+      & > .Title{
+        @extend .Flex;
+        @extend .WH-Default;
 
-  // const [title, setTitle] = useState("Status");
-  const [title, ] = useState("Status");
+        & > .DateAndHour{
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Name-Size;
 
-  return (
-    <Status className="Flex Status">
-      <Title>
-        <Text>
-          {title}
-        </Text>
-      </Title>
-      {orders.map((order: any) => (
-        <Order key={checkIfUndefined(order?.index)}>
-          <ImageDiv className="Flex Image-Size Status-Image">
-            <Image className="Flex Image-Size Status-Image-Img" src={statusImage[checkIfUndefined(order?.status)]}/>
-          </ImageDiv>
-          <Display className="Flex Status-Display">
-            <Text className="Flex Status-Display-Text">
-              {statusMenssage[checkIfUndefined(order?.status)]}
-            </Text>
-          </Display>
-          <History className="Flex Status-history">
-            <Title className="Flex Status-history-title">
-              <DateAndHour className="Flex Status-history-title-DateAndHour">
-                {
-                  new Date(checkIfUndefined(order?.date)).toLocaleDateString("pt-br")
-                  +" - "+
-                  new Date(checkIfUndefined(order?.date)).getHours()
-                  +":"+
-                  new Date(checkIfUndefined(order?.date)).getMinutes()
-                  +":"+
-                  ((new Date(checkIfUndefined(order?.date)).getSeconds()) < 10 ? "0"+(new Date(checkIfUndefined(order?.date)).getSeconds()) : (new Date(checkIfUndefined(order?.date)).getSeconds()))
+        }
+      }
+
+      & > .Products{
+        @extend .Flex, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+
+        width: calc(100% - (0 * 1rem));
+        // min-height: calc(200px - (0 * 1rem));
+        height: auto;
+
+        & > .Product-Horizontal{
+          @extend .Flex, .Right-Space-Children, .WH-Default;
+
+          & > .Image{
+            @extend .Flex;
+            @extend .Image-Size;
+            @extend .Flex-Center;
+        
+            & > .Img{
+              @extend .Flex;
+              @extend .Image-Size;
+              @extend .Flex-Center;
+
+            }
+          }
+
+          & > .Information{
+            @extend .Flex;
+            @extend .WH-Default;
+            @extend .Collumn;
+
+            width: calc(100% - $imageSize - 1rem);
+            height: auto;
+
+            & > .Title{
+              @extend .Flex;
+              @extend .WH-Default;
+
+              & > .Text{
+                @extend .Flex;
+                @extend .WH-Default;
+                @extend .Name-Size;
+
+              }
+            }
+        
+            & > .Description{
+              @extend .Flex;
+              @extend .WH-Default;
+
+              & > .Text{
+                @extend .Ellipse;
+
+              }
+            }
+
+            & > .Data{
+              @extend .Flex;
+              @extend .WH-Default;
+              @extend .Data-Size ;
+              flex-wrap: wrap;
+            
+              & > .Price{
+                @extend .Flex;
+                @extend .WH-Auto;
+                
+                & > .Label{
+                  @extend .Flex;
+                  @extend .WH-Auto;
                 }
-              </DateAndHour>
-            </Title>
-            {"name: " + checkIfUndefined(order?.formulario?.name)}
-            <br/>
-            {"formaDePagamento: " + checkIfUndefined(order?.formulario?.formaDePagamento)}
-            <br/>
-            {"precisaTroco: " + checkIfUndefined(order?.formulario?.precisaTroco)}
-            <br/>
-            {"troco: " + checkIfUndefined(order?.formulario?.troco)}
-            <br/>
-            {"formaDeRecebimento: " + checkIfUndefined(order?.formulario?.formaDeRecebimento)}
-            <br/>
-            {"endereco: " + checkIfUndefined(order?.formulario?.endereco)}
-            <br/>
-            <Products className="Flex Status-Products">
-              {checkIfUndefined(order?.products).map((product: any) => (
-                <Product className="Flex Status-Products-Product" key={checkIfUndefined(product?.key)}>
-                  <ImageDiv className="Flex Image-Size Flex-Center Status-Products-Product-Image">
-                    <Image className="Flex Image-Size Flex-Center Status-Products-Product-Image-Img" src={checkIfUndefined(product?.image)}/>
-                  </ImageDiv>
-                  <Information className="Flex Status-Products-Product-Information">
-                    <Description className="Flex Status-Products-Product-Information-Description">
-                      <Text className="Flex Ellipse Status-Products-Product-Information-Description-Text">
-                        {checkIfUndefined(product?.description)}
-                      </Text>
-                    </Description>
-                    <Price className="Flex Status-Products-Product-Information-Price">
-                      <Text className="Flex Status-Products-Product-Information-Price-Text">
-                        {"Price: " + checkIfUndefined(product?.price)}
-                      </Text>
-                    </Price>
-                    <Count className="Flex Status-Products-Product-Information-Count">
-                      <Text className="Flex Status-Products-Product-Information-Count-Text">
-                        {"PreSelected: " + checkIfUndefined(product?.preSelected)}
-                      </Text>
-                    </Count>
-                    <Total className="Flex Status-Products-Product-Information-Total">
-                      <Text className="Flex Status-Products-Product-Information-Total-Text">
-                        {"Total: " + checkIfUndefined(product?.total)}
-                      </Text>
-                    </Total>
-                  </Information>
-                </Product>
-              ))}
-            </Products>
-          </History>
-        </Order>
-      ))}
-    </Status>
-  );
-}
 
-export default StatusLayout
+                & > .Text{
+                  @extend .Flex;
+                  @extend .WH-Auto;
+                }
+              }
+
+              & > .Count{
+                @extend .Flex;
+                @extend .WH-Auto;
+                
+                & > .Label{
+                  @extend .Flex;
+                  @extend .WH-Auto;
+                }
+
+                & > .Text{
+                  @extend .Flex;
+                  @extend .WH-Auto;
+                }
+              }
+
+              & > .Total{
+                @extend .Flex;
+                @extend .WH-Auto;
+                
+                & > .Label{
+                  @extend .Flex;
+                  @extend .WH-Auto;
+                }
+
+                & > .Text{
+                  @extend .Flex;
+                  @extend .WH-Auto;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

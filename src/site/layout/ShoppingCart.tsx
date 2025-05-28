@@ -1,22 +1,20 @@
 /// CSS ///
 
 import "../../css/pre-sets.scss"
-import "../../css/restaurant.scss"
+import "../../css/components/ShoppingCart.scss"
 
 /// IMAGE ///
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, Text, Title, Total } from "../components/components.tsx";
-import { arrayIsEmpty, checkIfUndefined } from "../../typescript/functions.ts";
+import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
+import { arrayIsEmpty, checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
+import type { ProductType } from "../../typescript/types.ts";
 
 const ShoppingCartLayout: FunctionComponent<any> = _ => {
 
   const [selectedProduct, setSelectedProduct] = useState([]);
-
-  // const [title, setTitle] = useState("Cart");
-  const [title, ] = useState("Cart");
 
   const products = useSelector((state: any) => state.products);
 
@@ -60,101 +58,105 @@ const ShoppingCartLayout: FunctionComponent<any> = _ => {
   }));
 
   return (
-    <ShoppingCart className="Flex WH-Default Bottom-Space-Children Padding-Vertical Collumn ShoppingCart">
-      <Title className="Flex WH-Default ShoppingCart-Title">
-        <Text className="Flex WH-Default ShoppingCart-Title-Text">
-          {title}
-        </Text>
-      </Title>
+    <ShoppingCart className="ShoppingCart">
       {!arrayIsEmpty(selectedProduct) ? (
         <>
-          <Products className="Flex WH-Default Collumn ShoppingCart-Products">
-            {selectedProduct.map((product: any) => (
-              <Product className="Flex Right-Space-Children WH-Default ShoppingCart-Products-Product" key={checkIfUndefined(product?.key)}>
-                <ImageDiv className="Flex Image-Size Flex-Center ShoppingCart-Products-Product-Image">
-                  <Image className="Flex Image-Size Flex-Center ShoppingCart-Products-Product-Image-Img" src={checkIfUndefined(product?.image)}/>
+          <Products className="Products">
+            {selectedProduct.map((product: ProductType) => (
+              <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>
+                {console.log(product?.key)}
+                <ImageDiv className="Image">
+                  <Image className="Img" src={checkIfUndefined(product?.image)}/>
                 </ImageDiv>
-                <Information className="Flex Collumn Collumn ShoppingCart-Products-Product-Information">
-                  <Title className="Flex WH-Default ShoppingCart-Products-Product-Information-Title">
-                    <Text className="Flex WH-Default ShoppingCart-Products-Product-Information-Title-Text">
+                <Information className="Information">
+                  <Title className="Title">
+                    <Text className="Text">
                       {checkIfUndefined(product?.name)}
                     </Text>
                   </Title>
-                  <Description className="Flex WH-Default Collumn ShoppingCart-Products-Product-Information-Description">
-                    <Text className="Flex Ellipse ShoppingCart-Products-Product-Information-Description-Paragraph">
+                  <Description className="Description">
+                    <Text className="Text">
                       {checkIfUndefined(product?.description)}
                     </Text>
                   </Description>
-                  <Data className="Flex WH-Default ShoppingCart-Products-Product-Information-Data">
-                    <Price className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Price">
-                      <Label className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Price-Label">
+                  <Data className="Data">
+                    <Price className="Price">
+                      <Label className="Label">
                         Price: &#20;
                       </Label>
-                      <Text className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Price-Text">
-                        {checkIfUndefined(product?.price)} &#20;
+                      <Text className="Text">
+                        {converteToMoney(checkIfUndefined(product?.price))} &#20;
                       </Text>
                     </Price>
-                    <Total className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Total">
-                      <Label className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Total-Label">
-                        Total: &#20;
-                      </Label>
-                      <Text className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Total-Text">
-                        {checkIfUndefined(product?.total)} &#20;
-                      </Text>
-                    </Total>
-                    <Actions className="Flex WH-Auto Grow Row-End ShoppingCart-Products-Product-Actions">
-                      <Action className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action">
-                        <button className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action-Button" onClick={ _ => handleAddQTDInCart(product)}>
-                          +
+                  </Data>
+                  <Actions className="Actions">
+                    <SubActions className="SubActions">
+                      <Action className="Action">
+                        <button className="Button" onClick={ _ => handleSubQTDInCart(product)}>
+                          <i className="Icon">
+                            -
+                          </i>
                         </button>
                       </Action>
-                      <Display className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Display">
-                        <Text className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Display-Text">
+                      <Display className="Display">
+                        <Text className="Text">
                           {product.preSelected}
                         </Text>
                       </Display>
-                      <Action className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action">
-                        <button className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action-Button" onClick={ _ => handleSubQTDInCart(product)}>
-                          -
+                      <Action className="Action">
+                        <button className="Button" onClick={ _ => handleAddQTDInCart(product)}>
+                          <i className="Icon">
+                            +
+                          </i>
                         </button>
                       </Action>
-                      <Action className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action">
-                        <button className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action-Button" onClick={ _ => handleRemoveFromCart(product)}>
-                          X
+                      <Total className="Total">
+                        <Label className="Label">
+                          Total: &#20;
+                        </Label>
+                        <Text className="Text">
+                          {converteToMoney(checkIfUndefined(product?.total))} &#20;
+                        </Text>
+                      </Total>
+                      <Action className="Action">
+                        <button className="Button" onClick={ _ => handleRemoveFromCart(product)}>
+                          <i className="Icon">
+                            X
+                          </i>
                         </button>
                       </Action>
-                    </Actions>
-                  </Data>
+                    </SubActions>
+                  </Actions>
                 </Information>
               </Product>
             ))}
           </Products>
-          <Content className="Flex WH-Default Bottom-Space-Children Collumn ShoppingCart-Content">
-            <Resume className="Flex WH-Default ShoppingCart-Content-Resume">
-              <Display className="Flex WH-Auto ShoppingCart-Content-Resume-Display">
-                <Text className="Flex WH-Auto ShoppingCart-Content-Resume-Display-Text">
+          <Content className="Content">
+            <Resume className="Resume">
+              <Display className="Display">
+                <Text className="Text">
                   {"Itens: " + selectedProduct.length} &#20;
                 </Text>
               </Display>
-              <Display className="Flex WH-Auto ShoppingCart-Content-Resume-Display">
-                <Text className="Flex WH-Auto ShoppingCart-Content-Resume-Display-Text">
-                  {"Número: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
+              <Display className="Display">
+                <Text className="Text">
+                  {"Tipos: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
                 </Text>
               </Display>
-              <Display className="Flex WH-Auto ShoppingCart-Content-Resume-Display">
-                <Text className="Flex WH-Auto ShoppingCart-Content-Resume-Display-Text">
-                  {"Preço Total: " + selectedProduct.reduce((a: any, b: any) => a + b.total, 0)} &#20;
+              <Display className="Display">
+                <Text className="Text">
+                  {"Preço Total: " + converteToMoney(selectedProduct.reduce((a: any, b: any) => a + b.total, 0))} &#20;
                 </Text>
               </Display>
             </Resume>
-            <Actions className="Flex Right-Space-Children WH-Default ShoppingCart-Content-Actions">
-              <Action className="Flex Flex-Center ShoppingCart-Content-Actions-Action">
-                <button className="Flex Flex-Center WH-Default ShoppingCartart-Content-Actions-Action-Button">
+            <Actions className="Actions">
+              <Action className="Action">
+                <button className="Button">
                   Voltar
                 </button>
               </Action>
-              <Action className="Flex Flex-Center ShoppingCart-Content-Actions-Action">
-                <button className="Flex Flex-Center WH-Default ShoppingCart-Content-Actions-Action-Button">
+              <Action className="Action">
+                <button className="Button">
                   Confimar
                 </button>
               </Action>

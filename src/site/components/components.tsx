@@ -222,3 +222,17 @@ export const Content: FunctionComponent<any> = props => {
     </div>
   );
 }
+export const Store: FunctionComponent<any> = props => {
+  return (
+    <div className={props.className}>
+      {props.children}
+    </div>
+  );
+}
+export const Detail: FunctionComponent<any> = props => {
+  return (
+    <div className={props.className}>
+      {props.children}
+    </div>
+  );
+}

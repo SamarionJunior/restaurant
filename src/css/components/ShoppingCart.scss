@@ -1,169 +1,352 @@
-/// CSS ///
+@use "../variable.scss" as *;
+@use "../pre-sets.scss" as *;
 
-import "../../css/pre-sets.scss"
-import "../../css/restaurant.scss"
+.ShoppingCart{
+  @extend .Flex, .WH-Default, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
 
-/// IMAGE ///
+  & > .Products{
+    @extend .Flex, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
 
-import { useEffect, useState, type FunctionComponent } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, Text, Title, Total } from "../components/components.tsx";
-import { arrayIsEmpty, checkIfUndefined } from "../../typescript/functions.ts";
+    width: calc(100% - (0 * 1rem));
+    // min-height: calc(200px - (0 * 1rem));
+    height: auto;
 
-const ShoppingCartLayout: FunctionComponent<any> = _ => {
+    & > .Product-Horizontal{
+      @extend .Flex, .Right-Space-Children, .WH-Default;
 
-  const [selectedProduct, setSelectedProduct] = useState([]);
+      & > .Image{
+        @extend .Flex;
+        @extend .Image-Size;
+        @extend .Flex-Center;
+    
+        & > .Img{
+          @extend .Flex;
+          @extend .Image-Size;
+          @extend .Flex-Center;
+        }
+      }
 
-  // const [title, setTitle] = useState("Cart");
-  const [title, ] = useState("Cart");
+      & > .Information{
+        @extend .Flex;
+        @extend .WH-Default;
+        @extend .Collumn;
+        
+        width: calc(100% - $imageSize - 1rem);
+        height: auto;
 
-  const products = useSelector((state: any) => state.products);
+        & > .Title{
+          @extend .Flex;
+          @extend .WH-Default;
 
-  const dispatch = useDispatch();
+          & > .Text{
+            @extend .Flex;
+            @extend .WH-Default;
+            @extend .Name-Size;
+          }
+        }
+        
+        & > .Description{
+          @extend .Flex;
+          @extend .WH-Default;
 
-  useEffect(() => {
-    if(products != null){
-      setSelectedProduct(products.filter((product: any) => product.itIsInCart));
+          & > .Text{
+            @extend .Ellipse;
+          }
+        }
+
+        & > .Data{
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Data-Size ;
+          flex-wrap: wrap;
+        
+          & > .Price{
+            @extend .Flex;
+            @extend .WH-Auto;
+            
+            & > .Label{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+
+            & > .Text{
+              @extend .Flex;
+              @extend .WH-Auto;
+            }
+          }
+        }
+
+        & > .Actions {
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Bottom-Space-Children;
+
+          margin-top: 1rem;
+
+          flex-wrap: wrap;
+
+          & > .SubActions{
+            @extend .Flex;
+            @extend .WH-Default;
+            // border: 3px solid black;
+
+            & > .Action{
+              width: 3rem;
+              height: 3rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              & > .Button{
+                padding: 0;
+                line-height: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                cursor: pointer;
+
+                &:active{
+                  background-color: white;
+
+                  & > .Icon{
+                    color: black;
+                  }
+                }
+
+                & > .Icon{
+                  width: 100%;
+                  height: 100%;
+                  padding: 0;
+                  line-height: 0;
+                  white-space: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: white;
+                  cursor: pointer;
+                }
+              }
+            }
+
+            & > .Display{
+              width: 3rem;
+              height: 3rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              & > .Text{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+
+            & > .Total{
+              @extend .Flex;
+              @extend .Flex-Center;
+
+              justify-content: flex-start;
+              padding-left: calc(1rem );
+              width: calc(100% - (3 * 3rem));
+              height: 3rem;
+              
+
+              & > .Label{
+
+              }
+
+              & > .Text{
+
+              }
+            }
+          }
+        }
+      }
     }
-  }, [products]);
-
-  const handleAddQTDInCart = (product: any) => {
-    const newPreSelected = product.preSelected + 1 <= product.count ? product.preSelected + 1 : product.count;
-    const newTotal = newPreSelected * product.price;
-    const newObejct = {
-      ...product,
-      preSelected: newPreSelected,
-      total: newTotal
-    };
-    dispatch(updateProduct(newObejct));
   }
 
-  const handleSubQTDInCart = (product: any) => {
-    const newPreSelected = product.preSelected - 1 > 0 ? product.preSelected - 1 : 0;
-    const newTotal = newPreSelected * product.price;
-    const newItIsInCart = newPreSelected == 0 ? false : true;
-    const newObejct = {
-      ...product,
-      preSelected: newPreSelected,
-      total: newTotal,
-      itIsInCart: newItIsInCart
-    };
-    dispatch(updateProduct(newObejct));
+  & > .Content{
+    @extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children;
+
+    & > .Resume{
+      @extend .Flex, .WH-Default;
+    
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+    }
+    
+    & > .Actions{
+      @extend .Flex, .WH-Default, .Right-Space-Children;
+    
+      & > .Action{
+        @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
+
+        & > .Button{
+          @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
+
+          & > i{
+            @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
+
+
+          }
+        }
+      }
+    }
   }
-
-  const handleRemoveFromCart = (product: any) => dispatch(updateProduct({
-    ...product,
-    preSelected: 0,
-    total: 0,
-    itIsInCart: false
-  }));
-
-  return (
-    <ShoppingCart className="Flex WH-Default Bottom-Space-Children Padding-Vertical Collumn ShoppingCart">
-      <Title className="Flex WH-Default ShoppingCart-Title">
-        <Text className="Flex WH-Default ShoppingCart-Title-Text">
-          {title}
-        </Text>
-      </Title>
-      {!arrayIsEmpty(selectedProduct) ? (
-        <>
-          <Products className="Flex WH-Default Collumn ShoppingCart-Products">
-            {selectedProduct.map((product: any) => (
-              <Product className="Flex Right-Space-Children WH-Default ShoppingCart-Products-Product" key={checkIfUndefined(product?.key)}>
-                <ImageDiv className="Flex Image-Size Flex-Center ShoppingCart-Products-Product-Image">
-                  <Image className="Flex Image-Size Flex-Center ShoppingCart-Products-Product-Image-Img" src={checkIfUndefined(product?.image)}/>
-                </ImageDiv>
-                <Information className="Flex Collumn Collumn ShoppingCart-Products-Product-Information">
-                  <Title className="Flex WH-Default ShoppingCart-Products-Product-Information-Title">
-                    <Text className="Flex WH-Default ShoppingCart-Products-Product-Information-Title-Text">
-                      {checkIfUndefined(product?.name)}
-                    </Text>
-                  </Title>
-                  <Description className="Flex WH-Default Collumn ShoppingCart-Products-Product-Information-Description">
-                    <Text className="Flex Ellipse ShoppingCart-Products-Product-Information-Description-Paragraph">
-                      {checkIfUndefined(product?.description)}
-                    </Text>
-                  </Description>
-                  <Data className="Flex WH-Default ShoppingCart-Products-Product-Information-Data">
-                    <Price className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Price">
-                      <Label className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Price-Label">
-                        Price: &#20;
-                      </Label>
-                      <Text className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Price-Text">
-                        {checkIfUndefined(product?.price)} &#20;
-                      </Text>
-                    </Price>
-                    <Total className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Total">
-                      <Label className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Total-Label">
-                        Total: &#20;
-                      </Label>
-                      <Text className="Flex WH-Auto ShoppingCart-Products-Product-Information-Data-Total-Text">
-                        {checkIfUndefined(product?.total)} &#20;
-                      </Text>
-                    </Total>
-                    <Actions className="Flex WH-Auto Grow Row-End ShoppingCart-Products-Product-Actions">
-                      <Action className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action">
-                        <button className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action-Button" onClick={ _ => handleAddQTDInCart(product)}>
-                          +
-                        </button>
-                      </Action>
-                      <Display className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Display">
-                        <Text className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Display-Text">
-                          {product.preSelected}
-                        </Text>
-                      </Display>
-                      <Action className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action">
-                        <button className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action-Button" onClick={ _ => handleSubQTDInCart(product)}>
-                          -
-                        </button>
-                      </Action>
-                      <Action className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action">
-                        <button className="Flex WH-Auto ShoppingCart-Products-Product-Actions-Action-Button" onClick={ _ => handleRemoveFromCart(product)}>
-                          X
-                        </button>
-                      </Action>
-                    </Actions>
-                  </Data>
-                </Information>
-              </Product>
-            ))}
-          </Products>
-          <Content className="Flex WH-Default Bottom-Space-Children Collumn ShoppingCart-Content">
-            <Resume className="Flex WH-Default ShoppingCart-Content-Resume">
-              <Display className="Flex WH-Auto ShoppingCart-Content-Resume-Display">
-                <Text className="Flex WH-Auto ShoppingCart-Content-Resume-Display-Text">
-                  {"Itens: " + selectedProduct.length} &#20;
-                </Text>
-              </Display>
-              <Display className="Flex WH-Auto ShoppingCart-Content-Resume-Display">
-                <Text className="Flex WH-Auto ShoppingCart-Content-Resume-Display-Text">
-                  {"Número: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
-                </Text>
-              </Display>
-              <Display className="Flex WH-Auto ShoppingCart-Content-Resume-Display">
-                <Text className="Flex WH-Auto ShoppingCart-Content-Resume-Display-Text">
-                  {"Preço Total: " + selectedProduct.reduce((a: any, b: any) => a + b.total, 0)} &#20;
-                </Text>
-              </Display>
-            </Resume>
-            <Actions className="Flex Right-Space-Children WH-Default ShoppingCart-Content-Actions">
-              <Action className="Flex Flex-Center ShoppingCart-Content-Actions-Action">
-                <button className="Flex Flex-Center WH-Default ShoppingCartart-Content-Actions-Action-Button">
-                  Voltar
-                </button>
-              </Action>
-              <Action className="Flex Flex-Center ShoppingCart-Content-Actions-Action">
-                <button className="Flex Flex-Center WH-Default ShoppingCart-Content-Actions-Action-Button">
-                  Confimar
-                </button>
-              </Action>
-            </Actions>
-          </Content>
-        </>
-      ) : null}
-    </ShoppingCart>
-  );
 }
 
-export default ShoppingCartLayout
+// @use "../variable.scss" as *;
+// @use "../pre-sets.scss" as *;
+
+// .ShoppingCart{
+//   // width: calc(100% - (0 * 1rem));
+// }
+
+//   .ShoppingCart-Products{
+//   }
+
+//     .ShoppingCart-Products-Product{
+//     }
+
+//       .ShoppingCart-Products-Product-Image{
+//       }
+
+//         .ShoppingCart-Products-Product-Image-Img{
+//         }
+
+//       .ShoppingCart-Products-Product-Information{
+//         width: calc(100% - $imageSize - 1rem);
+//         height: auto;
+//       }
+
+//         .ShoppingCart-Products-Product-Information-Title{
+//         }
+
+//           .ShoppingCart-Products-Product-Information-Title-Text{
+//             // width: calc(100% - 50px - 1rem);
+//           }
+
+//         .ShoppingCart-Products-Product-Information-Description{
+//         }
+
+//           .ShoppingCart-Products-Product-Information-Description-Paragraph{
+//           }
+
+//         .ShoppingCart-Products-Product-Information-Data{
+//         }
+
+//           .ShoppingCart-Products-Product-Information-Data-Price{
+//           }
+
+//             .ShoppingCart-Products-Product-Information-Data-Price-Label{
+//             }
+
+//             .ShoppingCart-Products-Product-Information-Data-Price-Text{
+//             }
+
+//           .ShoppingCart-Products-Product-Information-Data-Total{
+//           }
+
+//             .ShoppingCart-Products-Product-Information-Data-Total-Label{
+//             }
+
+//             .ShoppingCart-Products-Product-Information-Data-Total-Text{
+//             }
+
+//           .ShoppingCart-Products-Product-Actions{
+//             flex-wrap: nowrap;
+//           }
+
+//             .ShoppingCart-Products-Product-Actions-Action{
+//             }
+
+//               .ShoppingCart-Products-Product-Actions-Action-Button{
+//               }
+
+//             .ShoppingCart-Products-Product-Actions-Display{
+//             }
+
+//               .ShoppingCart-Products-Product-Actions-Display-Text{
+//               }
+
+//             .ShoppingCart-Products-Product-Actions-Action{
+//             }
+
+//               .ShoppingCart-Products-Product-Actions-Action-Button{
+//               }
+
+//             .ShoppingCart-Products-Product-Actions-Action{
+//             }
+
+//               .ShoppingCart-Products-Product-Actions-Action-Button{
+//               }
+
+//   .ShoppingCart-Content{
+//   }
+
+//     .ShoppingCart-Content-Resume{
+//       justify-content: flex-end;
+//     }
+
+//       .ShoppingCart-Content-Resume-Display{
+//       }
+
+//         .ShoppingCart-Content-Resume-Display-Text{
+//         }
+
+//       .ShoppingCart-Content-Resume-Display{
+//       }
+
+//         .ShoppingCart-Content-Resume-Display-Text{
+//         }
+
+//       .ShoppingCart-Content-Resume-Display{
+//       }
+
+//         .ShoppingCart-Content-Resume-Display-Text{
+//         }
+
+//     .ShoppingCart-Content-Actions{
+//     }
+
+//       .ShoppingCart-Content-Actions-Action{
+//         width: calc(50% - (1rem / 2));
+//         height: auto;
+//       }
+
+//         .ShoppingCartart-Content-Actions-Action-Button{
+//         }
+
+//       .ShoppingCart-Content-Actions-Action{
+//         width: calc(50% - (1rem / 2));
+//         height: auto;
+//       }
+
+//         .ShoppingCart-Content-Actions-Action-Button{
+//         }
