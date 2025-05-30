@@ -68,6 +68,7 @@ const ProductsLayout: FunctionComponent<any> = _ => {
           </Product>
         )) : null}
       </Products>
+      {/* <div className="Space"></div> */}
     </Store>
   );
 }

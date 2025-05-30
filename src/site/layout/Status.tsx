@@ -43,17 +43,11 @@ const StatusLayout: FunctionComponent<any> = _ => {
               </DateAndHour>
             </Title>
             {"name: " + checkIfUndefined(order?.formulario?.name)}
-            <br/>
             {"formaDePagamento: " + checkIfUndefined(order?.formulario?.formaDePagamento)}
-            <br/>
             {"precisaTroco: " + checkIfUndefined(order?.formulario?.precisaTroco)}
-            <br/>
             {"troco: " + checkIfUndefined(order?.formulario?.troco)}
-            <br/>
             {"formaDeRecebimento: " + checkIfUndefined(order?.formulario?.formaDeRecebimento)}
-            <br/>
             {"endereco: " + checkIfUndefined(order?.formulario?.endereco)}
-            <br/>
             <Products className="Products">
               {checkIfUndefined(order?.products).map((product: any) => (
                 <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>

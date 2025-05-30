@@ -23,50 +23,62 @@ export const createOrder = (products: any, formulario: any): any => {
   };
 }
 
+const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+
+const Hambuguer = {
+  index: 0,
+  key: Math.random(),
+  image: hambuguerImage,
+  name: "Hambuguer",
+  description: description,
+  price: 1,
+  count: 5,
+  show: false,
+  preSelected: 0,
+  total: 0,
+  itIsInCart: false
+}
+const HotDog = {
+  index: 1,
+  key: Math.random(),
+  image: hotdogImage,
+  name: "Hot-Dog",
+  description: description,
+  price: 2,
+  count: 5,
+  show: false,
+  preSelected: 0,
+  total: 0,
+  itIsInCart: false
+}
+const Pizza = {
+  index: 2,
+  key: Math.random(),
+  image: pizzaImage,
+  name: "Pizza",
+  description: description,
+  price: 3,
+  count: 5,
+  show: false,
+  preSelected: 0,
+  total: 0,
+  itIsInCart: false
+}
+
 export const getAllProducts = () => {
-  const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.";
-  return [
-    {
-      index: 0,
-      key: Math.random(),
-      image: hambuguerImage,
-      name: "Hambuguer",
-      description: description,
-      price: 1,
-      count: 5,
-      show: false,
-      preSelected: 0,
-      total: 0,
-      itIsInCart: false
+
+  const allProducts = [];
+  for (let index = 0; index < 60; index++) {
+    const newHambuguer = {
+      ...Hambuguer,
+      key: Math.random()
     }
-    ,
-    {
-      index: 1,
-      key: Math.random(),
-      image: hotdogImage,
-      name: "Hot-Dog",
-      description: description,
-      price: 2,
-      count: 5,
-      show: false,
-      preSelected: 0,
-      total: 0,
-      itIsInCart: false
-    },
-    {
-      index: 2,
-      key: Math.random(),
-      image: pizzaImage,
-      name: "Pizza",
-      description: description,
-      price: 3,
-      count: 5,
-      show: false,
-      preSelected: 0,
-      total: 0,
-      itIsInCart: false
-    }
-  ];
+    allProducts.push(newHambuguer);
+  }
+  let count = 0;
+  allProducts.map(product => product.index = count++);
+  console.log(allProducts);
+  return allProducts;
 }
 
 export const statusMenssage = ["Arguadando Confirmação", "Em Preparo", "Enviado", "Concluido"];

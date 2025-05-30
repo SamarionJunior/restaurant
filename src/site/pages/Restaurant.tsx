@@ -12,40 +12,46 @@ import { getAllProducts, NavegationItems } from "../../typescript/functions.ts";
 import ShoppingCartLayout from "../layout/ShoppingCart.tsx";
 import ConfirmationLayout from "../layout/Confirmation.tsx";
 import StatusLayout from "../layout/Status.tsx";
-import { Navegation, NavegationItem, Text } from "../components/components.tsx";
+// import { Navegation, NavegationItem, Text } from "../components/components.tsx";
 
-const NavegationTemplate: FunctionComponent<any> = _ => {
+// const NavegationTemplate: FunctionComponent<any> = _ => {
 
-  const [items, setItems] = useState(NavegationItems);
+//   const [items, setItems] = useState(NavegationItems);
 
-  const [show, setShow] = useState(false);
+//   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    setItems(NavegationItems);
-  }, [NavegationItems]);
+//   useEffect(() => {
+//     setItems(NavegationItems);
+//   }, [NavegationItems]);
 
-  useEffect(() => {
-    if(items != undefined && items != null && items.length > 0 ){
-      setShow(true);
-    }else{
-      setShow(false);
-    }
-  }, [items]);
+//   useEffect(() => {
+//     if(items != undefined && items != null && items.length > 0 ){
+//       setShow(true);
+//     }else{
+//       setShow(false);
+//     }
+//   }, [items]);
 
-  return (
-    <Navegation className={""}>
-      {show ? items?.map((item: any) => (
-        <NavegationItem className="navegation-item" key={item}>
-          <Text className="navegation-item-text">
-            {item}
-          </Text>
-        </NavegationItem>
-      )) : null}
-    </Navegation>
-  );
-}
+//   return (
+//     <Navegation className={""}>
+//       {show ? items?.map((item: any) => (
+//         <NavegationItem className="navegation-item" key={item}>
+//           <Text className="navegation-item-text">
+//             {item}
+//           </Text>
+//         </NavegationItem>
+//       )) : null}
+//     </Navegation>
+//   );
+// }
 
 const Restaurant: FunctionComponent<any> = () => {
+
+  const [navegationItems, setNavegationItems] = useState<string[]>(NavegationItems);
+  const [navegationSelected, setNavegationSelected] = useState<string>(navegationItems[0]);
+  const [CurretPage, setCurrentPage] = useState<FunctionComponent<any>>(() => ProductsLayout);
+
+  // setNavegationSelected(navegationItems[0]);
 
   const [productsOrigin, ] = useState(getAllProducts());
 
@@ -55,30 +61,45 @@ const Restaurant: FunctionComponent<any> = () => {
     dispatch(updateProducts(productsOrigin));
   }, []);
 
+  // switch (navegationSelected) {
+  //   case navegationItems[0]:
+  //     setCurrentPage(ProductsLayout);
+  //     break;
+  //   // case navegationItems[1]:
+  //   //   setCurrentPage();
+  //   //   break;
+  //   // case navegationItems[2]:
+  //   //   setCurrentPage();
+  //   //   break;
+  //   // case navegationItems[3]:
+  //   //   setCurrentPage();
+  //   //   break;
+  //   // case navegationItems[4]:
+  //   //   setCurrentPage();
+  //   //   break;
+  // }
+
   return (
 
-    <div id="store">
+    <div className="Restaurant">
 
-      <NavegationTemplate></NavegationTemplate>
+      {/* <NavegationTemplate></NavegationTemplate> */}
 
-      <hr/>
-      <ProductsLayout></ProductsLayout>
+      <CurretPage></CurretPage>
 
-      <hr/>
-      <ProductLayout></ProductLayout>
+      {/* <ProductLayout></ProductLayout>
 
-      <hr/>
       <ShoppingCartLayout></ShoppingCartLayout>
 
-      <hr/>
       <ConfirmationLayout></ConfirmationLayout>
 
-      <hr/>
-      <StatusLayout></StatusLayout>
+      <StatusLayout></StatusLayout> */}
 
     </div>
   );
 
 }
+
+
 
 export default Restaurant
