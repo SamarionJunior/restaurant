@@ -1,0 +1,76 @@
+@use "variable" as *;
+@use "pre-sets" as *;
+
+.Sublinhado{
+  color: red !important;
+  fill: red !important;
+  & > *{
+    color: red !important;
+    fill: red !important;
+
+    & > *{
+      color: red !important;
+      fill: red !important;
+    }
+  }
+}
+
+.Navegation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 340px;
+  height: 5rem;
+  background-color: aqua;
+
+  & > .NavegationItem{
+    // @extend .Right-Space-Children;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 340px;
+    height: 5rem;
+    background-color: aquamarine;
+
+    & > .Button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(5rem - (2 * 3px));
+      height: calc(5rem - (2 * 3px));
+      width: 5rem;
+      height: 5rem;
+      background-color: black;
+      color: white;
+      fill: white;
+      border: 3px solid black;
+
+      &:active{
+        background-color: white;
+
+        & > *{
+          color: black;
+          fill: black;
+
+          & > *{
+            color: black;
+            fill: black;
+          }
+        }
+      } 
+
+      & > *{
+        width: 70%;
+        height: 70%;
+        color: white;
+        fill: white;
+
+        & > *{
+          color: white;
+          fill: white;
+        }
+      }
+    }
+  }
+}

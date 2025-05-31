@@ -6,10 +6,15 @@ import "../../css/components/Product.scss"
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Data, Description, Detail, Display, Image, ImageDiv, Information, Label, Paragraph, Price, Product, SubActions, Text, Title, Total } from "../components/components.tsx";
+import { Action, Actions, Data, Description, Detail, Display, Image, ImageDiv, Information, Label, Overlay, Paragraph, Price, Product, Scroll, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
 
-const ProductLayout: FunctionComponent<any> = _ => {
+import { RiSubtractLine } from "react-icons/ri";
+import { MdAdd } from "react-icons/md";
+import { GrFormSubtract } from "react-icons/gr";
+import type { PropsPages } from "../../typescript/props.ts";
+
+const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const [QTD, setQTD] = useState(0);
   const [totalLocal, setTotalLocal] = useState(0);
@@ -56,78 +61,79 @@ const ProductLayout: FunctionComponent<any> = _ => {
         itIsInCart: true
       }
       dispatch(updateProduct(newObejct));
+      props.setNavegationSelected(props.navegationItems[2]);
     }
   };
 
   return (
     <Detail className="Detail">
-      <Product className="Product-Vertical">
-        {product != null ? (
-          <>
-            <ImageDiv className="Image">
-              <Image className="Img" src={checkIfUndefined(product?.image)}></Image>
-            </ImageDiv>
-            <Information className="Information">
-              <Title className="Title">
-                <Text className="Text">
-                  {checkIfUndefined(product?.name)}
-                </Text>
-              </Title>
-              <Description className="Description">
-                <Paragraph className="Paragraph">
-                  {checkIfUndefined(product?.description)}
-                </Paragraph>
-              </Description>
-              <Data className="Data">
-                <Price className="Price">
-                  <Label className="Label">
-                    Price: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {converteToMoney(checkIfUndefined(product?.price))} &#20;
-                  </Text>
-                </Price>
-              </Data>
-            </Information>
-            <Actions className="Actions">
-              <SubActions className="SubActions">
+      <Overlay className="Overlay">
+        <Product className="Product-Vertical">
+          {product != null ? (
+            <>
+              <Scroll className="Scroll">
+                <ImageDiv className="Image">
+                  <Image className="Img" src={checkIfUndefined(product?.image)}></Image>
+                </ImageDiv>
+                <Information className="Information">
+                  <Title className="Title">
+                    <Text className="Text">
+                      {checkIfUndefined(product?.name)}
+                    </Text>
+                  </Title>
+                  <Description className="Description">
+                    <Paragraph className="Paragraph">
+                      {checkIfUndefined(product?.description)}
+                    </Paragraph>
+                  </Description>
+                  <Data className="Data">
+                    <Price className="Price">
+                      <Label className="Label">
+                        Price: &#20;
+                      </Label>
+                      <Text className="Text">
+                        {converteToMoney(checkIfUndefined(product?.price))} &#20;
+                      </Text>
+                    </Price>
+                  </Data>
+                </Information>
+              </Scroll>
+              <Actions className="Actions">
+                <SubActions className="SubActions">
+                  <Action className="Action">
+                    <button className="Button" onClick={handleSubQTD}>
+                      <GrFormSubtract className="Icon"/>
+                    </button>
+                  </Action>
+                  <Display className="Display">
+                    <Text className="Text">
+                      {QTD}
+                    </Text>
+                  </Display>
+                  <Action className="Action">
+                    <button className="Button" onClick={handleAddQTD}>
+                      <MdAdd className="Icon"/>
+                    </button>
+                  </Action>
+                  <Total className="Total">
+                    <Label className="Label">
+                      Total: &#20;
+                    </Label>
+                    <Text className="Text">
+                      {converteToMoney(totalLocal)} &#20;
+                    </Text>
+                  </Total>
+                </SubActions>
                 <Action className="Action">
-                  <button className="Button" onClick={handleSubQTD}>
-                    <i className="Icon">
-                      -
-                    </i>
+                  <button className="Button" onClick={handleAddInCart}>
+                    adicionar ao carrinho
                   </button>
                 </Action>
-                <Display className="Display">
-                  <Text className="Text">
-                    {QTD}
-                  </Text>
-                </Display>
-                <Action className="Action">
-                  <button className="Button" onClick={handleAddQTD}>
-                    <i className="Icon">
-                      +
-                    </i>
-                  </button>
-                </Action>
-                <Total className="Total">
-                  <Label className="Label">
-                    Total: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {converteToMoney(totalLocal)} &#20;
-                  </Text>
-                </Total>
-              </SubActions>
-              <Action className="Action">
-                <button className="Button" onClick={handleAddInCart}>
-                  adicionar ao carrinho
-                </button>
-              </Action>
-            </Actions>
-          </>
-        ) : null }
-      </Product>
+              </Actions>
+            </>
+          ) : null }
+        </Product>
+      </Overlay>
     </Detail>
   );
 }

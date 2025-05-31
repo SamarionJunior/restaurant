@@ -9,8 +9,9 @@ import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice
 import { addOrder } from "../../data/redux/slices/restaurant/ordersSlice.ts";
 import { arrayIsEmpty, checkIfUndefined, converteToMoney, createOrder } from "../../typescript/functions.ts";
 import { Action, Actions, Confirmation, Content, Count, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, SubForm, Text, Title, Total } from "../components/components.tsx";
+import type { PropsPages } from "../../typescript/props.ts";
 
-const ConfirmationLayout: FunctionComponent<any> = _ => {
+const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const [nome, setNome] = useState<any>("");
   const [formaDePagamento, setFormaDePagamento] = useState<any>("");
@@ -47,6 +48,7 @@ const ConfirmationLayout: FunctionComponent<any> = _ => {
       total: 0,
       itIsInCart: false
     }))]));
+    props.setNavegationSelected(props.navegationItems[4]);
   }
 
   return (

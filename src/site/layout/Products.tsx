@@ -8,8 +8,9 @@ import { updateProductShow } from "../../data/redux/slices/restaurant/productsSl
 /// TYPESCRIPT ///
 import { arrayIsEmpty, checkIfUndefined, isNaturalNumber } from "../../typescript/functions.ts";
 import { Count, Data, Description, Image, ImageDiv, Information, Label, Price, Product, Products, Store, Text, Title } from "../components/components.tsx";
+import type { PropsPages } from "../../typescript/props.ts";
 
-const ProductsLayout: FunctionComponent<any> = _ => {
+const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ const ProductsLayout: FunctionComponent<any> = _ => {
   const handleShow = (index: number) => {
     if(isNaturalNumber(index)){
       dispatch(updateProductShow(index));
+      props.setNavegationSelected(props.navegationItems[1]);
     }
   }
 
@@ -68,7 +70,6 @@ const ProductsLayout: FunctionComponent<any> = _ => {
           </Product>
         )) : null}
       </Products>
-      {/* <div className="Space"></div> */}
     </Store>
   );
 }

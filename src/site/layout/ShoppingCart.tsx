@@ -11,8 +11,9 @@ import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.
 import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { arrayIsEmpty, checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
 import type { ProductType } from "../../typescript/types.ts";
+import type { PropsPages } from "../../typescript/props.ts";
 
-const ShoppingCartLayout: FunctionComponent<any> = _ => {
+const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const [selectedProduct, setSelectedProduct] = useState([]);
 
@@ -56,6 +57,10 @@ const ShoppingCartLayout: FunctionComponent<any> = _ => {
     total: 0,
     itIsInCart: false
   }));
+
+  const handComfirmation = () => {
+    props.setNavegationSelected(props.navegationItems[3]);
+  }
 
   return (
     <ShoppingCart className="ShoppingCart">
@@ -131,7 +136,7 @@ const ShoppingCartLayout: FunctionComponent<any> = _ => {
               </Product>
             ))}
           </Products>
-          <Content className="Content">
+          {/* <Content className="Content">
             <Resume className="Resume">
               <Display className="Display">
                 <Text className="Text">
@@ -156,12 +161,12 @@ const ShoppingCartLayout: FunctionComponent<any> = _ => {
                 </button>
               </Action>
               <Action className="Action">
-                <button className="Button">
+                <button className="Button" onClick={handComfirmation}>
                   Confimar
                 </button>
               </Action>
             </Actions>
-          </Content>
+          </Content> */}
         </>
       ) : null}
     </ShoppingCart>

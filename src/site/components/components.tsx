@@ -236,3 +236,17 @@ export const Detail: FunctionComponent<any> = props => {
     </div>
   );
 }
+export const Overlay: FunctionComponent<any> = props => {
+  return (
+    <div className={props.className}>
+      {props.children}
+    </div>
+  );
+}
+export const Scroll: FunctionComponent<any> = props => {
+  return (
+    <div className={props.className}>
+      {props.children}
+    </div>
+  );
+}

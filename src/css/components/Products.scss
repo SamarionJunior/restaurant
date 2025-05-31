@@ -2,16 +2,26 @@
 @use "../pre-sets.scss" as *;
 
 .Store{
-  display: grid;
-  grid-template-columns: 100%;
+  display: flex;
   justify-content: center;
-  align-content: start;
-  justify-items: center;
-  align-items: start;
   width: 100%;
-  height: calc(100dvh);
-  overflow-x: hidden;
-  overflow-y: scroll;
+  height: auto;
+  flex-wrap: nowrap;
+  // overflow-x: hidden;
+  // overflow-y: scroll;
+
+  background-color: #00ffff;
+
+  // display: grid;
+  // grid-template-columns: 100%;
+  // justify-content: center;
+  // align-content: start;
+  // justify-items: center;
+  // align-items: start;
+  // width: 100%;
+  // height: calc(100dvh);
+  // overflow-x: hidden;
+  // overflow-y: scroll;
 
   & > .Products{
 
@@ -19,21 +29,21 @@
     grid-template-columns: repeat(auto-fill, 340px);
     grid-template-rows: calc(50px + (2 * 1rem));
     justify-content: center;
-    align-content: center;
+    align-content: start;
     justify-items: stretch;
     align-items: stretch;
 
     min-width: 340px;
     max-width: calc((340px * 3) + (2 * 2rem));
     width: calc(100% - (0 * 1rem));
-    min-height: 100dvh;
+    // min-height: 100dvh;
+    // min-height: auto;
+    // flex-grow: 1;
     height: auto;
 
-    gap: 2rem;
-
-    margin: 2rem;
-
     background-color: aquamarine;
+
+    gap: 2rem;
 
     & > .Product-Horizontal{
       @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children;
@@ -122,10 +132,4 @@
       }
     }
   }
-}
-
-.Space{
-  height: 20rem;
-  width: 100%;
-  background-color: aqua;
 }
