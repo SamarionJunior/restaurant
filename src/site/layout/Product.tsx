@@ -60,7 +60,8 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
         ...product,
         preSelected: product.preSelected + QTD,
         total: total,
-        itIsInCart: true
+        itIsInCart: true,
+        show: false
       }
       dispatch(updateProduct(newObejct));
       if(setNavegationSelected != null && setNavegationSelected != undefined && navegationItems != null && navegationItems != undefined){
