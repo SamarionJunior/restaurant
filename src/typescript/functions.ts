@@ -34,7 +34,7 @@ const Hambuguer = {
   price: 1,
   count: 5,
   show: false,
-  preSelected: 1,
+  preSelected: 0,
   total: 0,
   itIsInCart: false
 }
