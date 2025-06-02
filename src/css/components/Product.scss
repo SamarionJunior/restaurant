@@ -2,25 +2,22 @@
 @use "../pre-sets.scss" as *;
 
 .Detail{
-  @extend .Flex, .WH-Default;
-
-  height: 100dvh;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  flex-wrap: nowrap;
 
   & > .Overlay{
-    @extend .Flex, .WH-Default;
-
-    height: 100dvh;
-
-    justify-content: center;
-    align-items: flex-start;
-
-    overflow-x: hidden;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+    flex-wrap: nowrap;
 
     & > .Product-Vertical {
       @extend .Flex, .Bottom-Space-Children, .Collumn;
-
-      background-color: aquamarine;
 
       justify-content: flex-start;
       align-items: center;
@@ -32,8 +29,8 @@
       // height: calc(100% - (2 * 2rem));
       min-height: 565px;
       max-height: calc(100dvh - 2 * 2rem);
+      flex-grow: 1;
       // height: 100%;
-      margin: 2rem 0;
 
       & > .Scroll{
       @extend .Flex, .Bottom-Space-Children, .Collumn;
@@ -49,8 +46,6 @@
           // width: calc(340px - (2 * 2rem));
           width: 100%;
           height: 340px;
-
-          background-color: bisque;
 
           & > .Img {
             @extend .Flex, .WH-Default, .Flex-Center;
@@ -223,65 +218,3 @@
     }
   }
 }
-
-// .Product-Actions-SubActions {
-//   @extend .Flex;
-//   @extend .WH-Auto;
-
-//   .Product-Actions-SubActions-Action {
-//     @extend .Flex;
-//     @extend .WH-Auto;
-//     @extend .Flex-Center;
-
-//     .Product-Actions-SubActions-Action-Button {
-//       @extend .Button-Square;
-//     }
-//   }
-
-//   .Product-Actions-SubActions-Display {
-//     @extend .Flex;
-//     @extend .WH-Auto;
-
-//     .Input-Default {
-
-//     }
-
-//     .Product-Actions-SubActions-Display-Text {
-//       @extend .Flex;
-//       @extend .WH-Auto;
-//       @extend .Flex-Center;
-//       @extend .Display-Text;
-//     }
-//   }
-
-//   .Product-Actions-SubActions-Total {
-//     @extend .Flex;
-//     @extend .WH-Auto;
-
-//     .Product-Actions-SubActions-Total-Label {
-//       @extend .Flex;
-//       @extend .WH-Auto;
-//     }
-
-//     .Product-Actions-SubActions-Total-Text {
-//       @extend .Flex;
-//       @extend .WH-Auto;
-//     }
-//   }
-// }
-
-// .SubActions {
-//   .Action {
-//     .Button {
-//       .Icon {
-
-//       }
-//     }
-//   }
-
-//   .Display {
-//     .Text {
-
-//     }
-//   }
-// }

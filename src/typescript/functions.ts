@@ -34,7 +34,7 @@ const Hambuguer = {
   price: 1,
   count: 5,
   show: false,
-  preSelected: 0,
+  preSelected: 1,
   total: 0,
   itIsInCart: false
 }
@@ -68,12 +68,22 @@ const Pizza = {
 export const getAllProducts = () => {
 
   const allProducts = [];
-  for (let index = 0; index < 60; index++) {
+  for (let index = 0; index < 20; index++) {
     const newHambuguer = {
       ...Hambuguer,
       key: Math.random()
     }
     allProducts.push(newHambuguer);
+    const newHotDog = {
+      ...HotDog,
+      key: Math.random()
+    }
+    allProducts.push(newHotDog);
+    const newPizza = {
+      ...Pizza,
+      key: Math.random()
+    }
+    allProducts.push(newPizza);
   }
   let count = 0;
   allProducts.map(product => product.index = count++);

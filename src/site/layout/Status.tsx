@@ -42,12 +42,38 @@ const StatusLayout: FunctionComponent<any> = _ => {
                 {getDataAndHour(order?.date)}
               </DateAndHour>
             </Title>
-            {"name: " + checkIfUndefined(order?.formulario?.name)}
-            {"formaDePagamento: " + checkIfUndefined(order?.formulario?.formaDePagamento)}
-            {"precisaTroco: " + checkIfUndefined(order?.formulario?.precisaTroco)}
-            {"troco: " + checkIfUndefined(order?.formulario?.troco)}
-            {"formaDeRecebimento: " + checkIfUndefined(order?.formulario?.formaDeRecebimento)}
-            {"endereco: " + checkIfUndefined(order?.formulario?.endereco)}
+            <Data className="Data">
+              <Price className="Price">
+                <Text className="Text">
+                  {"name: " + checkIfUndefined(order?.formulario?.name)}
+                </Text>
+              </Price>
+              <Price className="Price">
+                <Text className="Text">
+                  {"formaDePagamento: " + checkIfUndefined(order?.formulario?.formaDePagamento)}
+                </Text>
+              </Price>
+              <Price className="Price">
+                <Text className="Text">
+                  {"precisaTroco: " + checkIfUndefined(order?.formulario?.precisaTroco)}
+                </Text>
+              </Price>
+              <Price className="Price">
+                <Text className="Text">
+                  {"troco: " + checkIfUndefined(order?.formulario?.troco)}
+                </Text>
+              </Price>
+              <Price className="Price">
+                <Text className="Text">
+                  {"formaDeRecebimento: " + checkIfUndefined(order?.formulario?.formaDeRecebimento)}
+                </Text>
+              </Price>
+              <Price className="Price">
+                <Text className="Text">
+                  {"endereco: " + checkIfUndefined(order?.formulario?.endereco)}
+                </Text>
+              </Price>
+            </Data>
             <Products className="Products">
               {checkIfUndefined(order?.products).map((product: any) => (
                 <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>

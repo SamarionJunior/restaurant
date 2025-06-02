@@ -42,7 +42,28 @@
   overflow: auto;
 }
 
+.Right-Space-Children-Small{
+  & > *{
+    margin-right: 1rem;
+  }
+
+  & > *:last-child{
+    margin-right: 0rem;
+  }
+}
+
+
 .Right-Space-Children{
+  & > *{
+    margin-right: 1rem;
+  }
+
+  & > *:last-child{
+    margin-right: 0rem;
+  }
+}
+
+.Right-Space-Children-Large{
   & > *{
     margin-right: 2rem;
   }
@@ -52,7 +73,27 @@
   }
 }
 
+.Bottom-Space-Children-Small{
+  & > *{
+    margin-bottom: 0.5rem;
+  }
+
+  & > *:last-child{
+    margin-bottom: 0rem;
+  }
+}
+
 .Bottom-Space-Children{
+  & > *{
+    margin-bottom: 1rem;
+  }
+
+  & > *:last-child{
+    margin-bottom: 0rem;
+  }
+}
+
+.Bottom-Space-Children-Large{
   & > *{
     margin-bottom: 2rem;
   }

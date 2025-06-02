@@ -2,10 +2,17 @@
 @use "../pre-sets.scss" as *;
 
 .Confirmation{
-	@extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children, .Padding-Vertical;
+	@extend .Bottom-Space-Children-Large;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 340px;
+	height: auto;
+	flex-wrap: nowrap;
 
 	& > .Form{
-    @extend .Flex, .WH-Default, .Bottom-Space-Children, .Collumn;
+    	@extend .Flex, .WH-Default, .Bottom-Space-Children, .Collumn;
 
 		& > .SubForm-Name{
     	@extend .Flex, .WH-Default, .Collumn;
@@ -17,9 +24,9 @@
 				
 			}
 			& > .Input-Text{
-				width: calc(100% - (2 * 3px) - (2 * 1rem));
+				width: calc(100% - (2 * 1px) - (2 * 1rem));
 				height: 3rem;
-				border: 3px solid black;
+				border: 1px solid black;
 				padding: 0 1rem;
 				
 			}
@@ -83,9 +90,9 @@
 			}
 			& > .Input-Text{
     		@extend .Flex, .WH-Default;
-					width: calc(100% - (2 * 3px) - (2 * 1rem));
+					width: calc(100% - (2 * 1px) - (2 * 1rem));
 					height: 3rem;
-					border: 3px solid black;
+					border: 1px solid black;
 					padding: 0 1rem;
 
 				flex-grow: 1;
@@ -131,23 +138,92 @@
 				
 			}
 			& > .Input-Text{
-				width: calc(100% - (2 * 3px) - (2 * 1rem));
+				width: calc(100% - (2 * 1px) - (2 * 1rem));
 				height: 3rem;
-				border: 3px solid black;
+				border: 1px solid black;
 				padding: 0 1rem;
 				
 			}
 		}
 	}
 
-	& > .Products{
-    @extend .Flex, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+  & > .Content{
+    @extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children;
 
+		& > .Resume{
+		  @extend .Flex, .WH-Default;
+		
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+      & > .Display{
+        @extend .Flex, .WH-Auto;
+        
+        & > .Text{
+
+        }
+      }
+		}
+		
+		& > .Actions{
+      @extend .Flex, .WH-Default, .Right-Space-Children;
+      
+      & > .Action{
+        @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
+
+        & > .Button{
+        @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
+
+          & > i{
+            @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
+
+
+          }
+        }
+		}
+		}
+  }
+
+	& > .Products{
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 340px);
+    // grid-template-rows: calc(50px + (2 * 1rem));
+    justify-content: center;
+    align-content: start;
+    justify-items: stretch;
+    align-items: stretch;
+
+    min-width: 340px;
+    max-width: calc((340px * 3) + (2 * 2rem));
     width: calc(100% - (0 * 1rem));
     height: auto;
 
+    gap: 2rem;
+
     & > .Product-Horizontal{
-      @extend .Flex, .Right-Space-Children, .WH-Default;
+      @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
+
+      // width: 100%;
+      // height: calc(55px + (2 * 1rem));
+      width: calc(100% - (2 * 2rem));
+      // height: calc(100px + (2 * 1rem));
+      height: calc(100% - (2 * 2rem));
+      padding: 2rem;
+
+      background-color: #ffffff;
+      box-shadow: 1px 1px 1px #dddddd;
 
       & > .Image{
         @extend .Flex;
@@ -165,7 +241,7 @@
         @extend .Flex;
         @extend .WH-Default;
         @extend .Collumn;
-        width: calc(100% - $imageSize - 1rem);
+        width: calc(100% - $imageSize - 2rem);
         height: auto;
 
         & > .Title{
@@ -198,42 +274,42 @@
             @extend .Flex;
             @extend .WH-Auto;
             
-            & > .Label{
+            & > .Price-Label{
               @extend .Flex;
               @extend .WH-Auto;
             }
 
-            & > .Text{
+            & > .Price-Text{
               @extend .Flex;
               @extend .WH-Auto;
             }
           }
+          
+          // & > .Count{
+          //   @extend .Flex;
+          //   @extend .WH-Auto;
+          
+          //   & > .Count-Label{
+          //     @extend .Flex;
+          //     @extend .WH-Auto;
+          //   }
 
-					& > .Count{
-            @extend .Flex;
-            @extend .WH-Auto;
-            
-            & > .Label{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
-
-            & > .Text{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
-          }
+          //   & > .Count-Text{
+          //     @extend .Flex;
+          //     @extend .WH-Auto;
+          //   }
+          // }
 
 					& > .Total{
             @extend .Flex;
             @extend .WH-Auto;
-            
-            & > .Label{
+          
+            & > .Count-Label{
               @extend .Flex;
               @extend .WH-Auto;
             }
 
-            & > .Text{
+            & > .Count-Text{
               @extend .Flex;
               @extend .WH-Auto;
             }
@@ -243,81 +319,4 @@
 			}
 		}
 	}
-
-  & > .Content{
-    @extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children;
-
-    & > .Resume{
-      @extend .Flex, .WH-Default;
-    
-      & > .Display{
-        @extend .Flex, .WH-Auto;
-        
-        & > .Text{
-
-        }
-      }
-      & > .Display{
-        @extend .Flex, .WH-Auto;
-        
-        & > .Text{
-
-        }
-      }
-      & > .Display{
-        @extend .Flex, .WH-Auto;
-        
-        & > .Text{
-
-        }
-      }
-    }
-    
-    & > .Actions{
-      @extend .Flex, .WH-Default, .Right-Space-Children;
-    
-      & > .Action{
-        @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
-
-        & > .Button{
-          @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
-
-          & > i{
-            @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
-
-
-          }
-        }
-      }
-    }
-  }
-	// & > .Painel{
-	// 	& > .Display{
-	// 		& > .Text{
-
-	// 		}
-	// 	}
-	// 	& > .Display{
-	// 		& > .Text{
-
-	// 		}
-	// 	}
-	// 	& > .Display{
-	// 		& > .Text{
-
-	// 		}
-	// 	}
-	// }
-	// & > .Actions{
-	// 	& > .Button{
-	// 		& > .Button{
-				
-	// 		}
-	// 	}
-	// 	& > .Button{
-	// 		& > .Button{
-
-	// 		}
-	// 	}
-	// }
 }

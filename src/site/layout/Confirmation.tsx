@@ -13,6 +13,9 @@ import type { PropsPages } from "../../typescript/props.ts";
 
 const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
 
+  const setNavegationSelected = props.setNavegationSelected;
+  const navegationItems = props.navegationItems;
+
   const [nome, setNome] = useState<any>("");
   const [formaDePagamento, setFormaDePagamento] = useState<any>("");
   const [precisaTroco, setPrecisaTroco] = useState<any>(false);
@@ -48,7 +51,9 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
       total: 0,
       itIsInCart: false
     }))]));
-    props.setNavegationSelected(props.navegationItems[4]);
+    if(setNavegationSelected != null && setNavegationSelected != undefined && navegationItems != null && navegationItems != undefined){
+      setNavegationSelected(navegationItems[4]);
+    }
   }
 
   return (
@@ -115,53 +120,6 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
               <input className="Input-Text" onChange={e => setEndereco(e.target.value)}/>
             </SubForm>
           </Form>
-          <Products className="Products">
-            {selectedProduct.map((product: any) => (
-              <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>
-                <ImageDiv className="Image">
-                  <Image className="Img" src={checkIfUndefined(product?.image)}/>
-                </ImageDiv>
-                <Information className="Information">
-                  <Title className="Title">
-                    <Text className="Text">
-                      {checkIfUndefined(product?.name)}
-                    </Text>
-                  </Title>
-                  <Description className="Description">
-                    <Text className="Text">
-                      {checkIfUndefined(product?.description)}
-                    </Text>
-                  </Description>
-                  <Data className="Data">
-                    <Price className="Price">
-                      <Label className="Label">
-                        Price: &#20;
-                      </Label>
-                      <Text className="Text">
-                        {converteToMoney(checkIfUndefined(product?.price))} &#20;
-                      </Text>
-                    </Price>
-                    <Count className="Count">
-                      <Label className="Label">
-                        count: &#20;
-                      </Label>
-                      <Text className="Text">
-                        {checkIfUndefined(product?.preSelected)} &#20;
-                      </Text>
-                    </Count>
-                    <Total className="Total">
-                      <Label className="Label">
-                        Total: &#20;
-                      </Label>
-                      <Text className="Text">
-                        {converteToMoney(checkIfUndefined(product?.total))} &#20;
-                      </Text>
-                    </Total>
-                  </Data>
-                </Information>
-              </Product>
-            ))}
-          </Products>
           <Content className="Content">
             <Resume className="Resume">
               <Display className="Display">
@@ -193,35 +151,53 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
               </Action>
             </Actions>
           </Content>
-          {/* <Painel>
-            <Display className="Display">
-              <Text className="Text">
-                {"Itens: " + selectedProduct.length}
-              </Text>
-            </Display>
-            <Display className="Display">
-              <Text className="Text">
-                {"Número: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)}
-              </Text>
-            </Display>
-            <Display className="Display">
-              <Text className="Text">
-                {"Preço Total: " + selectedProduct.reduce((a: any, b: any) => a + b.total, 0)}
-              </Text>
-            </Display>
-          </Painel>
-          <Actions className="Actions">
-            <Action className="Button">
-              <button className="Button">
-                Voltar
-              </button>
-            </Action>
-            <Action className="Button">
-              <button className="Button" onClick={handleSetOrder}>
-                Confimar
-              </button>
-            </Action>
-          </Actions> */}
+          <Products className="Products">
+            {selectedProduct.map((product: any) => (
+              <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>
+                <ImageDiv className="Image">
+                  <Image className="Img" src={checkIfUndefined(product?.image)}/>
+                </ImageDiv>
+                <Information className="Information">
+                  <Title className="Title">
+                    <Text className="Text">
+                      {checkIfUndefined(product?.name)}
+                    </Text>
+                  </Title>
+                  <Description className="Description">
+                    <Text className="Text">
+                      {checkIfUndefined(product?.description)}
+                    </Text>
+                  </Description>
+                  <Data className="Data">
+                    <Price className="Price">
+                      <Label className="Label">
+                        Price: &#20;
+                      </Label>
+                      <Text className="Text">
+                        {converteToMoney(checkIfUndefined(product?.price))} &#20;
+                      </Text>
+                    </Price>
+                    {/* <Count className="Count">
+                      <Label className="Label">
+                        count: &#20;
+                      </Label>
+                      <Text className="Text">
+                        {checkIfUndefined(product?.preSelected)} &#20;
+                      </Text>
+                    </Count> */}
+                    <Total className="Total">
+                      <Label className="Label">
+                        Total: &#20;
+                      </Label>
+                      <Text className="Text">
+                        {converteToMoney(checkIfUndefined(product?.total))} &#20;
+                      </Text>
+                    </Total>
+                  </Data>
+                </Information>
+              </Product>
+            ))}
+          </Products>
         </>
       ) : null}
     </Confirmation>

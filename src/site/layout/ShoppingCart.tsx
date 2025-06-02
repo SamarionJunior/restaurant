@@ -9,11 +9,14 @@ import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
 import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
-import { arrayIsEmpty, checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
+import { arrayIsEmpty, checkIfUndefined, converteToMoney, isNotNullAndUndefined } from "../../typescript/functions.ts";
 import type { ProductType } from "../../typescript/types.ts";
 import type { PropsPages } from "../../typescript/props.ts";
 
 const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
+
+  const setNavegationSelected = props?.setNavegationSelected;
+  const navegationItems = props?.navegationItems;
 
   const [selectedProduct, setSelectedProduct] = useState([]);
 
@@ -59,13 +62,46 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
   }));
 
   const handComfirmation = () => {
-    props.setNavegationSelected(props.navegationItems[3]);
+    if(setNavegationSelected != null && setNavegationSelected != undefined && navegationItems != null && navegationItems != undefined){
+      setNavegationSelected(navegationItems[3]);
+    }
   }
 
   return (
     <ShoppingCart className="ShoppingCart">
       {!arrayIsEmpty(selectedProduct) ? (
         <>
+          <Content className="Content">
+            <Resume className="Resume">
+              <Display className="Display">
+                <Text className="Text">
+                  {"Itens: " + selectedProduct.length} &#20;
+                </Text>
+              </Display>
+              <Display className="Display">
+                <Text className="Text">
+                  {"Tipos: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
+                </Text>
+              </Display>
+              <Display className="Display">
+                <Text className="Text">
+                  {"Preço Total: " + converteToMoney(selectedProduct.reduce((a: any, b: any) => a + b.total, 0))} &#20;
+                </Text>
+              </Display>
+            </Resume>
+            <Actions className="Actions">
+              <Action className="Action">
+                <button className="Button">
+                  Voltar
+                </button>
+              </Action>
+              <Action className="Action">
+                <button className="Button" onClick={handComfirmation}>
+                  Confimar
+                </button>
+              </Action>
+            </Actions>
+          </Content>
           <Products className="Products">
             {selectedProduct.map((product: ProductType) => (
               <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>
@@ -116,11 +152,17 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
                         </button>
                       </Action>
                       <Total className="Total">
-                        <Label className="Label">
+                        {/* <Label className="Label">
                           Total: &#20;
-                        </Label>
+                        </Label> */}
+                        {/* <Text className="Text">
+                          {converteToMoney(checkIfUndefined(product?.total))}
+                        </Text> */}
+                        {/* <Text className="Text">
+                          {"Total: " + converteToMoney(checkIfUndefined(product?.total))}
+                        </Text> */}
                         <Text className="Text">
-                          {converteToMoney(checkIfUndefined(product?.total))} &#20;
+                          {converteToMoney(checkIfUndefined(product?.total))}
                         </Text>
                       </Total>
                       <Action className="Action">
@@ -136,37 +178,6 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
               </Product>
             ))}
           </Products>
-          {/* <Content className="Content">
-            <Resume className="Resume">
-              <Display className="Display">
-                <Text className="Text">
-                  {"Itens: " + selectedProduct.length} &#20;
-                </Text>
-              </Display>
-              <Display className="Display">
-                <Text className="Text">
-                  {"Tipos: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
-                </Text>
-              </Display>
-              <Display className="Display">
-                <Text className="Text">
-                  {"Preço Total: " + converteToMoney(selectedProduct.reduce((a: any, b: any) => a + b.total, 0))} &#20;
-                </Text>
-              </Display>
-            </Resume>
-            <Actions className="Actions">
-              <Action className="Action">
-                <button className="Button">
-                  Voltar
-                </button>
-              </Action>
-              <Action className="Action">
-                <button className="Button" onClick={handComfirmation}>
-                  Confimar
-                </button>
-              </Action>
-            </Actions>
-          </Content> */}
         </>
       ) : null}
     </ShoppingCart>

@@ -2,15 +2,32 @@
 @use "../pre-sets.scss" as *;
 
 .Status{
-  @extend .Flex, .WH-Default, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+
+  @extend .Bottom-Space-Children-Large;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 340px;
+  height: auto;
+  flex-wrap: nowrap;
 
   & > .Order{
-    @extend .Flex, .WH-Default, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+
+    @extend .Bottom-Space-Children-Large;
+
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    height: auto;
+    flex-wrap: nowrap;
 
     & > .Image{
       @extend .Flex;
       @extend .Image-Size;
       @extend .Flex-Center;
+
+      width: 100%;
   
       & > .Img{
         @extend .Flex;
@@ -18,40 +35,85 @@
         @extend .Flex-Center;
       }
     }
+
     & > .Display{
       @extend .Flex;
       @extend .WH-Default;
+      @extend .Flex-Center;
 
       & > .Text{
         @extend .Flex;
-        @extend .WH-Default;
+        // @extend .WH-Default;
         @extend .Name-Size;
       }
     }
+    
     & > .History{
-      @extend .Flex, .WH-Default, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+
+      @extend .Bottom-Space-Children-Large;
+
+      display: flex;
+      flex-direction: column;
+      width: 340px;
+      height: auto;
+      flex-wrap: nowrap;
       
       & > .Title{
         @extend .Flex;
         @extend .WH-Default;
+        @extend .Flex-Center;
 
         & > .DateAndHour{
           @extend .Flex;
-          @extend .WH-Default;
+          // @extend .WH-Default;
           @extend .Name-Size;
 
         }
       }
 
-      & > .Products{
-        @extend .Flex, .Bottom-Space-Children, .Padding-Vertical, .Collumn;
+      & > .Data{
+        @extend .Bottom-Space-Children-Small;
 
+        & > .Price{
+          @extend .Flex;
+          @extend .WH-Default;
+
+          & > .Text{
+            @extend .Flex;
+            @extend .WH-Default;
+          }
+        }
+      }
+
+      & > .Products{
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 340px);
+        // grid-template-rows: calc(50px + (2 * 1rem));
+        justify-content: center;
+        align-content: start;
+        justify-items: stretch;
+        align-items: stretch;
+
+        min-width: 340px;
+        max-width: calc((340px * 3) + (2 * 2rem));
         width: calc(100% - (0 * 1rem));
-        // min-height: calc(200px - (0 * 1rem));
         height: auto;
 
+        gap: 2rem;
+
         & > .Product-Horizontal{
-          @extend .Flex, .Right-Space-Children, .WH-Default;
+          @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
+
+          // width: 100%;
+          // height: calc(55px + (2 * 1rem));
+          width: calc(100% - (2 * 2rem));
+          // height: calc(100px + (2 * 1rem));
+          height: calc(100% - (2 * 2rem));
+          padding: 2rem;
+
+          background-color: #ffffff;
+          box-shadow: 1px 1px 1px #dddddd;
 
           & > .Image{
             @extend .Flex;
@@ -70,8 +132,7 @@
             @extend .Flex;
             @extend .WH-Default;
             @extend .Collumn;
-
-            width: calc(100% - $imageSize - 1rem);
+            width: calc(100% - $imageSize - 2rem);
             height: auto;
 
             & > .Title{
