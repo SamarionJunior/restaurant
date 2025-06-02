@@ -17,7 +17,7 @@ import NavegationTemplate from "../layout/Navegation.tsx";
 
 const Restaurant: FunctionComponent<any> = () => {
 
-  const [navegationItems, setNavegationItems] = useState<string[]>(NavegationItems);
+  const [navegationItems, ] = useState<string[]>(NavegationItems);
   const [navegationSelected, setNavegationSelected] = useState<string>(navegationItems[0]);
   const [CurretPage, setCurrentPage] = useState<FunctionComponent<any>>(() => ProductsLayout);
 

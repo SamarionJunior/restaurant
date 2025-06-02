@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
 import { addOrder } from "../../data/redux/slices/restaurant/ordersSlice.ts";
 import { arrayIsEmpty, checkIfUndefined, converteToMoney, createOrder } from "../../typescript/functions.ts";
-import { Action, Actions, Confirmation, Content, Count, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, SubForm, Text, Title, Total } from "../components/components.tsx";
+import { Action, Actions, Confirmation, Content, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, SubForm, Text, Title, Total } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
 
 const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {

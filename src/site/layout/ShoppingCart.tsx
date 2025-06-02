@@ -9,7 +9,7 @@ import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
 import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
-import { arrayIsEmpty, checkIfUndefined, converteToMoney, isNotNullAndUndefined } from "../../typescript/functions.ts";
+import { arrayIsEmpty, checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
 import type { ProductType } from "../../typescript/types.ts";
 import type { PropsPages } from "../../typescript/props.ts";
 

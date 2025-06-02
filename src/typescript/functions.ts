@@ -68,7 +68,7 @@ const Pizza = {
 export const getAllProducts = () => {
 
   const allProducts = [];
-  for (let index = 0; index < 20; index++) {
+  for (let index = 0; index < 1; index++) {
     const newHambuguer = {
       ...Hambuguer,
       key: Math.random()

@@ -48,19 +48,14 @@ const NavegationTemplate: FunctionComponent<any> = (props: PropsPages) => {
       switch (value) {
         case navegationItems[0]:
           return <FaStore/>;
-          break;
         case navegationItems[1]:
           return <LuExpand/>;
-          break;
         case navegationItems[2]:
           return <FaShoppingCart/>;
-          break;
         case navegationItems[3]:
           return <FaMoneyCheck/>;
-          break;
         case navegationItems[4]:
           return <FaHistory/>;
-          break;
       }
     }
   };

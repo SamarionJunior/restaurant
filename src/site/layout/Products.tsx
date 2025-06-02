@@ -12,6 +12,9 @@ import type { PropsPages } from "../../typescript/props.ts";
 
 const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
 
+  const setNavegationSelected = props?.setNavegationSelected;
+  const navegationItems = props?.navegationItems;
+
   const dispatch = useDispatch();
 
   const items = useSelector((state: any) => state.products);
@@ -25,7 +28,9 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
   const handleShow = (index: number) => {
     if(isNaturalNumber(index)){
       dispatch(updateProductShow(index));
-      props.setNavegationSelected(props.navegationItems[1]);
+      if(setNavegationSelected != null && setNavegationSelected != undefined && navegationItems != null && navegationItems != undefined){
+        setNavegationSelected(navegationItems[1]);
+      }
     }
   }
 

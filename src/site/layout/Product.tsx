@@ -9,12 +9,14 @@ import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.
 import { Action, Actions, Data, Description, Detail, Display, Image, ImageDiv, Information, Label, Overlay, Paragraph, Price, Product, Scroll, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
 
-import { RiSubtractLine } from "react-icons/ri";
 import { MdAdd } from "react-icons/md";
 import { GrFormSubtract } from "react-icons/gr";
 import type { PropsPages } from "../../typescript/props.ts";
 
 const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
+
+  const setNavegationSelected = props?.setNavegationSelected;
+  const navegationItems = props?.navegationItems;
 
   const [QTD, setQTD] = useState(0);
   const [totalLocal, setTotalLocal] = useState(0);
@@ -61,7 +63,9 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
         itIsInCart: true
       }
       dispatch(updateProduct(newObejct));
-      props.setNavegationSelected(props.navegationItems[2]);
+      if(setNavegationSelected != null && setNavegationSelected != undefined && navegationItems != null && navegationItems != undefined){
+        setNavegationSelected(navegationItems[2]);
+      }
     }
   };
 
