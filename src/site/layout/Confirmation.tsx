@@ -1,7 +1,6 @@
 /// CSS ///
-
-import "../../css/pre-sets.scss"
-import "../../css/components/Confirmation.scss"
+import "../../css/global/pre-sets.scss"
+import "../../css/Layouts/Confirmation.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";

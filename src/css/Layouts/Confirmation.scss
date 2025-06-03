@@ -1,5 +1,5 @@
-@use "../variable.scss" as *;
-@use "../pre-sets.scss" as *;
+@use "../global/variable.scss" as *;
+@use "../global/pre-sets.scss" as *;
 
 .Confirmation{
 	@extend .Bottom-Space-Children-Large;

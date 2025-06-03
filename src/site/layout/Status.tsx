@@ -1,12 +1,12 @@
 /// CSS ///
-
-import "../../css/pre-sets.scss"
-import "../../css/components/Status.scss"
+import "../../css/global/pre-sets.scss"
+import "../../css/Layouts/Status.scss"
 
 import { type FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { Count, Data, DateAndHour, Description, Display, History, Image, ImageDiv, Information, Label, Order, Price, Product, Products, Status, Text, Title, Total } from "../components/components.tsx";
-import { checkIfUndefined, converteToMoney, statusImage, statusMenssage } from "../../typescript/functions.ts";
+import { checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
+import { statusImage, statusMenssage } from "../../typescript/Variables.ts";
 
 const StatusLayout: FunctionComponent<any> = _ => {
 

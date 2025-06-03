@@ -1,7 +1,6 @@
 /// CSS ///
-
-import "../../css/pre-sets.scss"
-import "../../css/components/ShoppingCart.scss"
+import "../../css/global/pre-sets.scss"
+import "../../css/Layouts/ShoppingCart.scss"
 
 /// IMAGE ///
 

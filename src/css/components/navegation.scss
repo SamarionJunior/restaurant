@@ -1,5 +1,5 @@
-@use "variable" as *;
-@use "pre-sets" as *;
+@use "../global/variable.scss" as *;
+@use "../global/pre-sets.scss" as *;
 
 .Sublinhado{
   color: red !important;

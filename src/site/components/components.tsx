@@ -1,10 +1,4 @@
-/// CSS ///
-
-// import "../../css/pre-sets.scss"
-// import "../../css/restaurant.scss"
-
 /// REACT ///
-
 import { type FunctionComponent } from "react";
 
 export const Image: FunctionComponent<any> = props => {

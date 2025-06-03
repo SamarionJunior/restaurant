@@ -1,7 +1,6 @@
 /// CSS ///
-
-import "../../css/pre-sets.scss"
-import "../../css/components/Product.scss"
+import "../../css/global/pre-sets.scss"
+import "../../css/Layouts/Product.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,11 +1,9 @@
 /// CSS ///
-
-import "../../css/pre-sets.scss"
-import "../../css/restaurant.scss"
-import "../../css/navegation.scss"
+import "../../css/global/pre-sets.scss"
+import "../../css/Templates/restaurant.scss"
+import "../../css/components/navegation.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
-import { NavegationItems } from "../../typescript/functions.ts";
 import { Navegation, NavegationItem } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
 
@@ -14,6 +12,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { LuExpand } from "react-icons/lu";
 import { FaMoneyCheck } from "react-icons/fa6";
 import { FaHistory } from "react-icons/fa";
+import { NavegationItems } from "../../typescript/Variables.ts";
 
 const NavegationTemplate: FunctionComponent<any> = (props: PropsPages) => {
 

@@ -1,19 +1,22 @@
-/// CSS ///
-
-import "../../css/pre-sets.scss"
-import "../../css/restaurant.scss"
-import "../../css/navegation.scss"
-
+/// sCSS ///
+import "../../css/global/pre-sets.scss"
+import "../../css/Templates/restaurant.scss"
+import "../../css/components/navegation.scss"
+/// REACT ///
 import { useEffect, useState, type FunctionComponent } from "react";
+/// REDUX ///
 import { useDispatch } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import ProductsLayout from "../layout/Products.tsx";
-import ProductLayout from "../layout/Product.tsx";
-import { getAllProducts, NavegationItems } from "../../typescript/functions.ts";
+/// TYPESCRIPT ///
+import { getAllProducts } from "../../typescript/functions.ts";
+import { NavegationItems } from "../../typescript/Variables.ts";
+
 import ShoppingCartLayout from "../layout/ShoppingCart.tsx";
 import ConfirmationLayout from "../layout/Confirmation.tsx";
 import StatusLayout from "../layout/Status.tsx";
 import NavegationTemplate from "../layout/Navegation.tsx";
+import ProductsLayout from "../layout/Products.tsx";
+import ProductLayout from "../layout/Product.tsx";
 
 const Restaurant: FunctionComponent<any> = () => {
 
