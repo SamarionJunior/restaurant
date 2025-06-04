@@ -28,3 +28,8 @@ export type Order = {
     formulario: Form;
     products: ProductType;
 };
+
+export type StateType = {
+    products: ProductType[],
+    orders: Order[]
+}

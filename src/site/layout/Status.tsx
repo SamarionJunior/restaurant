@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { Count, Data, DateAndHour, Description, Display, History, Image, ImageDiv, Information, Label, Order, Price, Product, Products, Status, Text, Title, Total } from "../components/components.tsx";
 import { checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
 import { statusImage, statusMenssage } from "../../typescript/Variables.ts";
+import { Contents } from "../../typescript/content.ts";
 
 const StatusLayout: FunctionComponent<any> = _ => {
 
@@ -22,6 +23,10 @@ const StatusLayout: FunctionComponent<any> = _ => {
         +":"+
         ((new Date(checkIfUndefined(date)).getSeconds()) < 10 ? "0"+(new Date(checkIfUndefined(date)).getSeconds()) : (new Date(checkIfUndefined(date)).getSeconds()))
     )
+  }
+
+  if(orders.length == 0){
+    return (<div>Nenhum Pedido Realizado!</div>);
   }
 
   return (
@@ -43,36 +48,54 @@ const StatusLayout: FunctionComponent<any> = _ => {
               </DateAndHour>
             </Title>
             <Data className="Data">
-              <Price className="Price">
+              <Display className="Display">
+                <Label className="Label">
+                  {Contents.Form.Name.Labels.Default}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"name: " + checkIfUndefined(order?.formulario?.name)}
+                  {checkIfUndefined(order?.formulario?.name)}
                 </Text>
-              </Price>
-              <Price className="Price">
+              </Display>
+              <Display className="Display">
+                <Label className="Label">
+                  {Contents.Form.Payment.Title.Default}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"formaDePagamento: " + checkIfUndefined(order?.formulario?.formaDePagamento)}
+                  {checkIfUndefined(order?.formulario?.formaDePagamento)}
                 </Text>
-              </Price>
-              <Price className="Price">
+              </Display>
+              <Display className="Display">
+                <Label className="Label">
+                  {Contents.Form.Troco.Labels.Default}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"precisaTroco: " + checkIfUndefined(order?.formulario?.precisaTroco)}
+                  {order.formulario.precisaTroco.toString()}
                 </Text>
-              </Price>
-              <Price className="Price">
+              </Display>
+              <Display className="Display">
+                <Label className="Label">
+                  {Contents.Form.Troco.Title.Default}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"troco: " + checkIfUndefined(order?.formulario?.troco)}
+                  {checkIfUndefined(order?.formulario?.troco)}
                 </Text>
-              </Price>
-              <Price className="Price">
+              </Display>
+              <Display className="Display">
+                <Label className="Label">
+                  {Contents.Form.Delivery.Title.Default}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"formaDeRecebimento: " + checkIfUndefined(order?.formulario?.formaDeRecebimento)}
+                  {checkIfUndefined(order?.formulario?.formaDeRecebimento)}
                 </Text>
-              </Price>
-              <Price className="Price">
+              </Display>
+              <Display className="Display">
+                <Label className="Label">
+                  {Contents.Form.Address.Labels.Default}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"endereco: " + checkIfUndefined(order?.formulario?.endereco)}
+                  {checkIfUndefined(order?.formulario?.endereco)}
                 </Text>
-              </Price>
+              </Display>
             </Data>
             <Products className="Products">
               {checkIfUndefined(order?.products).map((product: any) => (

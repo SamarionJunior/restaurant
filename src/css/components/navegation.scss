@@ -2,15 +2,15 @@
 @use "../global/pre-sets.scss" as *;
 
 .Sublinhado{
-  color: red !important;
-  fill: red !important;
+  color: orange !important;
+  fill: orange !important;
   & > *{
-    color: red !important;
-    fill: red !important;
+    color: orange !important;
+    fill: orange !important;
 
     & > *{
-      color: red !important;
-      fill: red !important;
+      color: orange !important;
+      fill: orange !important;
     }
   }
 }

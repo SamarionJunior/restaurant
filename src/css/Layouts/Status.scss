@@ -72,15 +72,17 @@
       }
 
       & > .Data{
-        @extend .Bottom-Space-Children-Small;
+        @extend .Flex, .Collumn, .WH-Default, .Bottom-Space-Children-Small;
 
-        & > .Price{
-          @extend .Flex;
-          @extend .WH-Default;
+        & > .Display{
+          @extend .Flex, .WH-Default;
+
+          & > .Label{
+            @extend .Flex;
+          }
 
           & > .Text{
             @extend .Flex;
-            @extend .WH-Default;
           }
         }
       }

@@ -7,16 +7,16 @@
 	display: flex;
 	flex-direction: column;
 	// justify-content: center;
-  align-items: center;
+	align-items: center;
 	width: 340px;
 	height: auto;
 	flex-wrap: nowrap;
 
 	& > .Form{
-    	@extend .Flex, .WH-Default, .Bottom-Space-Children, .Collumn;
+			@extend .Flex, .WH-Default, .Bottom-Space-Children, .Collumn;
 
 		& > .SubForm-Name{
-    	@extend .Flex, .WH-Default, .Collumn;
+			@extend .Flex, .WH-Default, .Collumn;
 
 			& > .Label{
 				@extend .WH-Default;
@@ -43,25 +43,13 @@
 			}
 		}
 		& > .SubForm-Payment{
-    	@extend .Flex, .WH-Default, .Right-Space-Children;
+			@extend .Flex, .WH-Default, .Right-Space-Children;
 
 			& > .Label{
-    		@extend .Flex, .WH-Auto;
+				@extend .Flex, .WH-Auto;
 			}
 			& > .Input{
-    		@extend .Flex, .WH-Auto;
-			}
-			& > .Label{
-    		@extend .Flex, .WH-Auto;
-			}
-			& > .Input{
-    		@extend .Flex, .WH-Auto;
-			}
-			& > .Label{
-    		@extend .Flex, .WH-Auto;
-			}
-			& > .Input{
-    		@extend .Flex, .WH-Auto;
+				@extend .Flex, .WH-Auto;
 			}
 		}
 		& > .Title{
@@ -75,7 +63,7 @@
 			}
 		}
 		& > .SubForm-Troco{
-    	@extend .Flex, .WH-Default, .Right-Space-Children;
+			@extend .Flex, .WH-Default, .Right-Space-Children;
 
 			flex-wrap: wrap;
 
@@ -84,13 +72,13 @@
 			}
 			
 			& > .Label{
-    		@extend .Flex, .WH-Auto;
+				@extend .Flex, .WH-Auto;
 			}
 			& > .Input-CheckBox{
-    		@extend .Flex, .WH-Auto;
+				@extend .Flex, .WH-Auto;
 			}
 			& > .Input-Text{
-    		@extend .Flex, .WH-Default;
+				@extend .Flex, .WH-Default;
 					width: calc(100% - (2 * 1px) - (2 * 1rem));
 					height: 3rem;
 					border: 1px solid black;
@@ -110,27 +98,19 @@
 			}
 		}
 		& > .SubForm-Delivery{
-    	@extend .Flex, .WH-Default, .Right-Space-Children;
+			@extend .Flex, .WH-Default, .Right-Space-Children;
 
 			& > .Label{
-    		@extend .Flex, .WH-Auto, .Right-Space-Children;
+				@extend .Flex, .WH-Auto, .Right-Space-Children;
 
 			}
 			& > .Input{
-    		@extend .Flex, .WH-Auto, .Right-Space-Children;
-				
-			}
-			& > .Label{
-    		@extend .Flex, .WH-Auto, .Right-Space-Children;
-				
-			}
-			& > .Input{
-    		@extend .Flex, .WH-Auto, .Right-Space-Children;
+				@extend .Flex, .WH-Auto, .Right-Space-Children;
 				
 			}
 		}
 		& > .SubForm-Address{
-    	@extend .Flex, .WH-Default, .Collumn;
+			@extend .Flex, .WH-Default, .Collumn;
 
 			& > .Label{
 				@extend .WH-Default;
@@ -148,175 +128,151 @@
 		}
 	}
 
-  & > .Content{
-    @extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children;
+	& > .Content{
+		@extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children-Large;
 
 		& > .Resume{
-		  @extend .Flex, .WH-Default;
+			@extend .Flex, .WH-Default;
 		
-      & > .Display{
-        @extend .Flex, .WH-Auto;
-        
-        & > .Text{
+			& > .Display{
+				@extend .Flex, .WH-Auto;
+				
+				& > .Label{
+					@extend .Flex;
 
-        }
-      }
-      & > .Display{
-        @extend .Flex, .WH-Auto;
-        
-        & > .Text{
+					flex-wrap: nowrap;
 
-        }
-      }
-      & > .Display{
-        @extend .Flex, .WH-Auto;
-        
-        & > .Text{
+				}
+				
+				& > .Text{
+					@extend .Flex;
 
-        }
-      }
+					flex-wrap: nowrap;
+
+				}
+			}
 		}
 		
 		& > .Actions{
-      @extend .Flex, .WH-Default, .Right-Space-Children;
-      
-      & > .Action{
-        @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
+			@extend .Flex, .WH-Default, .Right-Space-Children;
+			
+			& > .Action{
+				@extend .Flex, .Flex-Center, .WH-Button-Half-Space;
 
-        & > .Button{
-        @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
+				& > .Button{
+				@extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
 
-          & > i{
-            @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
+					& > i{
+						@extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
 
 
-          }
-        }
+					}
+				}
+			}
 		}
-		}
-  }
+	}
 
 	& > .Products{
 
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 340px);
-    // grid-template-rows: calc(50px + (2 * 1rem));
-    justify-content: center;
-    align-content: start;
-    justify-items: stretch;
-    align-items: stretch;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 340px);
+		// grid-template-rows: calc(50px + (2 * 1rem));
+		justify-content: center;
+		align-content: start;
+		justify-items: stretch;
+		align-items: stretch;
 
-    min-width: 340px;
-    max-width: calc((340px * 3) + (2 * 2rem));
-    width: calc(100% - (0 * 1rem));
-    height: auto;
+		min-width: 340px;
+		max-width: calc((340px * 3) + (2 * 2rem));
+		width: calc(100% - (0 * 1rem));
+		height: auto;
 
-    gap: 2rem;
+		gap: 2rem;
 
-    & > .Product-Horizontal{
-      @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
+		& > .Product-Horizontal{
+			@extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
 
-      // width: 100%;
-      // height: calc(55px + (2 * 1rem));
-      width: calc(100% - (2 * 2rem));
-      // height: calc(100px + (2 * 1rem));
-      height: calc(100% - (2 * 2rem));
-      padding: 2rem;
+			// width: 100%;
+			// height: calc(55px + (2 * 1rem));
+			width: calc(100% - (2 * 2rem));
+			// height: calc(100px + (2 * 1rem));
+			height: calc(100% - (2 * 2rem));
+			padding: 2rem;
 
-      background-color: #ffffff;
-      box-shadow: 1px 1px 1px #dddddd;
+			background-color: #ffffff;
+			box-shadow: 1px 1px 1px #dddddd;
 
-      & > .Image{
-        @extend .Flex;
-        @extend .Image-Size;
-        @extend .Flex-Center;
-    
-        & > .Img{
-          @extend .Flex;
-          @extend .Image-Size;
-          @extend .Flex-Center;
-        }
-      }
+			& > .Image{
+				@extend .Flex, .Image-Size, .Flex-Center;
+		
+				& > .Img{
+					@extend .Flex, .Image-Size, .Flex-Center;
+				}
+			}
 
-      & > .Information{
-        @extend .Flex;
-        @extend .WH-Default;
-        @extend .Collumn;
-        width: calc(100% - $imageSize - 2rem);
-        height: auto;
+			& > .Information{
+				@extend .Flex, .WH-Default, .Collumn;
 
-        & > .Title{
-          @extend .Flex;
-          @extend .WH-Default;
+				width: calc(100% - $imageSize - 2rem);
+				height: auto;
 
-          & > .Text{
-            @extend .Flex;
-            @extend .WH-Default;
-            @extend .Name-Size;
-          }
-        }
-        
-        & > .Description{
-          @extend .Flex;
-          @extend .WH-Default;
+				& > .Title{
+					@extend .Flex, .WH-Default;
 
-          & > .Text{
-            @extend .Ellipse;
-          }
-        }
+					& > .Text{
+						@extend .Flex, .WH-Default, .Name-Size;
+					}
+				}
+				
+				& > .Description{
+					@extend .Flex, .WH-Default;
 
-        & > .Data{
-          @extend .Flex;
-          @extend .WH-Default;
-          @extend .Data-Size ;
-          flex-wrap: wrap;
-        
-          & > .Price{
-            @extend .Flex;
-            @extend .WH-Auto;
-            
-            & > .Price-Label{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
+					& > .Text{
+						@extend .Ellipse;
+					}
+				}
 
-            & > .Price-Text{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
-          }
-          
-          // & > .Count{
-          //   @extend .Flex;
-          //   @extend .WH-Auto;
-          
-          //   & > .Count-Label{
-          //     @extend .Flex;
-          //     @extend .WH-Auto;
-          //   }
+				& > .Data{
+					@extend .Flex, .WH-Default, .Data-Size;
 
-          //   & > .Count-Text{
-          //     @extend .Flex;
-          //     @extend .WH-Auto;
-          //   }
-          // }
+					flex-wrap: wrap;
+				
+					& > .Price{
+						@extend .Flex, .WH-Auto;
+						
+						& > .Price-Label{
+							@extend .Flex;
+						}
+
+						& > .Price-Text{
+							@extend .Flex;
+						}
+					}
+					
+					& > .Count{
+					  @extend .Flex, .WH-Auto;
+					
+					  & > .Count-Label{
+					    @extend .Flex;
+					  }
+
+					  & > .Count-Text{
+					    @extend .Flex;
+					  }
+					}
 
 					& > .Total{
-            @extend .Flex;
-            @extend .WH-Auto;
-          
-            & > .Count-Label{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
+						@extend .Flex, .WH-Auto;
+					
+						& > .Count-Label{
+							@extend .Flex;
+						}
 
-            & > .Count-Text{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
-          }
-
-        }
+						& > .Count-Text{
+							@extend .Flex;
+						}
+					}
+				}
 			}
 		}
 	}

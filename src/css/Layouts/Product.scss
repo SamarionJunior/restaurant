@@ -204,7 +204,7 @@
         }
 
         & > .Action {
-          @extend .Flex, .Flex-Center, .WH-Default;
+          @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
 
             height: 4rem;
           

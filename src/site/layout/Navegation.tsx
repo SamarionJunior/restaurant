@@ -5,7 +5,7 @@ import "../../css/components/navegation.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { Navegation, NavegationItem } from "../components/components.tsx";
-import type { PropsPages } from "../../typescript/props.ts";
+import type { PropsNavagetion } from "../../typescript/props.ts";
 
 import { FaStore } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
@@ -14,7 +14,7 @@ import { FaMoneyCheck } from "react-icons/fa6";
 import { FaHistory } from "react-icons/fa";
 import { NavegationItems } from "../../typescript/Variables.ts";
 
-const NavegationTemplate: FunctionComponent<any> = (props: PropsPages) => {
+const NavegationTemplate: FunctionComponent<any> = (props: PropsNavagetion) => {
 
   const setNavegationSelected = props?.setNavegationSelected;
   const navegationItems = props?.navegationItems;

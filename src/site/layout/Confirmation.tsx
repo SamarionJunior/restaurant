@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
 import { addOrder } from "../../data/redux/slices/restaurant/ordersSlice.ts";
 import { arrayIsEmpty, checkIfUndefined, converteToMoney, createOrder } from "../../typescript/functions.ts";
-import { Action, Actions, Confirmation, Content, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, SubForm, Text, Title, Total } from "../components/components.tsx";
+import { Action, Actions, Confirmation, Content, Count, Data, Description, Display, Form, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, SubForm, Text, Title, Total } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
+import { Contents } from "../../typescript/content.ts";
 
 const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
 
@@ -34,7 +35,10 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
     }
   }, [products]);
 
+  const indexNavegationItems = 3;
+
   const handleSetOrder = () => {
+    console.log(precisaTroco);
     dispatch(addOrder(createOrder(selectedProduct, {
       name: nome,
       formaDePagamento: formaDePagamento,
@@ -51,8 +55,16 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
       itIsInCart: false
     }))]));
     if(setNavegationSelected != null && setNavegationSelected != undefined && navegationItems != null && navegationItems != undefined){
-      setNavegationSelected(navegationItems[4]);
+      setNavegationSelected(navegationItems[indexNavegationItems + 1]);
     }
+  }
+
+  const handleToGoBack = () : void => {
+    setNavegationSelected(navegationItems[indexNavegationItems - 1]);
+  };
+
+  if(selectedProduct.length == 0){
+    return (<div>Nenhum Produto para Confirmar!</div>);
   }
 
   return (
@@ -62,90 +74,99 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
           <Form className="Form">
             <SubForm className="SubForm-Name">
               <Label className="Label">
-                Nome
+                {Contents.Form.Name.Labels.Default}
               </Label>
-              <input className="Input-Text" onChange={e => setNome(e.target.value)}/>
+              <input className="Input-Text" placeholder={Contents.Form.Name.Placeholders.Default} onChange={e => setNome(e.target.value)}/>
             </SubForm>
             <Title className="Title">
               <Text className="Text">
-                Forma de pagamento
+                {Contents.Form.Payment.Title.Default}
               </Text>
             </Title>
             <SubForm className="SubForm-Payment">
               <Label className="Label">
-                dinheiro
+                {Contents.Form.Payment.Labels.Money}
               </Label>
-              <input className="Input" type="radio" value="dinheiro" checked={formaDePagamento == "dinheiro"} onChange={e => setFormaDePagamento(e.target.value)}/>
+              <input className="Input" type="radio" value={Contents.Form.Payment.Labels.Money.toLocaleLowerCase()} checked={formaDePagamento == "dinheiro"} onChange={e => setFormaDePagamento(e.target.value)}/>
               <Label className="Label">
-                cartão
+                {Contents.Form.Payment.Labels.Card}
               </Label>
-              <input className="Input" type="radio" value="cartão" checked={formaDePagamento == "cartão"} onChange={e => setFormaDePagamento(e.target.value)}/>
+              <input className="Input" type="radio" value={Contents.Form.Payment.Labels.Card.toLocaleLowerCase()} checked={formaDePagamento == "cartão"} onChange={e => setFormaDePagamento(e.target.value)}/>
               <Label className="Label">
-                pix
+                {Contents.Form.Payment.Labels.PIX}
               </Label>
-              <input className="Input" type="radio" value="pix" checked={formaDePagamento == "pix"} onChange={e => setFormaDePagamento(e.target.value)}/>
+              <input className="Input" type="radio" value={Contents.Form.Payment.Labels.PIX.toLocaleLowerCase()} checked={formaDePagamento == "pix"} onChange={e => setFormaDePagamento(e.target.value)}/>
             </SubForm>
             <Title className="Title">
               <Text className="Text">
-                Toco
+                {Contents.Form.Troco.Title.Default}
               </Text>
             </Title>
             <SubForm className="SubForm-Troco">
               <Label className="Label">
-                Precisa de troco?
+                {Contents.Form.Troco.Labels.Default}
               </Label>
               <input className="Input-CheckBox" type="checkbox" value={precisaTroco} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
-              <input className="Input-Text" type="text" placeholder="Quanto?" onChange={e => setTroco(e.target.value)}/>
+              <input className="Input-Text" type="text" placeholder={Contents.Form.Troco.Placeholders.Default} onChange={e => setTroco(e.target.value)}/>
             </SubForm>
             <Title className="Title">
               <Text className="Text">
-                Forma de Recebimento
+                {Contents.Form.Delivery.Title.Default}
               </Text>
             </Title>
             <SubForm className="SubForm-Delivery">
               <Label className="Label">
-                Retirada
+                {Contents.Form.Delivery.Labels.Pickup}
               </Label>
-              <input className="Input" type="radio" value="Retirada" checked={formaDeRecebimento == "Retirada"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
+              <input className="Input" type="radio" value={Contents.Form.Delivery.Labels.Pickup.toLocaleLowerCase()} checked={formaDeRecebimento == "retirada"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
               <Label className="Label">
-                Entegra
+                {Contents.Form.Delivery.Labels.Delivery}
               </Label>
-              <input className="Input" type="radio" value="Entegra" checked={formaDeRecebimento == "Entegra"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
+              <input className="Input" type="radio" value={Contents.Form.Delivery.Labels.Delivery.toLocaleLowerCase()} checked={formaDeRecebimento == "entegra"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
             </SubForm>
             <SubForm className="SubForm-Address">
               <Label className="Label">
-                Endereço
+                {Contents.Form.Address.Labels.Default}
               </Label>
-              <input className="Input-Text" onChange={e => setEndereco(e.target.value)}/>
+              <input className="Input-Text" placeholder={Contents.Form.Address.Placeholders.Default} onChange={e => setEndereco(e.target.value)}/>
             </SubForm>
           </Form>
           <Content className="Content">
             <Resume className="Resume">
               <Display className="Display">
+                <Label className="Label">
+                  {Contents.Labels.Items}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"Itens: " + selectedProduct.length} &#20;
+                  {selectedProduct.length} &#20;
                 </Text>
               </Display>
               <Display className="Display">
+                <Label className="Label">
+                  {Contents.Labels.Products}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"Tipos: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
+                  {selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
                 </Text>
               </Display>
               <Display className="Display">
+                <Label className="Label">
+                  {Contents.Labels.Total}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"Preço Total: " + converteToMoney(selectedProduct.reduce((a: any, b: any) => a + b.total, 0))} &#20;
+                  {converteToMoney(selectedProduct.reduce((a: any, b: any) => a + b.total, 0))} &#20;
                 </Text>
               </Display>
             </Resume>
             <Actions className="Actions">
               <Action className="Action">
-                <button className="Button">
-                  Voltar
+                <button className="Button" onClick={handleToGoBack}>
+                  {Contents.Buttons.Voltar}
                 </button>
               </Action>
               <Action className="Action">
                 <button className="Button" onClick={handleSetOrder}>
-                  Confimar
+                  {Contents.Buttons.Confirm}
                 </button>
               </Action>
             </Actions>
@@ -170,23 +191,23 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
                   <Data className="Data">
                     <Price className="Price">
                       <Label className="Label">
-                        Price: &#20;
+                        {Contents.Labels.Price}: &#20;
                       </Label>
                       <Text className="Text">
                         {converteToMoney(checkIfUndefined(product?.price))} &#20;
                       </Text>
                     </Price>
-                    {/* <Count className="Count">
+                    <Count className="Count">
                       <Label className="Label">
-                        count: &#20;
+                        {Contents.Labels.Count}: &#20;
                       </Label>
                       <Text className="Text">
                         {checkIfUndefined(product?.preSelected)} &#20;
                       </Text>
-                    </Count> */}
+                    </Count>
                     <Total className="Total">
                       <Label className="Label">
-                        Total: &#20;
+                        {Contents.Labels.Total}: &#20;
                       </Label>
                       <Text className="Text">
                         {converteToMoney(checkIfUndefined(product?.total))} &#20;

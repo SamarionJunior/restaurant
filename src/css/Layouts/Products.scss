@@ -87,12 +87,12 @@
             @extend .Flex;
             @extend .WH-Auto;
             
-            & > .Price-Label{
+            & > .Label{
               @extend .Flex;
               @extend .WH-Auto;
             }
 
-            & > .Price-Text{
+            & > .Text{
               @extend .Flex;
               @extend .WH-Auto;
             }
@@ -102,12 +102,12 @@
             @extend .Flex;
             @extend .WH-Auto;
           
-            & > .Count-Label{
+            & > .Label{
               @extend .Flex;
               @extend .WH-Auto;
             }
 
-            & > .Count-Text{
+            & > .Text{
               @extend .Flex;
               @extend .WH-Auto;
             }

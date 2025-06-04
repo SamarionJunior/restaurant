@@ -2,30 +2,32 @@
 import "../../css/global/pre-sets.scss"
 import "../../css/Layouts/ShoppingCart.scss"
 
-/// IMAGE ///
-
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
 import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { arrayIsEmpty, checkIfUndefined, converteToMoney } from "../../typescript/functions.ts";
-import type { ProductType } from "../../typescript/types.ts";
+import type { ProductType, StateType } from "../../typescript/types.ts";
 import type { PropsPages } from "../../typescript/props.ts";
+import { Contents } from "../../typescript/content.ts";
+
+const getFilteredProducts = (products: ProductType[]) : ProductType[] => products.filter((product: ProductType) : boolean => product.itIsInCart);
+// products.filter((product: any) => product.itIsInCart)
 
 const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const setNavegationSelected = props?.setNavegationSelected;
   const navegationItems = props?.navegationItems;
 
-  const [selectedProduct, setSelectedProduct] = useState([]);
+  const products: ProductType[] = useSelector((state: StateType) : ProductType[] => state.products);
 
-  const products = useSelector((state: any) => state.products);
+  const [selectedProducts, setSelectedProducts] = useState(getFilteredProducts(products));
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if(products != null){
-      setSelectedProduct(products.filter((product: any) => product.itIsInCart));
+      setSelectedProducts(getFilteredProducts(products));
     }
   }, [products]);
 
@@ -60,51 +62,70 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
     itIsInCart: false
   }));
 
+  const indexNavegationItems = 2;
+
   const handComfirmation = () => {
     if(setNavegationSelected != null && setNavegationSelected != undefined && navegationItems != null && navegationItems != undefined){
-      setNavegationSelected(navegationItems[3]);
+      setNavegationSelected(navegationItems[indexNavegationItems + 1]);
     }
+  }
+
+  const handleToGoBack = () : void => {
+    setNavegationSelected(navegationItems[indexNavegationItems - 2]);
+  };
+
+  if(selectedProducts.length == 0){
+    return (<div>Nenhum Produto no Carrinho!</div>);
   }
 
   return (
     <ShoppingCart className="ShoppingCart">
-      {!arrayIsEmpty(selectedProduct) ? (
+      {!arrayIsEmpty(selectedProducts) ? (
         <>
           <Content className="Content">
             <Resume className="Resume">
               <Display className="Display">
+                <Label className="Label">
+                  {Contents.Labels.Items}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"Itens: " + selectedProduct.length} &#20;
+                  {selectedProducts.length} &#20;
                 </Text>
               </Display>
               <Display className="Display">
+                <Label className="Label">
+                  {Contents.Labels.Products}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"Tipos: " + selectedProduct.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
+                  {selectedProducts.reduce((a: any, b: any) => a + b.preSelected, 0)} &#20;
                 </Text>
               </Display>
               <Display className="Display">
+                <Label className="Label">
+                  {Contents.Labels.Total}: &#20;
+                </Label>
                 <Text className="Text">
-                  {"Preço Total: " + converteToMoney(selectedProduct.reduce((a: any, b: any) => a + b.total, 0))} &#20;
+                  {converteToMoney(selectedProducts.reduce((a: any, b: any) => a + b.total, 0))} &#20;
                 </Text>
               </Display>
             </Resume>
             <Actions className="Actions">
               <Action className="Action">
-                <button className="Button">
-                  Voltar
+                <button className="Button" onClick={handleToGoBack}>
+                  {Contents.Buttons.Voltar}
                 </button>
               </Action>
               <Action className="Action">
                 <button className="Button" onClick={handComfirmation}>
-                  Confimar
+                  {Contents.Buttons.CloseOrder}
                 </button>
               </Action>
             </Actions>
           </Content>
           <Products className="Products">
-            {selectedProduct.map((product: ProductType) => (
+            {selectedProducts.map((product: ProductType) => (
               <Product className="Product-Horizontal" key={checkIfUndefined(product?.key)}>
-                {console.log(product?.key)}
+                {/* {console.log(product?.key)} */}
                 <ImageDiv className="Image">
                   <Image className="Img" src={checkIfUndefined(product?.image)}/>
                 </ImageDiv>
@@ -122,7 +143,7 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
                   <Data className="Data">
                     <Price className="Price">
                       <Label className="Label">
-                        Price: &#20;
+                        {Contents.Labels.Price}: &#20;
                       </Label>
                       <Text className="Text">
                         {converteToMoney(checkIfUndefined(product?.price))} &#20;
@@ -151,15 +172,6 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
                         </button>
                       </Action>
                       <Total className="Total">
-                        {/* <Label className="Label">
-                          Total: &#20;
-                        </Label> */}
-                        {/* <Text className="Text">
-                          {converteToMoney(checkIfUndefined(product?.total))}
-                        </Text> */}
-                        {/* <Text className="Text">
-                          {"Total: " + converteToMoney(checkIfUndefined(product?.total))}
-                        </Text> */}
                         <Text className="Text">
                           {converteToMoney(checkIfUndefined(product?.total))}
                         </Text>

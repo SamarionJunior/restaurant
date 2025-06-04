@@ -27,21 +27,17 @@
       & > .Display{
         @extend .Flex, .WH-Auto;
         
-        & > .Text{
+        & > .Label{
+          @extend .Flex;
+
+          flex-wrap: nowrap;
 
         }
-      }
-      & > .Display{
-        @extend .Flex, .WH-Auto;
         
         & > .Text{
+          @extend .Flex;
 
-        }
-      }
-      & > .Display{
-        @extend .Flex, .WH-Auto;
-        
-        & > .Text{
+          flex-wrap: nowrap;
 
         }
       }

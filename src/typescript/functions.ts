@@ -3,7 +3,7 @@ import { ProductsObject } from "./Variables";
 
 export const checkIfUndefined = (value: any): any => value != undefined ? value : null;
 
-export const arrayIsEmpty = (array: any): any => array != undefined && array != null && array?.length != null && array?.length != undefined && array?.length > 0 ? false : true;
+export const arrayIsEmpty = (array: any[]): any => array.length > 0 ? false : true;
 
 export const createOrder = (products: any, formulario: any): any => {
   return {
@@ -17,10 +17,10 @@ export const createOrder = (products: any, formulario: any): any => {
 
 export const getAllProducts = () => {
 
-  const allProducts = [];
-  let count = 0;
-  for (let index = 0; index < ProductsObject.length; index++) {
-    const newProduct = {
+  const allProducts: ProductType[] = [];
+  let count: number = 0;
+  for (let index: number = 0; index < ProductsObject.length; index++) {
+    const newProduct: ProductType = {
       ...ProductsObject[index],
       index: count++,
       key: Math.random(),
@@ -31,7 +31,7 @@ export const getAllProducts = () => {
     }
     allProducts.push(newProduct);
   }
-  console.log(allProducts);
+  // console.log(typeof(allProducts));
   return allProducts;
 }
 
