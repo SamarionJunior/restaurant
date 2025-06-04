@@ -15,7 +15,6 @@ import type { ProductType, StateType } from "../../typescript/types.ts";
 import {Contents } from "../../typescript/content.ts";
 
 const getSelectedProduct = <T,>(items: T[] | any) : T[] | any => items.filter((item: T | any) => item.show);
-// products.filter((product: ProductType) => product.show)
 
 const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
 
@@ -31,25 +30,25 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(() : void => {
     if(selectedProduct.length == 1){
       setSelectedProduct(getSelectedProduct(products));
     }
   }, [products]);
 
-  useEffect(() => {
+  useEffect(() : void => {
     if(selectedProduct.length == 1){
       setProduct(selectedProduct[0]);
     }
   }, [selectedProduct]);
 
-  useEffect(() => {
+  useEffect(() : void => {
     if(selectedProduct.length == 1){
       setTotalLocal(product.price * QTD);
     }
   }, [QTD]);
 
-  useEffect(() => {
+  useEffect(() : void => {
     if(selectedProduct.length == 1){
       if(product.count > 0 && product.count > product.preSelected){
         setQTD(1);
@@ -59,15 +58,17 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
     }
   }, [product]);
 
-  const handleAddQTD = () : void => setQTD((oldQTD: number) => product.preSelected + oldQTD + 1 > product.count ? oldQTD : oldQTD + 1);
-  const handleSubQTD = () : void => setQTD((oldQTD: number) => oldQTD - 1 < 0 ? oldQTD : oldQTD - 1);
+  const handleAddQTD = () : void => setQTD((oldQTD: number) : number => product.preSelected + oldQTD + 1 > product.count ? oldQTD : oldQTD + 1);
+  const handleSubQTD = () : void => setQTD((oldQTD: number) : number => oldQTD - 1 < 0 ? oldQTD : oldQTD - 1);
   
   const indexNavegationItems = 1;
 
   const handleAddInCart = () : void => {
     if(QTD + product.preSelected <= product.count && QTD > 0){
+
       setNavegationSelected(navegationItems[indexNavegationItems + 1]);
-      const total = (product.preSelected + QTD) * product.price;
+
+      const total: number = (product.preSelected + QTD) * product.price;
       const newObejct: ProductType = {
         ...product,
         preSelected: product.preSelected + QTD,

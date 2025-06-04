@@ -12,7 +12,7 @@ export type ProductType = {
     itIsInCart: boolean;
 }
 
-export type Form = {
+export type FormType = {
     name: any;
     formaDePagamento: any;
     precisaTroco: any;
@@ -21,15 +21,15 @@ export type Form = {
     endereco: any;
 }
 
-export type Order = {
+export type OrderType = {
     index: number;
     status: number;
     date: String;
-    formulario: Form;
+    formulario: FormType;
     products: ProductType;
 };
 
 export type StateType = {
     products: ProductType[],
-    orders: Order[]
+    orders: OrderType[]
 }

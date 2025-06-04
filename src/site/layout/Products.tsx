@@ -24,13 +24,13 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const dispatch = useDispatch();
 
-  const products : ProductType[] = useSelector((state: StateType) : ProductType[] =>  state.products);
+  const products: ProductType[] = useSelector((state: StateType) : ProductType[] =>  state.products);
   
   const [productsFiltered, setProductsFiltered] = useState<ProductType[]>(getAvailableProducts(products));
 
   const [show, setShow] = useState<boolean>(false);
 
-  useEffect(() => {
+  useEffect(() : void => {
     !arrayIsEmpty(products) ? setShow(true) : setShow(false);
     setProductsFiltered(getAvailableProducts(products));
   }, [products]);

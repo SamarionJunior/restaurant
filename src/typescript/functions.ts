@@ -48,3 +48,21 @@ export const formatCountProduct = (value: number) => format("Count", converteToM
 export const formatPriceProduct = (value: number) => format("Preço", converteToMoney(value));
 export const formatPriceTotalProduct = (value: number) => format("Preço", converteToMoney(value));
 export const formatPriceTotalProducts = (value: ProductType[]) => format("Preço", converteToMoney(value.reduce((a: any, b: any) : number => a + b.total, 0)));
+
+export const getDataAndHour = (date: string) : string => {
+  return (
+    new Date(date).toLocaleDateString("pt-br")
+    +" - "+
+    (((new Date(date)).getHours() < 10) ? 
+      ("0" + (new Date(date)).getHours() ) : 
+      (new Date(date)).getHours())
+    +":"+
+    (((new Date(date)).getMinutes() < 10) ? 
+      ("0" + (new Date(date)).getMinutes() ) : 
+      (new Date(date)).getMinutes())
+    +":"+
+    (((new Date(date)).getSeconds() < 10) ? 
+      ("0" + (new Date(date)).getSeconds() ) : 
+      (new Date(date)).getSeconds())
+  )
+}
