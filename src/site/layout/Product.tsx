@@ -5,7 +5,7 @@ import "../../css/Layouts/Product.scss"
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Data, Description, Detail, Display, Image, ImageDiv, Information, Label, Overlay, Paragraph, Price, Product, Scroll, SubActions, Text, Title, Total } from "../components/components.tsx";
+import { Action, Actions, Content, Data, Description, Detail, Display, Image, ImageDiv, Information, Label, Layout, Overlay, Paragraph, Price, Product, Scroll, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { converteToMoney } from "../../typescript/functions.ts";
 
 import { MdAdd } from "react-icons/md";
@@ -13,6 +13,7 @@ import { GrFormSubtract } from "react-icons/gr";
 import type { PropsPages } from "../../typescript/props.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import {Contents } from "../../typescript/content.ts";
+import LayoutLayout from "../components/Layout.tsx";
 
 const getSelectedProduct = <T,>(items: T[] | any) : T[] | any => items.filter((item: T | any) => item.show);
 
@@ -94,74 +95,76 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
   // }
 
   return (
-    <Detail id="c" className="Tab Detail bg-3">
-      {/* <Overlay className="Overlay">
-        <Product className="Product-Vertical">
-          <Scroll className="Scroll">
-            <ImageDiv className="Image">
-              <Image className="Img" src={product.image}/>
-            </ImageDiv>
-            <Information className="Information">
-              <Title className="Title">
-                <Text className="Text">
-                  {product.name}
-                </Text>
-              </Title>
-              <Description className="Description">
-                <Paragraph className="Paragraph">
-                  {product.description}
-                </Paragraph>
-              </Description>
-              <Data className="Data">
-                <Price className="Price">
+    <LayoutLayout id="c" className="Detail bg-2">
+      <Detail className="Detail">
+        {/* <Overlay className="Overlay">
+          <Product className="Product-Vertical">
+            <Scroll className="Scroll">
+              <ImageDiv className="Image">
+                <Image className="Img" src={product.image}/>
+              </ImageDiv>
+              <Information className="Information">
+                <Title className="Title">
+                  <Text className="Text">
+                    {product.name}
+                  </Text>
+                </Title>
+                <Description className="Description">
+                  <Paragraph className="Paragraph">
+                    {product.description}
+                  </Paragraph>
+                </Description>
+                <Data className="Data">
+                  <Price className="Price">
+                    <Label className="Label">
+                      {Contents.Labels.Price}: &#20;
+                    </Label>
+                    <Text className="Text">
+                      {converteToMoney(product.price)} &#20;
+                    </Text>
+                  </Price>
+                </Data>
+              </Information>
+            </Scroll>
+            <Actions className="Actions">
+              <SubActions className="SubActions">
+                <Action className="Action">
+                  <button className="Button" onClick={handleSubQTD}>
+                    <GrFormSubtract className="Icon"/>
+                  </button>
+                </Action>
+                <Display className="Display">
+                  <Text className="Text">
+                    {QTD}
+                  </Text>
+                </Display>
+                <Action className="Action">
+                  <button className="Button" onClick={handleAddQTD}>
+                    <MdAdd className="Icon"/>
+                  </button>
+                </Action>
+                <Total className="Total">
                   <Label className="Label">
-                    {Contents.Labels.Price}: &#20;
+                    {Contents.Labels.Total}: &#20;
                   </Label>
                   <Text className="Text">
-                    {converteToMoney(product.price)} &#20;
+                    {converteToMoney(totalLocal)} &#20;
                   </Text>
-                </Price>
-              </Data>
-            </Information>
-          </Scroll>
-          <Actions className="Actions">
-            <SubActions className="SubActions">
+                </Total>
+              </SubActions>
               <Action className="Action">
-                <button className="Button" onClick={handleSubQTD}>
-                  <GrFormSubtract className="Icon"/>
+                <button className="Button" onClick={handleToGoBack}>
+                  {Contents.Buttons.Voltar}
+                </button>
+                <button className="Button" onClick={handleAddInCart}>
+                  {Contents.Buttons.AddShoppingCart}
                 </button>
               </Action>
-              <Display className="Display">
-                <Text className="Text">
-                  {QTD}
-                </Text>
-              </Display>
-              <Action className="Action">
-                <button className="Button" onClick={handleAddQTD}>
-                  <MdAdd className="Icon"/>
-                </button>
-              </Action>
-              <Total className="Total">
-                <Label className="Label">
-                  {Contents.Labels.Total}: &#20;
-                </Label>
-                <Text className="Text">
-                  {converteToMoney(totalLocal)} &#20;
-                </Text>
-              </Total>
-            </SubActions>
-            <Action className="Action">
-              <button className="Button" onClick={handleToGoBack}>
-                {Contents.Buttons.Voltar}
-              </button>
-              <button className="Button" onClick={handleAddInCart}>
-                {Contents.Buttons.AddShoppingCart}
-              </button>
-            </Action>
-          </Actions>
-        </Product>
-      </Overlay> */}
-    </Detail>
+            </Actions>
+          </Product>
+        </Overlay> */}
+      </Detail>
+    </LayoutLayout>
   );
 }
 

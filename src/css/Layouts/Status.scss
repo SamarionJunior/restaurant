@@ -95,7 +95,7 @@
 
         display: grid;
         grid-template-columns: repeat(auto-fill, 340px);
-        // grid-template-rows: calc(50px + (2 * 1rem));
+        // grid-template-rows: calc($imageSize + (2 * 1rem));
         justify-content: center;
         align-content: start;
         justify-items: stretch;

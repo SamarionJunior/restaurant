@@ -67,6 +67,10 @@ export const getDataAndHour = (date: string) : string => {
   )
 }
 
+// let intr = 0;
+
+const idString = {id: "a"};
+
 export const toLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: string) => {
     e.preventDefault();
     // const target = document.querySelector(id);
@@ -78,10 +82,30 @@ export const toLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: s
       const num: number = item.offsetLeft;
     
       console.log(id, item, parent);
-      console.log(num)
+      console.log(num);
       parent.scrollTo({
           left: num,
           behavior: "smooth"
       });
+      idString.id = id;
+      // clearInterval(intr);
+      // const handle = element => {
+      //   // console.log(element, numb, intr);
+      // };
+      removeEventListener("resize", e => {
+        const numb: number = item.offsetLeft;
+        parent.scrollTo({
+            left: numb,
+            behavior: "smooth"
+        })
+      });
+      addEventListener("resize", e => {
+        const numb: number = item.offsetLeft;
+        parent.scrollTo({
+            left: numb,
+            behavior: "smooth"
+        })
+      });
+      // intr = setInterval(handle, 1000, parent);
     }
 }

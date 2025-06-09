@@ -5,11 +5,12 @@ import "../../css/Layouts/ShoppingCart.scss"
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
+import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Layout, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { arrayIsEmpty, converteToMoney } from "../../typescript/functions.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import type { PropsPages } from "../../typescript/props.ts";
 import { Contents } from "../../typescript/content.ts";
+import LayoutLayout from "../components/Layout.tsx";
 
 const getFilteredProducts = (products: ProductType[]) : ProductType[] => products.filter((product: ProductType) : boolean => product.itIsInCart);
 
@@ -76,118 +77,120 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
   // }
 
   return (
-    <ShoppingCart id="d" className="Tab ShoppingCart bg-1">
-      {/* {!arrayIsEmpty(selectedProducts) ? (
-        <>
-          <Content className="Content">
-            <Resume className="Resume">
-              <Display className="Display">
-                <Label className="Label">
-                  {Contents.Labels.Items}: &#20;
-                </Label>
-                <Text className="Text">
-                  {selectedProducts.length} &#20;
-                </Text>
-              </Display>
-              <Display className="Display">
-                <Label className="Label">
-                  {Contents.Labels.Products}: &#20;
-                </Label>
-                <Text className="Text">
-                  {selectedProducts.reduce((a: number, b: ProductType) => a + b.preSelected, 0)} &#20;
-                </Text>
-              </Display>
-              <Display className="Display">
-                <Label className="Label">
-                  {Contents.Labels.Total}: &#20;
-                </Label>
-                <Text className="Text">
-                  {converteToMoney(selectedProducts.reduce((a: number, b: ProductType) => a + b.total, 0))} &#20;
-                </Text>
-              </Display>
-            </Resume>
-            <Actions className="Actions">
-              <Action className="Action">
-                <button className="Button" onClick={handleToGoBack}>
-                  {Contents.Buttons.Voltar}
-                </button>
-              </Action>
-              <Action className="Action">
-                <button className="Button" onClick={handComfirmation}>
-                  {Contents.Buttons.CloseOrder}
-                </button>
-              </Action>
-            </Actions>
-          </Content>
-          <Products className="Products">
-            {selectedProducts.map((product: ProductType) => (
-              <Product className="Product-Horizontal" key={product.key}>
-                <ImageDiv className="Image">
-                  <Image className="Img" src={product.image}/>
-                </ImageDiv>
-                <Information className="Information">
-                  <Title className="Title">
-                    <Text className="Text">
-                      {product.name}
-                    </Text>
-                  </Title>
-                  <Description className="Description">
-                    <Text className="Text">
-                      {product.description}
-                    </Text>
-                  </Description>
-                  <Data className="Data">
-                    <Price className="Price">
-                      <Label className="Label">
-                        {Contents.Labels.Price}: &#20;
-                      </Label>
+    <LayoutLayout id="d" className="Detail bg-3">
+      <ShoppingCart className="ShoppingCart">
+        {/* {!arrayIsEmpty(selectedProducts) ? (
+          <>
+            <Content className="Content">
+              <Resume className="Resume">
+                <Display className="Display">
+                  <Label className="Label">
+                    {Contents.Labels.Items}: &#20;
+                  </Label>
+                  <Text className="Text">
+                    {selectedProducts.length} &#20;
+                  </Text>
+                </Display>
+                <Display className="Display">
+                  <Label className="Label">
+                    {Contents.Labels.Products}: &#20;
+                  </Label>
+                  <Text className="Text">
+                    {selectedProducts.reduce((a: number, b: ProductType) => a + b.preSelected, 0)} &#20;
+                  </Text>
+                </Display>
+                <Display className="Display">
+                  <Label className="Label">
+                    {Contents.Labels.Total}: &#20;
+                  </Label>
+                  <Text className="Text">
+                    {converteToMoney(selectedProducts.reduce((a: number, b: ProductType) => a + b.total, 0))} &#20;
+                  </Text>
+                </Display>
+              </Resume>
+              <Actions className="Actions">
+                <Action className="Action">
+                  <button className="Button" onClick={handleToGoBack}>
+                    {Contents.Buttons.Voltar}
+                  </button>
+                </Action>
+                <Action className="Action">
+                  <button className="Button" onClick={handComfirmation}>
+                    {Contents.Buttons.CloseOrder}
+                  </button>
+                </Action>
+              </Actions>
+            </Content>
+            <Products className="Products">
+              {selectedProducts.map((product: ProductType) => (
+                <Product className="Product-Horizontal" key={product.key}>
+                  <ImageDiv className="Image">
+                    <Image className="Img" src={product.image}/>
+                  </ImageDiv>
+                  <Information className="Information">
+                    <Title className="Title">
                       <Text className="Text">
-                        {converteToMoney(product.price)} &#20;
+                        {product.name}
                       </Text>
-                    </Price>
-                  </Data>
-                  <Actions className="Actions">
-                    <SubActions className="SubActions">
-                      <Action className="Action">
-                        <button className="Button" onClick={ _ => handleSubQTDInCart(product)}>
-                          <i className="Icon">
-                            -
-                          </i>
-                        </button>
-                      </Action>
-                      <Display className="Display">
+                    </Title>
+                    <Description className="Description">
+                      <Text className="Text">
+                        {product.description}
+                      </Text>
+                    </Description>
+                    <Data className="Data">
+                      <Price className="Price">
+                        <Label className="Label">
+                          {Contents.Labels.Price}: &#20;
+                        </Label>
                         <Text className="Text">
-                          {product.preSelected}
+                          {converteToMoney(product.price)} &#20;
                         </Text>
-                      </Display>
-                      <Action className="Action">
-                        <button className="Button" onClick={ _ => handleAddQTDInCart(product)}>
-                          <i className="Icon">
-                            +
-                          </i>
-                        </button>
-                      </Action>
-                      <Total className="Total">
-                        <Text className="Text">
-                          {converteToMoney(product.total)}
-                        </Text>
-                      </Total>
-                      <Action className="Action">
-                        <button className="Button" onClick={ _ => handleRemoveFromCart(product)}>
-                          <i className="Icon">
-                            X
-                          </i>
-                        </button>
-                      </Action>
-                    </SubActions>
-                  </Actions>
-                </Information>
-              </Product>
-            ))}
-          </Products>
-        </>
-      ) : null} */}
-    </ShoppingCart>
+                      </Price>
+                    </Data>
+                    <Actions className="Actions">
+                      <SubActions className="SubActions">
+                        <Action className="Action">
+                          <button className="Button" onClick={ _ => handleSubQTDInCart(product)}>
+                            <i className="Icon">
+                              -
+                            </i>
+                          </button>
+                        </Action>
+                        <Display className="Display">
+                          <Text className="Text">
+                            {product.preSelected}
+                          </Text>
+                        </Display>
+                        <Action className="Action">
+                          <button className="Button" onClick={ _ => handleAddQTDInCart(product)}>
+                            <i className="Icon">
+                              +
+                            </i>
+                          </button>
+                        </Action>
+                        <Total className="Total">
+                          <Text className="Text">
+                            {converteToMoney(product.total)}
+                          </Text>
+                        </Total>
+                        <Action className="Action">
+                          <button className="Button" onClick={ _ => handleRemoveFromCart(product)}>
+                            <i className="Icon">
+                              X
+                            </i>
+                          </button>
+                        </Action>
+                      </SubActions>
+                    </Actions>
+                  </Information>
+                </Product>
+              ))}
+            </Products>
+          </>
+        ) : null} */}
+      </ShoppingCart>
+    </LayoutLayout>
   );
 }
 

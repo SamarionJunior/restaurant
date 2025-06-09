@@ -23,9 +23,12 @@ import type { NavegationItemType } from "../../typescript/types.ts";
 
 const Restaurant: FunctionComponent<any> = () => {
 
+
   const [navegationItems, ] = useState<NavegationItemType[]>(NavegationItems);
   const [navegationSelected, setNavegationSelected] = useState<NavegationItemType>(navegationItems[0]);
   const [CurretPage, setCurrentPage] = useState<FunctionComponent<any>>(() => ProductsLayout);
+
+  const [isFirst, setIsFirst] = useState<boolean>(true);
 
   const [productsOrigin, ] = useState(getAllProducts());
 
@@ -59,6 +62,15 @@ const Restaurant: FunctionComponent<any> = () => {
     }
 
   }, [navegationSelected]);
+
+  if(isFirst == true){
+    document.getElementById("root")?.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: "smooth"
+    });
+    setIsFirst(false);
+  }
 
   return (
 

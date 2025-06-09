@@ -12,6 +12,7 @@ import { arrayIsEmpty } from "../../typescript/functions.ts";
 import type { PropsPages } from "../../typescript/props.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import { Buttons, Content, Display, Home, Painel, Slogan, Space } from "../components/components.tsx";
+import LayoutLayout from "../components/Layout.tsx";
 
 const toFilterByGreaterThan = <T,>(items: T[] | any[], proprity: string, value: number) : T[] | any[] => items.filter((item: T | any) : boolean => item[proprity] > value);
 const getAvailableProducts = (products: ProductType[]) : ProductType[] => toFilterByGreaterThan<ProductType>(products, "count", 0);
@@ -46,28 +47,24 @@ const HomeLayout: FunctionComponent<any> = (props: PropsPages) => {
   // }
 
   return (
-    <Home id="a" className="Tab Home bg-2">
-      <Space className="Space Area-CA"></Space>
-      <Content className="Content Area-CB">
-        <Painel className="Painel Area-A">
-          <Display className="Display">
-            Resturant
-          </Display>
-          <Slogan className="Slogan">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </Slogan>
-          <Buttons className="Buttons">
-            <button className="Button">
-              Acessar o Cardápio
-            </button>
-          </Buttons>
-        </Painel>
-        <Painel className="Painel Area-B">
-          <img className="Img" src={pizza} alt="" />
-        </Painel>
-      </Content>
-      <Space className="Space None Area-CA"></Space>
-    </Home>
+    <LayoutLayout id="a" className="Home bg-0">
+      <Painel className="Painel Area-A">
+        <Display className="Display">
+          Resturant
+        </Display>
+        <Slogan className="Slogan">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </Slogan>
+        <Buttons className="Buttons">
+          <button className="Button">
+            Acessar o Cardápio
+          </button>
+        </Buttons>
+      </Painel>
+      <Painel className="Painel Area-B">
+        <img className="Img" src={pizza} alt="" />
+      </Painel>
+    </LayoutLayout>
   );
 }
 

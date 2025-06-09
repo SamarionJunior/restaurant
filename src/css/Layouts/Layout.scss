@@ -1,0 +1,41 @@
+@use "../global/variable.scss" as *;
+@use "../global/pre-sets.scss" as *;
+@use "../global/classes.scss" as *;
+
+.Layout{
+
+  display: grid !important;
+  // grid-template-areas: 
+  //   "CA"
+  //   "CB"
+  // ;
+  grid-template-rows: 5rem 1fr 5rem;
+
+  gap: 3rem;
+
+  overflow-y: scroll;
+
+  justify-items: center;
+
+  @media screen and (max-width: 660px) {
+    grid-template-rows: 5rem 1fr 5rem;
+  }
+
+  & > .Space{
+    width: 100dvw;
+    height: 5rem;
+
+    @media screen and (max-width: 660px) {
+      height: 5rem;
+    }
+  }
+
+  & > .Content{
+
+    width: clamp(calc(340px - (2 * 2rem)), calc(100% - (2 * 2rem)), calc(1080px - (2 * 2rem)));
+    height: calc(100% - 2rem);
+    padding: 0 2rem;
+
+  }
+
+}

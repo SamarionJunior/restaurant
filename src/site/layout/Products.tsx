@@ -1,16 +1,18 @@
 /// CSS ///
 import "../../css/global/pre-sets.scss"
 import "../../css/Layouts/Products.scss"
+import "../../css/Layouts/Layout.scss"
 /// IMAGE ///
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProductShow } from "../../data/redux/slices/restaurant/productsSlice.ts";
 /// TYPESCRIPT ///
 import { arrayIsEmpty } from "../../typescript/functions.ts";
-import { Count, Data, Description, Image, ImageDiv, Information, Label, Price, Product, Products, Store, Text, Title } from "../components/components.tsx";
+import { Content, Count, Data, Description, Image, ImageDiv, Information, Label, Layout, Price, Product, Products, Store, Text, Title } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import { Contents } from "../../typescript/content.ts";
+import LayoutLayout from "../components/Layout.tsx";
 
 const toFilterByGreaterThan = <T,>(items: T[] | any[], proprity: string, value: number) : T[] | any[] => items.filter((item: T | any) : boolean => item[proprity] > value);
 const getAvailableProducts = (products: ProductType[]) : ProductType[] => toFilterByGreaterThan<ProductType>(products, "count", 0);
@@ -42,14 +44,17 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
     }
   }
 
-  // if(productsFiltered.length == 0){
-  //   return (<div>Nenhum Produto no Cardápio!</div>);
-  // }
+  if(productsFiltered.length == 0){
+    return (
+      <LayoutLayout id="b" className="Store bg-1">
+        <div>Nenhum Produto no Cardápio!</div>
+      </LayoutLayout>
+    );
+  }
 
   return (
-    // <Store className="Store">
-      <Products id="b" className="Tab Products bg-5">
-        {/* {show ? productsFiltered.map((product: ProductType) => (
+    <LayoutLayout id="b" className="Store bg-1">
+        {show ? productsFiltered.map((product: ProductType) => (
           <Product className="Product-Horizontal" key={product.key} onClick={ () => handleShow(product.index)}>
             <ImageDiv className="Image">
               <Image className="Img" src={product.image}></Image>
@@ -85,9 +90,8 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
               </Data>
             </Information>
           </Product>
-        )) : null} */}
-      </Products>
-    // </Store>
+        )) : null}
+    </LayoutLayout>
   );
 }
 
