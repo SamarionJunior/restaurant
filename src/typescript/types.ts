@@ -24,12 +24,17 @@ export type FormType = {
 export type OrderType = {
     index: number;
     status: number;
-    date: String;
+    date: string;
     formulario: FormType;
     products: ProductType;
 };
 
 export type StateType = {
-    products: ProductType[],
-    orders: OrderType[]
+    products: ProductType[];
+    orders: OrderType[];
+}
+
+export type NavegationItemType = {
+    menu: string;
+    id: string;
 }

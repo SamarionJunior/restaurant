@@ -89,13 +89,13 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
     dispatch(updateProduct(newObejct));
   };
 
-  if(selectedProduct.length != 1){
-    return (<div>Nenhum Produto Selecionado!</div>);
-  }
+  // if(selectedProduct.length != 1){
+  //   return (<div>Nenhum Produto Selecionado!</div>);
+  // }
 
   return (
-    <Detail className="Detail">
-      <Overlay className="Overlay">
+    <Detail id="c" className="Tab Detail bg-3">
+      {/* <Overlay className="Overlay">
         <Product className="Product-Vertical">
           <Scroll className="Scroll">
             <ImageDiv className="Image">
@@ -160,30 +160,9 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
             </Action>
           </Actions>
         </Product>
-      </Overlay>
+      </Overlay> */}
     </Detail>
   );
 }
 
 export default ProductLayout;
-
-{/* <SubActions className="Product-Actions-SubActions">
-  <Action className="Product-Actions-SubActions-Action">
-    <button className="Product-Actions-SubActions-Action-Button" onClick={handleSubQTD}>
-      -
-    </button>
-  </Action>
-  <Display className="Product-Actions-SubActions-Display">
-    <input type="text" className="Input-Default" value={QTD} />
-    <Text className="Product-Actions-SubActions-Display-Text">
-      {QTD}
-    </Text>
-  </Display>
-  <Action className="Product-Actions-SubActions-Action">
-    <button className="Product-Actions-SubActions-Action-Button" onClick={handleAddQTD}>
-      <div className="Text-Button">
-        +
-      </div>
-    </button>
-  </Action>
-</SubActions> */}

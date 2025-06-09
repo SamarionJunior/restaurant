@@ -1,0 +1,76 @@
+@use "variable.scss" as *;
+
+.Font-Display{
+  font-family: 'General Sans', sans-serif;
+  font-weight: 700;
+}
+.Font-Title{
+  font-family: 'Gambetta', serif;
+  font-weight: 700;
+}
+.Font-Text{
+  font-family: 'Gambetta', serif;
+  font-weight: 400;
+}
+.Font-Light{
+  font-family: 'Gambetta', serif;
+  font-weight: 100;
+}
+
+%Default-100{
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.Tab{
+  // padding-top: 10rem;
+
+  display: flex;
+  width: 100dvw;
+  // height: calc(100dvh - 10rem);
+  height: 100dvh;
+
+  background-color: red;
+
+  // &:nth-child(-n - 1){
+  //   background-color: black;
+  // }
+}
+// #FFC99D
+$colors: black 0, black 1, black 2, black 3, black 4, black 5;
+@each $color, $index in $colors{
+  .bg-#{$index}{
+    background-color: $color;
+  }
+}
+
+$SizeTiple: "Small" $rem-small, "Medium" $rem-medium, "Large" $rem-large;
+
+@each $SizeLaber, $SizeREM in $SizeTiple {
+  %Bottom-Margin-Children-#{$SizeLaber}{
+    & > *{
+      margin-bottom: $SizeREM;
+    }
+
+    & > *:last-child{
+      margin-bottom: $SizeREM;
+    }
+  }
+}
+
+$SizeTiple: "Small" $rem-small, "Medium" $rem-medium, "Large" $rem-large;
+
+@each $SizeLaber, $SizeREM in $SizeTiple {
+  %Right-Margin-Children-#{$SizeLaber}{
+    & > *{
+      margin-Right: $SizeREM;
+    }
+
+    & > *:last-child{
+      margin-Right: $SizeREM;
+    }
+  }
+}

@@ -14,13 +14,13 @@ const StatusLayout: FunctionComponent<any> = _ => {
 
   const orders: OrderType[] = useSelector((state: StateType) : OrderType[] => state.orders);
 
-  if(orders.length == 0){
-    return (<div>Nenhum Pedido Realizado!</div>);
-  }
+  // if(orders.length == 0){
+  //   return (<div>Nenhum Pedido Realizado!</div>);
+  // }
 
   return (
-    <Status className="Status">
-      {orders.map((order: any) => (
+    <Status id="f" className="Tab Status bg-0">
+      {/* {orders.map((order: any) => (
         <Order className="Order" key={order.index}>
           <ImageDiv className="Image">
             <Image className="Img" src={statusImage[order.status]}/>
@@ -135,7 +135,7 @@ const StatusLayout: FunctionComponent<any> = _ => {
             </Products>
           </History>
         </Order>
-      ))}
+      ))} */}
     </Status>
   );
 }

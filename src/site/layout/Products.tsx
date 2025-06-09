@@ -42,26 +42,26 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
     }
   }
 
-  if(productsFiltered.length == 0){
-    return (<div>Nenhum Produto no Cardápio!</div>);
-  }
+  // if(productsFiltered.length == 0){
+  //   return (<div>Nenhum Produto no Cardápio!</div>);
+  // }
 
   return (
-    <Store className="Store">
-      <Products className="Products">
-        {show ? productsFiltered.map((product: ProductType) => (
+    // <Store className="Store">
+      <Products id="b" className="Tab Products bg-5">
+        {/* {show ? productsFiltered.map((product: ProductType) => (
           <Product className="Product-Horizontal" key={product.key} onClick={ () => handleShow(product.index)}>
             <ImageDiv className="Image">
               <Image className="Img" src={product.image}></Image>
             </ImageDiv>
             <Information className="Information">
               <Title className="Title">
-                <Text className="Title-Text">
+                <Text className="Text">
                   {product.name}
                 </Text>
               </Title>
               <Description className="Description">
-                <Text className="Description-Text">
+                <Text className="Text">
                   {product.description}
                 </Text>
               </Description>
@@ -85,9 +85,9 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
               </Data>
             </Information>
           </Product>
-        )) : null}
+        )) : null} */}
       </Products>
-    </Store>
+    // </Store>
   );
 }
 

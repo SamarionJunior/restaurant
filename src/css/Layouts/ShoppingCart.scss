@@ -1,19 +1,20 @@
 @use "../global/variable.scss" as *;
 @use "../global/pre-sets.scss" as *;
+@use "../global/classes.scss" as *;
 
 .ShoppingCart{
-  @extend .Bottom-Space-Children-Large;
+  // @extend %Bottom-Margin-Children-Large;
 
-  display: flex;
-  flex-direction: column;
-  // justify-content: center;
-  align-items: center;
-	width: 340px;
-  height: auto;
-  flex-wrap: nowrap;
+  // display: flex;
+  // flex-direction: column;
+  // // justify-content: center;
+  // align-items: center;
+	// width: 340px;
+  // height: auto;
+  // flex-wrap: nowrap;
 
   & > .Content{
-    @extend .Flex, .WH-Default, .Collumn, .Flex-Center, .Bottom-Space-Children-Large;
+    @extend .Flex, .WH-Default, .Collumn, .Flex-Center, %Bottom-Margin-Children-Large;
 
     width: 100%;
     height: auto;
@@ -44,7 +45,7 @@
     }
     
     & > .Actions{
-      @extend .Flex, .WH-Default, .Right-Space-Children-Large;
+      @extend .Flex, .WH-Default, %Right-Margin-Children-Large;
 
       width: 340px;
       height: auto;
@@ -83,15 +84,15 @@
     gap: 2rem;
 
     & > .Product-Horizontal{
-      @extend .Flex, .WH-Default, .Right-Space-Children-Large;
+      @extend .Flex, .WH-Default, %Right-Margin-Children-Large;
 
       width: calc(100% - (2 * 2rem));
       // height: calc(100px + (2 * 1rem));
       height: calc(100% - (2 * 2rem));
       padding: 2rem;
 
-      background-color: #ffffff;
-      box-shadow: 1px 1px 1px #dddddd;
+      background-color: $Color-White;
+      box-shadow: 1px 1px 1px $Color-Gainsboro;
 
       & > .Image{
         @extend .Flex;
@@ -158,7 +159,7 @@
         & > .Actions {
           @extend .Flex;
           @extend .WH-Default;
-          @extend .Bottom-Space-Children;
+          @extend %Bottom-Margin-Children-Medium;
 
           margin-top: 1rem;
 
@@ -167,7 +168,7 @@
           & > .SubActions{
             @extend .Flex;
             @extend .WH-Default;
-            // border: 3px solid black;
+            // border: 3px solid $Color-Black;
 
             & > .Action{
               width: 3rem;
@@ -185,14 +186,14 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-color: black;
+                background-color: $Color-Black;
                 cursor: pointer;
 
                 &:active{
                   background-color: white;
 
                   & > .Icon{
-                    color: black;
+                    color: $Color-Black;
                   }
                 }
 

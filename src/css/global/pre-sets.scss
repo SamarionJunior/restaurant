@@ -1,4 +1,4 @@
-@use "variable" as *;
+@use "variable.scss" as *;
 
 .Flex{
   display: flex;
@@ -40,67 +40,6 @@
   // height: calc($lineCount * 1ex);
   // height: 2ex !important;
   overflow: auto;
-}
-
-.Right-Space-Children-Small{
-  & > *{
-    margin-right: 1rem;
-  }
-
-  & > *:last-child{
-    margin-right: 0rem;
-  }
-}
-
-
-.Right-Space-Children{
-  & > *{
-    margin-right: 1rem;
-  }
-
-  & > *:last-child{
-    margin-right: 0rem;
-  }
-}
-
-.Right-Space-Children-Large{
-  & > *{
-    margin-right: 2rem;
-  }
-
-  & > *:last-child{
-    margin-right: 0rem;
-  }
-}
-
-.Bottom-Space-Children-Small{
-  & > *{
-    margin-bottom: 0.5rem;
-  }
-
-  & > *:last-child{
-    margin-bottom: 0rem;
-  }
-}
-
-.Bottom-Space-Children{
-  & > *{
-    margin-bottom: 1rem;
-  }
-
-  & > *:last-child{
-    margin-bottom: 0rem;
-  }
-}
-
-.Bottom-Space-Children-Large{
-  & > *{
-    margin-bottom: 2rem;
-  }
-
-  & > *:last-child{
-    margin-bottom: 0rem;
-  }
 }
 
 .WH-Auto{
@@ -161,31 +100,31 @@
 }
 
 .Button-Default{
-  padding: 1rem;
-  background-color: black;
+  // padding: 1rem;
+  background-color: $Color-Black;
   color: white;
   border:none;
-  border: 1px solid black;
+  // border: 1px solid $Color-Black;
   cursor: pointer;
 
   &:active{
     background-color: white;
-    color: black;
+    color: $Color-Black;
   }
 }
 
 .Button-Square{
   width: 3rem;
   height: 3rem;
-  background-color: black;
+  background-color: $Color-Black;
   color: white;
   border:none;
-  border: 1px solid black;
+  // border: 1px solid $Color-Black;
   cursor: pointer;
 
   &:active{
     background-color: white;
-    color: black;
+    color: $Color-Black;
   }
 }
 
@@ -193,21 +132,22 @@
   color: white;
 }
 
+
 .Display-Text{
   width: 3rem;
   height: 3rem;
 }
 
 .Button-Base{
-  background-color: black;
+  background-color: $Color-Black;
   color: white;
   border:none;
-  border: 1px solid black;
+  // border: 1px solid $Color-Black;
   cursor: pointer;
 
   &:active{
     background-color: white;
-    color: black;
+    color: $Color-Black;
 
     & > .Icon{
       color: black;

@@ -1,116 +1,102 @@
 @use "../global/variable.scss" as *;
 @use "../global/pre-sets.scss" as *;
+@use "../global/classes.scss" as *;
 
-.Store{
-  display: flex;
-  justify-content: center;
-	width: 340px;
-  height: auto;
-  flex-wrap: nowrap;
+.Products{
 
-  & > .Products{
+  // display: grid;
+  // // grid-template-columns: repeat(auto-fill, 340px)
+  // grid-template-columns: 340px;;
+  // grid-template-rows: calc(50px + (2 * 2rem));
+
+  // gap: 2rem;
+
+  // justify-content: center;
+
+  // // min-width: 340px;
+  // // max-width: calc((340px * 3) + (2 * 2rem));
+  // // width: calc(100% - (0 * 1rem));
+  // width: 100%;
+  // height: auto;
+
+  & > .Product-Horizontal{
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, 340px);
-    // grid-template-rows: calc(50px + (2 * 1rem));
-    justify-content: center;
-    align-content: start;
-    justify-items: stretch;
-    align-items: stretch;
-
-    min-width: 340px;
-    max-width: calc((340px * 3) + (2 * 2rem));
-    width: calc(100% - (0 * 1rem));
-    height: auto;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 50px;
 
     gap: 2rem;
-
-    & > .Product-Horizontal{
-      @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
-
-      // width: 100%;
-      // height: calc(55px + (2 * 1rem));
-      width: calc(100% - (2 * 2rem));
-      // height: calc(100px + (2 * 1rem));
-      height: calc(100% - (2 * 2rem));
-      padding: 2rem;
-
-      background-color: #ffffff;
-      box-shadow: 1px 1px 1px #dddddd;
-
-      & > .Image{
-        @extend .Flex;
-        @extend .Image-Size;
-        @extend .Flex-Center;
     
-        & > .Img{
-          @extend .Flex;
-          @extend .Image-Size;
-          @extend .Flex-Center;
+    width: calc(100% - (2 * 2rem));
+    height: calc(100% - (2 * 2rem));
+    padding: 2rem;
+
+    background-color: $Color-White;
+    box-shadow: 1px 1px 1px $Color-Gainsboro;
+
+    & > .Image{
+      width: 100%;
+      height: 100%;
+  
+      & > .Img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    & > .Information{
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto);
+
+      width: 100%;
+      height: 100%;
+
+      & > .Title{
+
+        & > .Text{
+          @extend .Name-Size;
+        }
+      }
+      
+      & > .Description{
+        @extend .Flex;
+
+        width: calc(340px - 50px - 20px - 20px - 20px);
+
+        & > .Text{
+          @extend .Ellipse;
+
+          width: 100%;
         }
       }
 
-      & > .Information{
-        @extend .Flex;
-        @extend .WH-Default;
-        @extend .Collumn;
-        width: calc(100% - $imageSize - 2rem);
-        height: auto;
+      & > .Data{
+        @extend .Flex, .WH-Default, .Data-Size ;
+        flex-wrap: wrap;
+      
+        & > .Price{
+          @extend .Flex, .WH-Auto;
+          
+          & > .Label{
+            @extend .Flex, .WH-Auto;
+          }
 
-        & > .Title{
-          @extend .Flex;
-          @extend .WH-Default;
-
-          & > .Title-Text{
-            @extend .Flex;
-            @extend .WH-Default;
-            @extend .Name-Size;
+          & > .Text{
+            @extend .Flex, .WH-Auto;
           }
         }
         
-        & > .Description{
-          @extend .Flex;
-          @extend .WH-Default;
-
-          & > .Description-Text{
-            @extend .Ellipse;
-          }
-        }
-
-        & > .Data{
-          @extend .Flex;
-          @extend .WH-Default;
-          @extend .Data-Size ;
-          flex-wrap: wrap;
+        & > .Count{
+          @extend .Flex, .WH-Auto;
         
-          & > .Price{
-            @extend .Flex;
-            @extend .WH-Auto;
-            
-            & > .Label{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
-
-            & > .Text{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
+          & > .Label{
+            @extend .Flex, .WH-Auto;
           }
-          
-          & > .Count{
-            @extend .Flex;
-            @extend .WH-Auto;
-          
-            & > .Label{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
 
-            & > .Text{
-              @extend .Flex;
-              @extend .WH-Auto;
-            }
+          & > .Text{
+            @extend .Flex, .WH-Auto;
           }
         }
       }

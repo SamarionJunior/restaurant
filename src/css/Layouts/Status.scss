@@ -1,20 +1,24 @@
 @use "../global/variable.scss" as *;
 @use "../global/pre-sets.scss" as *;
+@use "../global/classes.scss" as *;
 
 .Status{
 
-  @extend .Bottom-Space-Children-Large;
+  // @extend %Bottom-Margin-Children-Large;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 340px;
-  height: auto;
-  flex-wrap: nowrap;
+  // display: flex;
+  // width: 100%;
+  // height: 100%;
+  // flex-wrap: nowrap;
+
+  // background-color: red;
+
+  // justify-content: center;
+  // flex-direction: column;
 
   & > .Order{
 
-    @extend .Bottom-Space-Children-Large;
+    @extend %Bottom-Margin-Children-Large;
 
     display: flex;
     flex-direction: column;
@@ -50,7 +54,7 @@
     
     & > .History{
 
-      @extend .Bottom-Space-Children-Large;
+      @extend %Bottom-Margin-Children-Large;
 
       display: flex;
       flex-direction: column;
@@ -72,7 +76,7 @@
       }
 
       & > .Data{
-        @extend .Flex, .Collumn, .WH-Default, .Bottom-Space-Children-Small;
+        @extend .Flex, .Collumn, .WH-Default, %Bottom-Margin-Children-Small;
 
         & > .Display{
           @extend .Flex, .WH-Default;
@@ -105,7 +109,7 @@
         gap: 2rem;
 
         & > .Product-Horizontal{
-          @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
+          @extend .Flex, .Flex-Center, .WH-Default, %Right-Margin-Children-Large;
 
           // width: 100%;
           // height: calc(55px + (2 * 1rem));
@@ -114,8 +118,8 @@
           height: calc(100% - (2 * 2rem));
           padding: 2rem;
 
-          background-color: #ffffff;
-          box-shadow: 1px 1px 1px #dddddd;
+          background-color: $Color-White;
+          box-shadow: 1px 1px 1px $Color-Gainsboro;
 
           & > .Image{
             @extend .Flex;

@@ -71,13 +71,13 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
     setNavegationSelected(navegationItems[indexNavegationItems - 2]);
   };
 
-  if(selectedProducts.length == 0){
-    return (<div>Nenhum Produto no Carrinho!</div>);
-  }
+  // if(selectedProducts.length == 0){
+  //   return (<div>Nenhum Produto no Carrinho!</div>);
+  // }
 
   return (
-    <ShoppingCart className="ShoppingCart">
-      {!arrayIsEmpty(selectedProducts) ? (
+    <ShoppingCart id="d" className="Tab ShoppingCart bg-1">
+      {/* {!arrayIsEmpty(selectedProducts) ? (
         <>
           <Content className="Content">
             <Resume className="Resume">
@@ -122,7 +122,6 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
           <Products className="Products">
             {selectedProducts.map((product: ProductType) => (
               <Product className="Product-Horizontal" key={product.key}>
-                {/* {console.log(product.key)} */}
                 <ImageDiv className="Image">
                   <Image className="Img" src={product.image}/>
                 </ImageDiv>
@@ -187,7 +186,7 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
             ))}
           </Products>
         </>
-      ) : null}
+      ) : null} */}
     </ShoppingCart>
   );
 }

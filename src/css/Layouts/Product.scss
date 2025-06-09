@@ -1,11 +1,12 @@
 @use "../global/variable.scss" as *;
 @use "../global/pre-sets.scss" as *;
+@use "../global/classes.scss" as *;
 
 .Detail{
-  display: flex;
-  width: 100%;
-  flex-grow: 1;
-  flex-wrap: nowrap;
+  // display: flex;
+  // width: 100%;
+  // flex-grow: 1;
+  // flex-wrap: nowrap;
 
   & > .Overlay{
     display: flex;
@@ -17,7 +18,7 @@
     flex-wrap: nowrap;
 
     & > .Product-Vertical {
-      @extend .Flex, .Bottom-Space-Children, .Collumn;
+      @extend .Flex, %Bottom-Margin-Children-Medium, .Collumn;
 
       justify-content: flex-start;
       align-items: center;
@@ -33,7 +34,7 @@
       // height: 100%;
 
       & > .Scroll{
-      @extend .Flex, .Bottom-Space-Children, .Collumn;
+      @extend .Flex, %Bottom-Margin-Children-Medium, .Collumn;
 
       flex-grow: 1;
 
@@ -97,7 +98,7 @@
       }
 
       & > .Actions {
-        @extend .Flex, .WH-Default, .Bottom-Space-Children, .Collumn;
+        @extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium, .Collumn;
 
         // background-color: aqua;
 
@@ -109,7 +110,7 @@
 
         & > .SubActions{
           @extend .Flex, .WH-Default;
-          // border: 3px solid black;
+          // border: 3px solid $Color-Black;
 
           height: 2.5rem;
 
@@ -129,19 +130,19 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              background-color: black;
+              background-color: $Color-Black;
               cursor: pointer;
 
               &:active{
                 background-color: white;
 
                 & > .Icon{
-                  // color: black;
-                  fill: black !important;
-                  color: black !important;
+                  // color: $Color-Black;
+                  fill: $Color-Black !important;
+                  color: $Color-Black !important;
 
                   & > *{
-                    color: black !important;
+                    color: $Color-Black !important;
                   }
                 }
               }
@@ -204,7 +205,7 @@
         }
 
         & > .Action {
-          @extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
+          @extend .Flex, .Flex-Center, .WH-Default, %Right-Margin-Children-Large;
 
             height: 4rem;
           

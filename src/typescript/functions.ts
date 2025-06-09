@@ -66,3 +66,22 @@ export const getDataAndHour = (date: string) : string => {
       (new Date(date)).getSeconds())
   )
 }
+
+export const toLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: string) => {
+    e.preventDefault();
+    // const target = document.querySelector(id);
+    // window.smoothScroll.animateScroll( target );
+    const item: HTMLElement | null = document.getElementById(id);
+    const parent: HTMLElement | null = document.getElementById("root");
+    
+    if(item != null && parent != null){
+      const num: number = item.offsetLeft;
+    
+      console.log(id, item, parent);
+      console.log(num)
+      parent.scrollTo({
+          left: num,
+          behavior: "smooth"
+      });
+    }
+}

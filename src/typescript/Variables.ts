@@ -14,13 +14,19 @@ import waitingImage from "../assets/waiting.png";
 import cookingImage from "../assets/cooking.png";
 import deliveryImage from "../assets/delivery.png";
 import confirmImage from "../assets/confirm.png";
+import type { NavegationItemType } from "./types";
 
 export const statusMenssage = ["Aguardando Confirmação", "Em Preparo", "Enviado", "Concluído"];
 
 export const statusImage = [waitingImage, cookingImage, deliveryImage, confirmImage];
 
-export const NavegationItems = [
-  "Products", "Product", "Shopping Cart", "Confirmation", "Status"
+export const NavegationItems: NavegationItemType[] = [
+  {menu: "Home", id: "a"}, 
+  {menu: "Products", id: "b"}, 
+  {menu: "Product", id: "c"}, 
+  {menu: "Shopping Cart", id: "d"}, 
+  {menu: "Confirmation", id: "e"}, 
+  {menu: "Status", id: "f"}
 ];
 
 export const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.";

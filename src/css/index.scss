@@ -1,8 +1,11 @@
+@use "global/classes.scss" as *;
+@use "global/variable.scss" as *;
+@use "global/pre-sets.scss" as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root{
   font-size: 62.5%;
-  --painel-size: 1080px;
 }
 
 * {
@@ -12,30 +15,24 @@
   font-family: "Ubuntu Mono", monospace;
   font-weight: 700;
   font-style: normal;
-  color: #000000;
+  color: $Color-Black;
 }
 
 html{
-  display: flex;
   width: 100dvw;
   height: 100dvh;
-  overflow: hidden;
-  flex-wrap: nowrap;
 }
 
 body{
-  display: flex;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  flex-wrap: nowrap;
+  width: 100dvw;
+  height: 100dvh;
 }
 
 #root{
-  display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100dvw;
+  height: 100dvh;
+
   overflow: hidden;
-  flex-wrap: nowrap;
-  background-color: #f0f0f0;
+
+  background-color: $Color-Anti-Flash-White;
 }

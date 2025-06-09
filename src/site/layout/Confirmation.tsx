@@ -61,13 +61,13 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
     setNavegationSelected(navegationItems[indexNavegationItems - 1]);
   };
 
-  if(selectedProduct.length == 0){
-    return (<div>Nenhum Produto para Confirmar!</div>);
-  }
+  // if(selectedProduct.length == 0){
+  //   return (<div>Nenhum Produto para Confirmar!</div>);
+  // }
 
   return (
-    <Confirmation className="Confirmation">
-      {!arrayIsEmpty(selectedProduct) ? (
+    <Confirmation id="e" className="Tab Confirmation bg-4">
+      {/* {!arrayIsEmpty(selectedProduct) ? (
         <>
           <Form className="Form">
             <SubForm className="SubForm-Name">
@@ -217,7 +217,7 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
             ))}
           </Products>
         </>
-      ) : null}
+      ) : null} */}
     </Confirmation>
   );
 }

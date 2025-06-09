@@ -1,3 +1,8 @@
+// @use "classes.scss" as *;
+// @use "pre-sets.scss" as *;
+
+@use 'sass:math';
+
 $backgroundDefault: #333333;
 
 $lineCount: 2;
@@ -5,3 +10,17 @@ $lineCount: 2;
 $nameSize: 2rem;
 
 $imageSize: 50px;
+
+// $multiply: 2;
+
+$rem-medium: 1rem;
+$rem-small: math.div($rem-medium, 2);
+$rem-large: $rem-medium * 2;
+$rem-big: $rem-medium * 3;
+
+$Color-Anti-Flash-White: #f0f0f0; 
+$Color-Black: #000000; 
+$Color-White: #ffffff; 
+$Color-Gainsboro: #dddddd;
+
+

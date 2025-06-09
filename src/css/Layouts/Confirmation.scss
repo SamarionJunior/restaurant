@@ -1,19 +1,20 @@
 @use "../global/variable.scss" as *;
 @use "../global/pre-sets.scss" as *;
+@use "../global/classes.scss" as *;
 
 .Confirmation{
-	@extend .Bottom-Space-Children-Large;
+	// @extend %Bottom-Margin-Children-Large;
 
-	display: flex;
-	flex-direction: column;
-	// justify-content: center;
-	align-items: center;
-	width: 340px;
-	height: auto;
-	flex-wrap: nowrap;
+	// display: flex;
+	// flex-direction: column;
+	// // justify-content: center;
+	// align-items: center;
+	// width: 340px;
+	// height: auto;
+	// flex-wrap: nowrap;
 
 	& > .Form{
-			@extend .Flex, .WH-Default, .Bottom-Space-Children, .Collumn;
+			@extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium, .Collumn;
 
 		& > .SubForm-Name{
 			@extend .Flex, .WH-Default, .Collumn;
@@ -27,7 +28,8 @@
 			& > .Input-Text{
 				width: calc(100% - (2 * 1px) - (2 * 1rem));
 				height: 3rem;
-				border: 1px solid black;
+      			border: none;
+				// border: 1px solid $Color-Black;
 				padding: 0 1rem;
 				
 			}
@@ -43,7 +45,7 @@
 			}
 		}
 		& > .SubForm-Payment{
-			@extend .Flex, .WH-Default, .Right-Space-Children;
+			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
 
 			& > .Label{
 				@extend .Flex, .WH-Auto;
@@ -63,7 +65,7 @@
 			}
 		}
 		& > .SubForm-Troco{
-			@extend .Flex, .WH-Default, .Right-Space-Children;
+			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
 
 			flex-wrap: wrap;
 
@@ -81,7 +83,8 @@
 				@extend .Flex, .WH-Default;
 					width: calc(100% - (2 * 1px) - (2 * 1rem));
 					height: 3rem;
-					border: 1px solid black;
+      				border: none;
+					// border: 1px solid $Color-Black;
 					padding: 0 1rem;
 
 				flex-grow: 1;
@@ -98,14 +101,14 @@
 			}
 		}
 		& > .SubForm-Delivery{
-			@extend .Flex, .WH-Default, .Right-Space-Children;
+			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
 
 			& > .Label{
-				@extend .Flex, .WH-Auto, .Right-Space-Children;
+				@extend .Flex, .WH-Auto, %Right-Margin-Children-Medium;
 
 			}
 			& > .Input{
-				@extend .Flex, .WH-Auto, .Right-Space-Children;
+				@extend .Flex, .WH-Auto, %Right-Margin-Children-Medium;
 				
 			}
 		}
@@ -121,7 +124,8 @@
 			& > .Input-Text{
 				width: calc(100% - (2 * 1px) - (2 * 1rem));
 				height: 3rem;
-				border: 1px solid black;
+      			border: none;
+				// border: 1px solid $Color-Black;
 				padding: 0 1rem;
 				
 			}
@@ -129,7 +133,7 @@
 	}
 
 	& > .Content{
-		@extend .Flex, .WH-Default, .Collumn, .Bottom-Space-Children-Large;
+		@extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Large;
 
 		& > .Resume{
 			@extend .Flex, .WH-Default;
@@ -154,7 +158,7 @@
 		}
 		
 		& > .Actions{
-			@extend .Flex, .WH-Default, .Right-Space-Children;
+			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
 			
 			& > .Action{
 				@extend .Flex, .Flex-Center, .WH-Button-Half-Space;
@@ -190,7 +194,7 @@
 		gap: 2rem;
 
 		& > .Product-Horizontal{
-			@extend .Flex, .Flex-Center, .WH-Default, .Right-Space-Children-Large;
+			@extend .Flex, .Flex-Center, .WH-Default, %Right-Margin-Children-Large;
 
 			// width: 100%;
 			// height: calc(55px + (2 * 1rem));
@@ -199,8 +203,8 @@
 			height: calc(100% - (2 * 2rem));
 			padding: 2rem;
 
-			background-color: #ffffff;
-			box-shadow: 1px 1px 1px #dddddd;
+			background-color: $Color-White;
+			box-shadow: 1px 1px 1px $Color-Gainsboro;
 
 			& > .Image{
 				@extend .Flex, .Image-Size, .Flex-Center;
