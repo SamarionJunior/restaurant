@@ -95,14 +95,14 @@ export const toLink = (e: any, id: string) => {
     // const handle = element => {
     //   // console.log(element, numb, intr);
     // };
-    removeEventListener("resize", e => {
+    removeEventListener("resize", _ => {
       const numb: number = item.offsetLeft;
       parent.scrollTo({
           left: numb,
           behavior: "smooth"
       })
     });
-    addEventListener("resize", e => {
+    addEventListener("resize", _ => {
       const numb: number = item.offsetLeft;
       parent.scrollTo({
           left: numb,

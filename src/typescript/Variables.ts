@@ -1,14 +1,4 @@
 /// IMAGE ///
-import hambuguerImage from "../assets/hambuguer.png";
-import hotdogImage from "../assets/hotdog.png";
-import pizzaImage from "../assets/pizza.png";
-import pastaImage from "../assets/pasta.png";
-import friesImage from "../assets/fries.png";
-import cakeImage from "../assets/cake.png";
-import iceCreamImage from "../assets/ice-cream.png";
-import sodaImage from "../assets/soda.png";
-import juiceImage from "../assets/juice.png";
-import waterImage from "../assets/water.png";
 
 import waitingImage from "../assets/waiting.png";
 import cookingImage from "../assets/cooking.png";

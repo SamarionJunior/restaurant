@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Order } from "../../../../typescript/types";
+import type { OrderType } from "../../../../typescript/types";
 
-const initialState: Order[] = [];
+const initialState: OrderType[] = [];
 
 const ordersSlice = createSlice({
     name: "orders",

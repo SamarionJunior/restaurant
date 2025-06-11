@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProductShow } from "../../data/redux/slices/restaurant/productsSlice.ts";
 /// TYPESCRIPT ///
 import { arrayIsEmpty, toLink } from "../../typescript/functions.ts";
-import { Content, Count, Data, Description, Image, ImageDiv, Information, Label, Layout, Price, Product, Products, Store, Text, Title } from "../components/components.tsx";
+import { Count, Data, Description, Image, ImageDiv, Information, Label, Price, Product, Text, Title } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import { Contents } from "../../typescript/content.ts";

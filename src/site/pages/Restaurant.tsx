@@ -26,7 +26,7 @@ const Restaurant: FunctionComponent<any> = () => {
 
   const [navegationItems, ] = useState<NavegationItemType[]>(NavegationItems);
   const [navegationSelected, setNavegationSelected] = useState<NavegationItemType>(navegationItems[0]);
-  const [CurretPage, setCurrentPage] = useState<FunctionComponent<any>>(() => ProductsLayout);
+  const [, setCurrentPage] = useState<FunctionComponent<any>>(() => ProductsLayout);
 
   const [isFirst, setIsFirst] = useState<boolean>(true);
 
@@ -37,7 +37,7 @@ const Restaurant: FunctionComponent<any> = () => {
   const auxRef: RefObject<HTMLHeadingElement | null> = useRef<HTMLHeadingElement | null>(null);
 
   useEffect( () => {
-    removeEventListener("resize", e => {
+    removeEventListener("resize", _ => {
       // const numb: number = ref.offsetLeft;
       const numb: number = 0;
       document.getElementById("root")?.scrollTo({
@@ -45,7 +45,7 @@ const Restaurant: FunctionComponent<any> = () => {
           behavior: "smooth"
       });
     });
-    addEventListener("resize", e => {
+    addEventListener("resize", _ => {
       const numb: number = 0;
       // console.log(Math.random());
       document.getElementById("root")?.scrollTo({

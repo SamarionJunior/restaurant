@@ -4,7 +4,7 @@ import "../../css/Layouts/Layout.scss"
 /// IMAGE ///
 import {  type FunctionComponent } from "react";
 /// TYPESCRIPT ///
-import type { PropsLayout, PropsPages } from "../../typescript/props.ts";
+import type { PropsLayout } from "../../typescript/props.ts";
 import { Content, Layout, Space } from "./components.tsx";
 
 

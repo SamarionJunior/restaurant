@@ -1,5 +1,5 @@
 /// REACT ///
-import { Children, type FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 
 export const Image: FunctionComponent<any> = props => {
   return (

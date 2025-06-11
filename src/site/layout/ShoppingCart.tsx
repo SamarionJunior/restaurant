@@ -5,7 +5,7 @@ import "../../css/Layouts/ShoppingCart.scss"
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Content, Data, Description, Display, Group, Image, ImageDiv, Information, Label, Layout, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
+import { Action, Actions, Data, Description, Display, Group, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, Text, Title, Total } from "../components/components.tsx";
 import { arrayIsEmpty, converteToMoney, toLink } from "../../typescript/functions.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import type { PropsPages } from "../../typescript/props.ts";

@@ -5,10 +5,9 @@ import "../../css/components/header.scss"
 
 import forkandknife from "../../assets/logo/forkandknife.png"
 
-import { useEffect, useRef, useState, type FunctionComponent, type ReactNode, type RefObject } from "react";
-import { Head, Header, Navegation, NavegationItem } from "../components/components.tsx";
+import { useEffect, useRef, type FunctionComponent, type RefObject } from "react";
+import { Head, Header } from "../components/components.tsx";
 import type { PropsNavagetion } from "../../typescript/props.ts";
-import { FaHome } from "react-icons/fa";
 import { toLink } from "../../typescript/functions.ts";
 
 const HeaderLayout: FunctionComponent<any> = (props: PropsNavagetion) => {

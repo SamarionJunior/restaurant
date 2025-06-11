@@ -25,13 +25,13 @@ $Product-Size-Collumn: 1fr;
       display: grid;
       grid-template-columns: repeat(2, $Products-Size-Collumn);
 
+      gap: $rem-large;
+
       @media screen and (max-width: $Mobile-Size) {
 
         grid-template-columns: repeat(1, $Products-Size-Collumn);
 
       }
-
-      gap: $rem-large;
 
       & > .SubForm-Text{
         @extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Medium;

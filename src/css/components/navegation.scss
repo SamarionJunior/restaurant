@@ -33,6 +33,8 @@ $orange: orange;
 
   background-color: black;
 
+  // z-index: 999;
+
   @media screen and (max-width: 660px) {
     width: 100%;
     position: fixed;
@@ -40,8 +42,6 @@ $orange: orange;
     left: 0;
     bottom: 0;
   }
-
-  // z-index: 999;
 
   & > .NavegationItem{
     // display: grid;

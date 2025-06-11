@@ -4,7 +4,7 @@ import "../../css/Layouts/Status.scss"
 
 import { type FunctionComponent } from "react";
 import { useSelector } from "react-redux";
-import { Content, Count, Data, DateAndHour, Description, Display, History, Image, ImageDiv, Information, Label, Layout, Order, Price, Product, Products, Status, Text, Title, Total } from "../components/components.tsx";
+import { Count, Data, DateAndHour, Description, Display, History, Image, ImageDiv, Information, Label, Order, Price, Product, Products, Status, Text, Title, Total } from "../components/components.tsx";
 import { converteToMoney, getDataAndHour } from "../../typescript/functions.ts";
 import { statusImage, statusMenssage } from "../../typescript/Variables.ts";
 import { Contents } from "../../typescript/content.ts";

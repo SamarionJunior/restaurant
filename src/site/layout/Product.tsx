@@ -5,7 +5,7 @@ import "../../css/Layouts/Product.scss"
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Content, Data, Description, Detail, Display, Image, ImageDiv, Information, Label, Layout, Overlay, Paragraph, Price, Product, Scroll, SubActions, Text, Title, Total } from "../components/components.tsx";
+import { Action, Data, Description, Display, Image, ImageDiv, Label, Paragraph, Price, Product, Scroll, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { converteToMoney, toLink } from "../../typescript/functions.ts";
 
 import { MdAdd } from "react-icons/md";
