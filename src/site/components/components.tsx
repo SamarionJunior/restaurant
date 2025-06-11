@@ -294,3 +294,24 @@ export const Layout: FunctionComponent<any> = props => {
     </div>
   );
 }
+export const Group: FunctionComponent<any> = props => {
+  return (
+    <div id={props.id} className={props.className}>
+      {props.children}
+    </div>
+  );
+}
+export const GroupCheck: FunctionComponent<any> = props => {
+  return (
+    <div id={props.id} className={props.className}>
+      {props.children}
+    </div>
+  );
+}
+export const Check: FunctionComponent<any> = props => {
+  return (
+    <div id={props.id} className={props.className}>
+      {props.children}
+    </div>
+  );
+}

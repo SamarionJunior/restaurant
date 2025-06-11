@@ -3,7 +3,7 @@ import "../../css/global/pre-sets.scss"
 import "../../css/Templates/restaurant.scss"
 import "../../css/components/navegation.scss"
 /// REACT ///
-import { useEffect, useState, type FunctionComponent } from "react";
+import { useEffect, useRef, useState, type FunctionComponent, type RefObject } from "react";
 /// REDUX ///
 import { useDispatch } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
@@ -34,7 +34,25 @@ const Restaurant: FunctionComponent<any> = () => {
 
   const dispatch = useDispatch();
 
+  const auxRef: RefObject<HTMLHeadingElement | null> = useRef<HTMLHeadingElement | null>(null);
+
   useEffect( () => {
+    removeEventListener("resize", e => {
+      // const numb: number = ref.offsetLeft;
+      const numb: number = 0;
+      document.getElementById("root")?.scrollTo({
+          left: numb,
+          behavior: "smooth"
+      });
+    });
+    addEventListener("resize", e => {
+      const numb: number = 0;
+      // console.log(Math.random());
+      document.getElementById("root")?.scrollTo({
+          left: numb,
+          behavior: "smooth"
+      });
+    });
     dispatch(updateProducts(productsOrigin));
   }, []);
 
@@ -64,12 +82,16 @@ const Restaurant: FunctionComponent<any> = () => {
   }, [navegationSelected]);
 
   if(isFirst == true){
-    document.getElementById("root")?.scrollTo({
-      left: 0,
-      top: 0,
-      behavior: "smooth"
-    });
-    setIsFirst(false);
+    // if(auxRef != null && auxRef.current != null){
+      document.getElementById("root")?.scrollTo({
+        // left: auxRef.current.offsetLeft,
+        // left: document.getElementById("c")?.offsetLeft,
+        left: 0,
+        top: 0,
+        behavior: "smooth"
+      });
+      setIsFirst(false);
+    // }
   }
 
   return (
@@ -84,7 +106,7 @@ const Restaurant: FunctionComponent<any> = () => {
 
       <ProductsLayout setNavegationSelected={setNavegationSelected} navegationItems={navegationItems}></ProductsLayout>
 
-      <ProductLayout setNavegationSelected={setNavegationSelected} navegationItems={navegationItems}></ProductLayout>
+      <ProductLayout ref={auxRef} setNavegationSelected={setNavegationSelected} navegationItems={navegationItems}></ProductLayout>
 
       <ShoppingCartLayout setNavegationSelected={setNavegationSelected} navegationItems={navegationItems}></ShoppingCartLayout>
 

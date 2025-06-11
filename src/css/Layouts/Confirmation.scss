@@ -2,282 +2,333 @@
 @use "../global/pre-sets.scss" as *;
 @use "../global/classes.scss" as *;
 
+$Products-Size-Collumn: 1fr;
+$Product-Size-Collumn: 1fr;
+
 .Confirmation{
-	// @extend %Bottom-Margin-Children-Large;
 
-	// display: flex;
-	// flex-direction: column;
-	// // justify-content: center;
-	// align-items: center;
-	// width: 340px;
-	// height: auto;
-	// flex-wrap: nowrap;
+  & > .Content{
 
-	& > .Form{
-			@extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium, .Collumn;
+    display: grid;
+    grid-template-columns: repeat(1, $Products-Size-Collumn);
+    // grid-template-rows: auto auto 1fr;
 
-		& > .SubForm-Name{
-			@extend .Flex, .WH-Default, .Collumn;
+    justify-content: stretch;
+    align-content: start;
+    justify-items: stretch;
+    align-items: stretch;
 
-			& > .Label{
-				@extend .WH-Default;
+    gap: $rem-large;
 
-				margin-bottom: 0.5rem;
-				
-			}
-			& > .Input-Text{
-				width: calc(100% - (2 * 1px) - (2 * 1rem));
-				height: 3rem;
-      			border: none;
-				// border: 1px solid $Color-Black;
-				padding: 0 1rem;
-				
-			}
-		}
-		& > .Title{
-			@extend .Flex, .WH-Default, .Collumn;
+    & > .Form{
 
-			margin-bottom: 0.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, $Products-Size-Collumn);
 
-			& > .Text{
-				@extend .Flex, .WH-Default, .Collumn;
+      @media screen and (max-width: $Mobile-Size) {
 
-			}
-		}
-		& > .SubForm-Payment{
-			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
+        grid-template-columns: repeat(1, $Products-Size-Collumn);
 
-			& > .Label{
-				@extend .Flex, .WH-Auto;
-			}
-			& > .Input{
-				@extend .Flex, .WH-Auto;
-			}
-		}
-		& > .Title{
-			@extend .Flex, .WH-Default, .Collumn;
+      }
 
-			margin-bottom: 0.5rem;
+      gap: $rem-large;
 
-			& > .Text{
-				@extend .Flex, .WH-Default, .Collumn;
+      & > .SubForm-Text{
+        @extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Medium;
 
-			}
-		}
-		& > .SubForm-Troco{
-			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
+        & > .Title{
+          @extend .Flex, .WH-Default, .Collumn;
 
-			flex-wrap: wrap;
+          & > .Text{
+            @extend .Flex, .WH-Default, .Collumn;
 
-			& > *{
-				margin-bottom: 0.5rem;
-			}
-			
-			& > .Label{
-				@extend .Flex, .WH-Auto;
-			}
-			& > .Input-CheckBox{
-				@extend .Flex, .WH-Auto;
-			}
-			& > .Input-Text{
-				@extend .Flex, .WH-Default;
-					width: calc(100% - (2 * 1px) - (2 * 1rem));
-					height: 3rem;
-      				border: none;
-					// border: 1px solid $Color-Black;
-					padding: 0 1rem;
+          }
 
-				flex-grow: 1;
-			}
-		}
-		& > .Title{
-			@extend .Flex, .WH-Default, .Collumn;
+        }
 
-			margin-bottom: 0.5rem;
+        & > .Label{
+          @extend .WH-Default;
+          
+        }
 
-			& > .Text{
-				@extend .Flex, .WH-Default, .Collumn;
+        & > .Input-Text{
+          width: calc(100% - (2 * 1px) - (2 * 1rem));
+          height: 3rem;
+          border: none;
+          // border: 1px solid $Color-Black;
+          padding: 0 1rem;
+          
+        }
 
-			}
-		}
-		& > .SubForm-Delivery{
-			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
+      }
 
-			& > .Label{
-				@extend .Flex, .WH-Auto, %Right-Margin-Children-Medium;
+      & > .SubForm-Check{
+        @extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Medium;
 
-			}
-			& > .Input{
-				@extend .Flex, .WH-Auto, %Right-Margin-Children-Medium;
-				
-			}
-		}
-		& > .SubForm-Address{
-			@extend .Flex, .WH-Default, .Collumn;
+        & > .Title{
+          @extend .Flex, .WH-Default;
 
-			& > .Label{
-				@extend .WH-Default;
+          & > .Text{
+            @extend .Flex, .WH-Default;
 
-				margin-bottom: 0.5rem;
-				
-			}
-			& > .Input-Text{
-				width: calc(100% - (2 * 1px) - (2 * 1rem));
-				height: 3rem;
-      			border: none;
-				// border: 1px solid $Color-Black;
-				padding: 0 1rem;
-				
-			}
-		}
-	}
+          }
 
-	& > .Content{
-		@extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Large;
+        }
 
-		& > .Resume{
-			@extend .Flex, .WH-Default;
-		
-			& > .Display{
-				@extend .Flex, .WH-Auto;
-				
-				& > .Label{
-					@extend .Flex;
+        & > .GroupCheck{
+          @extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium;
 
-					flex-wrap: nowrap;
+          flex-wrap: wrap;
 
-				}
-				
-				& > .Text{
-					@extend .Flex;
+          & > .Check{
+            @extend .Flex, .WH-Auto, .Flex-Center;
 
-					flex-wrap: nowrap;
+            & > .Label{
+              @extend .Flex, .WH-Auto;
+            }
 
-				}
-			}
-		}
-		
-		& > .Actions{
-			@extend .Flex, .WH-Default, %Right-Margin-Children-Medium;
-			
-			& > .Action{
-				@extend .Flex, .Flex-Center, .WH-Button-Half-Space;
+            & > .Input{
+              @extend .Flex, .WH-Auto;
+            }
 
-				& > .Button{
-				@extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
+          }
+          
+        }
 
-					& > i{
-						@extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
+      }
+
+      & > .SubForm-Troco{
+        @extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium;
+
+        flex-wrap: wrap;
+
+        & > .Title{
+          @extend .Flex, .WH-Default, .Collumn;
+
+          & > .Text{
+            @extend .Flex, .WH-Default, .Collumn;
+
+          }
+
+        }
+
+        & > .Check{
+          @extend .Flex, .WH-Auto, .Flex-Center;
+        
+          & > .Label{
+            @extend .Flex, .WH-Auto;
+          }
+
+          & > .Input-CheckBox{
+            @extend .Flex, .WH-Auto;
+          }
+
+        }
+
+        & > .Input-Text{
+          @extend .Flex, .WH-Default;
+
+          width: calc(100% - (2 * 1px) - (2 * 1rem));
+          height: 3rem;
+              border: none;
+          // border: 1px solid $Color-Black;
+          padding: 0 1rem;
+
+        }
+
+      }
+
+    }
+
+    & > .Content{
+
+      display: grid;
+      grid-template-columns: repeat(1, calc(340px - 2 * 2rem));
+
+      justify-content: center;
+      align-content: center;
+      justify-items: center;
+      align-items: center;
+
+      gap: $rem-large;
+
+      @media screen and (max-width: $Mobile-Size) {
+
+        grid-template-columns: repeat(1, $Products-Size-Collumn);
+
+      }
+
+      & > .Resume{
+        @extend .Flex, .WH-Default;
+      
+        & > .Display{
+          @extend .Flex, .WH-Auto;
+          
+          & > .Label{
+            @extend .Flex;
+
+            flex-wrap: nowrap;
+
+          }
+          
+          & > .Text{
+            @extend .Flex;
+
+            flex-wrap: nowrap;
+
+          }
+        }
+      }
+      
+      & > .Actions{
+        @extend .Flex, .WH-Default, %Right-Margin-Children-Large;
+        
+        & > .Action{
+          @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
+
+          & > .Button{
+          @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
+
+            & > i{
+              @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
 
 
-					}
-				}
-			}
-		}
-	}
+            }
+          }
+        }
+      }
+    }
 
-	& > .Products{
+    & > .Products{
 
-		display: grid;
-		grid-template-columns: repeat(auto-fill, 340px);
-		// grid-template-rows: calc($imageSize + (2 * 1rem));
-		justify-content: center;
-		align-content: start;
-		justify-items: stretch;
-		align-items: stretch;
+      display: grid;
+      grid-template-columns: repeat(2, $Products-Size-Collumn);
+      grid-template-rows: repeat(auto-fill, calc($imageSize + 2 * $rem-large));
 
-		min-width: 340px;
-		max-width: calc((340px * 3) + (2 * 2rem));
-		width: calc(100% - (0 * 1rem));
-		height: auto;
+      gap: $rem-large;
 
-		gap: 2rem;
+      @media screen and (max-width: $Mobile-Size) {
 
-		& > .Product-Horizontal{
-			@extend .Flex, .Flex-Center, .WH-Default, %Right-Margin-Children-Large;
+        grid-template-columns: repeat(1, $Products-Size-Collumn);
 
-			// width: 100%;
-			// height: calc(55px + (2 * 1rem));
-			width: calc(100% - (2 * 2rem));
-			// height: calc(100px + (2 * 1rem));
-			height: calc(100% - (2 * 2rem));
-			padding: 2rem;
+      }
 
-			background-color: $Color-White;
-			box-shadow: 1px 1px 1px $Color-Gainsboro;
+      & > .Product-Horizontal{
 
-			& > .Image{
-				@extend .Flex, .Image-Size, .Flex-Center;
-		
-				& > .Img{
-					@extend .Flex, .Image-Size, .Flex-Center;
-				}
-			}
+        display: grid;
+        grid-template-columns: $imageSize $Product-Size-Collumn;
+        grid-template-rows: $imageSize;
 
-			& > .Information{
-				@extend .Flex, .WH-Default, .Collumn;
+        gap: $rem-large;
+        
+        padding: $rem-large;
 
-				width: calc(100% - $imageSize - 2rem);
-				height: auto;
+        background-color: $Color-White;
 
-				& > .Title{
-					@extend .Flex, .WH-Default;
+        box-shadow: 1px 1px 1px $Color-Gainsboro;
 
-					& > .Text{
-						@extend .Flex, .WH-Default, .Name-Size;
-					}
-				}
-				
-				& > .Description{
-					@extend .Flex, .WH-Default;
+        & > .Image{
+          width: 100%;
+          height: 100%;
+      
+          & > .Img{
+            width: 100%;
+            height: 100%;
+          }
 
-					& > .Text{
-						@extend .Ellipse;
-					}
-				}
+        }
 
-				& > .Data{
-					@extend .Flex, .WH-Default, .Data-Size;
+        & > .Information{
 
-					flex-wrap: wrap;
-				
-					& > .Price{
-						@extend .Flex, .WH-Auto;
-						
-						& > .Price-Label{
-							@extend .Flex;
-						}
+          display: grid;
+          grid-template-columns: $Product-Size-Collumn;
+          grid-template-rows: repeat(3, auto);
 
-						& > .Price-Text{
-							@extend .Flex;
-						}
-					}
-					
-					& > .Count{
-					  @extend .Flex, .WH-Auto;
-					
-					  & > .Count-Label{
-					    @extend .Flex;
-					  }
+          justify-content: center;
+          align-content: center;
 
-					  & > .Count-Text{
-					    @extend .Flex;
-					  }
-					}
+          & > .Title{
 
-					& > .Total{
-						@extend .Flex, .WH-Auto;
-					
-						& > .Count-Label{
-							@extend .Flex;
-						}
+            & > .Text{
+              @extend .Name-Size;
 
-						& > .Count-Text{
-							@extend .Flex;
-						}
-					}
-				}
-			}
-		}
-	}
+            }
+
+          }
+          
+          & > .Description{
+            @extend .Flex;
+
+            & > .Text{
+              @extend .Ellipse;
+
+            }
+          }
+
+          & > .Data{
+            @extend .Flex, .WH-Default, .Data-Size ;
+            
+            flex-wrap: wrap;
+          
+            & > .Price{
+
+              @extend .Flex, .WH-Auto;
+              
+              & > .Label{
+
+                @extend .Flex, .WH-Auto;
+
+              }
+
+              & > .Text{
+
+                @extend .Flex, .WH-Auto;
+
+              }
+            }
+            
+            & > .Count{
+              @extend .Flex, .WH-Auto;
+            
+              & > .Label{
+
+                @extend .Flex, .WH-Auto;
+
+              }
+
+              & > .Text{
+
+                @extend .Flex, .WH-Auto;
+
+              }
+
+            }
+            
+            & > .Total{
+              @extend .Flex, .WH-Auto;
+            
+              & > .Label{
+
+                @extend .Flex, .WH-Auto;
+
+              }
+
+              & > .Text{
+
+                @extend .Flex, .WH-Auto;
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+    
+  }
+
 }

@@ -20,9 +20,9 @@ const StatusLayout: FunctionComponent<any> = _ => {
   // }
 
   return (
-    <LayoutLayout id="f" className="Detail bg-5">
-      <Status className="Status">
-        {/* {orders.map((order: any) => (
+    <LayoutLayout id="f" className="Status bg-5">
+      <Status className="Orders">
+        {orders.map((order: any) => (
           <Order className="Order" key={order.index}>
             <ImageDiv className="Image">
               <Image className="Img" src={statusImage[order.status]}/>
@@ -92,7 +92,7 @@ const StatusLayout: FunctionComponent<any> = _ => {
                 {order.products.map((product: any) => (
                   <Product className="Product-Horizontal" key={product.key}>
                     <ImageDiv className="Image">
-                      <Image className="FImg" src={product.image}/>
+                      <Image className="Img" src={product.image}/>
                     </ImageDiv>
                     <Information className="Information">
                       <Title className="Title">
@@ -137,7 +137,7 @@ const StatusLayout: FunctionComponent<any> = _ => {
               </Products>
             </History>
           </Order>
-        ))} */}
+        ))}
       </Status>
     </LayoutLayout>
   );

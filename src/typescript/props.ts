@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import type { NavegationItemType } from "./types";
 
 export type PropsPages = {
-  setNavegationSelected: React.Dispatch<React.SetStateAction<string>>;
-  navegationItems: string[];
+  setNavegationSelected: React.Dispatch<React.SetStateAction<NavegationItemType>>;
+  navegationItems: NavegationItemType[];
   children?: ReactNode;
 }
 
@@ -15,8 +15,8 @@ export type PropsNavagetion = {
 }
 
 export type PropsLayout = {
-  setNavegationSelected: React.Dispatch<React.SetStateAction<string>>;
-  navegationItems: string[];
+  setNavegationSelected: React.Dispatch<React.SetStateAction<NavegationItemType>>;
+  navegationItems: NavegationItemType[];
   children: ReactNode;
   id: string;
   className: string;

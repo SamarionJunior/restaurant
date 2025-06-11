@@ -23,7 +23,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: clamp(calc(340px - (2 * 2rem)), calc(100% - (2 * 2rem)), calc(1080px - 2 * 2rem));
+    width: auto;
+    flex-grow: 1;
     height: 100%;
     padding: 0 2rem;
 
@@ -90,6 +91,8 @@
       justify-content: center;
       align-items: center;
       height: 100%;
+
+      cursor: pointer;
     }
   }
 }

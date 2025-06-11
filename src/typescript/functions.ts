@@ -27,10 +27,13 @@ export const getAllProducts = () => {
       show: false,
       preSelected: 0,
       total: 0,
+      // itIsInCart: true
       itIsInCart: false
     }
     allProducts.push(newProduct);
   }
+  // allProducts[0].show = true;
+  // allProducts[0].itIsInCart = true;
   // console.log(typeof(allProducts));
   return allProducts;
 }
@@ -71,41 +74,41 @@ export const getDataAndHour = (date: string) : string => {
 
 const idString = {id: "a"};
 
-export const toLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: string) => {
-    e.preventDefault();
-    // const target = document.querySelector(id);
-    // window.smoothScroll.animateScroll( target );
-    const item: HTMLElement | null = document.getElementById(id);
-    const parent: HTMLElement | null = document.getElementById("root");
-    
-    if(item != null && parent != null){
-      const num: number = item.offsetLeft;
-    
-      console.log(id, item, parent);
-      console.log(num);
+export const toLink = (e: any, id: string) => {
+  e?.preventDefault();
+  // const target = document.querySelector(id);
+  // window.smoothScroll.animateScroll( target );
+  const item: HTMLElement | null = document.getElementById(id);
+  const parent: HTMLElement | null = document.getElementById("root");
+  
+  if(item != null && parent != null){
+    const num: number = item.offsetLeft;
+  
+    console.log(id, item, parent);
+    console.log(num);
+    parent.scrollTo({
+        left: num,
+        behavior: "smooth"
+    });
+    idString.id = id;
+    // clearInterval(intr);
+    // const handle = element => {
+    //   // console.log(element, numb, intr);
+    // };
+    removeEventListener("resize", e => {
+      const numb: number = item.offsetLeft;
       parent.scrollTo({
-          left: num,
+          left: numb,
           behavior: "smooth"
-      });
-      idString.id = id;
-      // clearInterval(intr);
-      // const handle = element => {
-      //   // console.log(element, numb, intr);
-      // };
-      removeEventListener("resize", e => {
-        const numb: number = item.offsetLeft;
-        parent.scrollTo({
-            left: numb,
-            behavior: "smooth"
-        })
-      });
-      addEventListener("resize", e => {
-        const numb: number = item.offsetLeft;
-        parent.scrollTo({
-            left: numb,
-            behavior: "smooth"
-        })
-      });
-      // intr = setInterval(handle, 1000, parent);
-    }
+      })
+    });
+    addEventListener("resize", e => {
+      const numb: number = item.offsetLeft;
+      parent.scrollTo({
+          left: numb,
+          behavior: "smooth"
+      })
+    });
+    // intr = setInterval(handle, 1000, parent);
+  }
 }

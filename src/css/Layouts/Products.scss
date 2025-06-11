@@ -2,139 +2,121 @@
 @use "../global/pre-sets.scss" as *;
 @use "../global/classes.scss" as *;
 
-$sizeldeld: 1fr;
-// $sizeldeld: 400px;
+$Products-Size-Collumn: 1fr;
+$Product-Size-Collumn: 1fr;
 
 .Store{
 
   & > .Content{
 
     display: grid;
-    grid-template-columns: repeat(2, $sizeldeld);
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    align-items: center;
-    // grid-template-areas: 
-    //   "A B"
-    // ;
-    gap: 2rem;
+    grid-template-columns: repeat(2, $Products-Size-Collumn);
+    grid-template-rows: repeat(auto-fill, calc($imageSize + 2 * $rem-large));
 
-    @media screen and (max-width: 660px) {
-      grid-template-columns: repeat(1, $sizeldeld);
-      // grid-template-areas: 
-      //   "B"
-      //   "A"
-      // ;
+    gap: $rem-large;
+
+    @media screen and (max-width: $Mobile-Size) {
+
+      grid-template-columns: repeat(1, $Products-Size-Collumn);
+
     }
 
-      & > .Product-Horizontal{
+    & > .Product-Horizontal{
 
-        // border: 1rem solid white;
+      display: grid;
+      grid-template-columns: $imageSize $Product-Size-Collumn;
+      grid-template-rows: $imageSize;
 
-        display: grid;
-        grid-template-columns: $imageSize 1fr;
-        // grid-template-columns: $imageSize calc(1fr - 2rem - 2rem);
-        grid-template-rows: $imageSize;
+      gap: $rem-large;
+      
+      padding: $rem-large;
 
-        justify-content: start;
-        align-content: center;
-        justify-items: start;
-        align-items: center;
+      background-color: $Color-White;
 
-        gap: 2rem;
-        
-        padding: 2rem;
+      box-shadow: 1px 1px 1px $Color-Gainsboro;
 
-        width: calc(100% -  2 * 2rem);
-        height: $imageSize;
-
-        background-color: $Color-White;
-        box-shadow: 1px 1px 1px $Color-Gainsboro;
-
-        & > .Image{
+      & > .Image{
+        width: 100%;
+        height: 100%;
+    
+        & > .Img{
           width: 100%;
           height: 100%;
-      
-          & > .Img{
-            width: 100%;
-            height: 100%;
-          }
         }
 
-        & > .Information{
-
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: repeat(3, auto);
-
-          // align-items: end;
-          // justify-items: end;
-          // align-content: end;
-          // justify-content: end;
-
-          width: calc(100% - 2rem);
-          width: calc(100%);
-          height: calc(100% - (2 * 2rem));
-          height: auto;
-
-          // background-color: red;
-
-          & > .Title{
-
-            & > .Text{
-              @extend .Name-Size;
-            }
-          }
-          
-          & > .Description{
-            @extend .Flex;
-
-            // width: calc($sizeldeld - $imageSize - 20px - 20px - 20px);
-            // width: 340px;
-            width: 100%;
-            min-width: 0;
-            // max-width: calc((1080px) / 2);
-            // width: calc(clamp($sizeldeld, 100%, 340px));
-
-            & > .Text{
-              @extend .Ellipse;
-
-              min-width: 0;
-              width: 100%;
-            }
-          }
-
-          & > .Data{
-            @extend .Flex, .WH-Default, .Data-Size ;
-            flex-wrap: wrap;
-          
-            & > .Price{
-              @extend .Flex, .WH-Auto;
-              
-              & > .Label{
-                @extend .Flex, .WH-Auto;
-              }
-
-              & > .Text{
-                @extend .Flex, .WH-Auto;
-              }
-            }
-            
-            & > .Count{
-              @extend .Flex, .WH-Auto;
-            
-              & > .Label{
-                @extend .Flex, .WH-Auto;
-              }
-
-              & > .Text{
-                @extend .Flex, .WH-Auto;
-              }
-            }
-          }
-        }
       }
+
+      & > .Information{
+
+        display: grid;
+        grid-template-columns: $Product-Size-Collumn;
+        grid-template-rows: repeat(3, auto);
+
+        justify-content: center;
+        align-content: center;
+
+        & > .Title{
+
+          & > .Text{
+            @extend .Name-Size;
+
+          }
+
+        }
+        
+        & > .Description{
+          @extend .Flex;
+
+          & > .Text{
+            @extend .Ellipse;
+
+          }
+        }
+
+        & > .Data{
+          @extend .Flex, .WH-Default, .Data-Size ;
+          
+          flex-wrap: wrap;
+        
+          & > .Price{
+
+            @extend .Flex, .WH-Auto;
+            
+            & > .Label{
+
+              @extend .Flex, .WH-Auto;
+
+            }
+
+            & > .Text{
+
+              @extend .Flex, .WH-Auto;
+
+            }
+          }
+          
+          & > .Count{
+            @extend .Flex, .WH-Auto;
+          
+            & > .Label{
+
+              @extend .Flex, .WH-Auto;
+
+            }
+
+            & > .Text{
+
+              @extend .Flex, .WH-Auto;
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
 
   }
 

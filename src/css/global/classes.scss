@@ -71,7 +71,8 @@
   // }
 }
 // #FFC99D
-$colors: black 0, $Color-Anti-Flash-White 1, orange 2, blue 3, green 4, yellow 5;
+$colors: black 0, $Color-Anti-Flash-White 1, $Color-Anti-Flash-White 2, $Color-Anti-Flash-White 3, $Color-Anti-Flash-White 4, $Color-Anti-Flash-White 5;
+// $colors: black 0, orange 1, $Color-Anti-Flash-White 2, blue 3, green 4, yellow 5;
 @each $color, $index in $colors{
   .bg-#{$index}{
     background-color: $color;
@@ -87,7 +88,7 @@ $SizeTiple: "Small" $rem-small, "Medium" $rem-medium, "Large" $rem-large;
     }
 
     & > *:last-child{
-      margin-bottom: $SizeREM;
+      margin-bottom: 0;
     }
   }
 }
@@ -101,7 +102,11 @@ $SizeTiple: "Small" $rem-small, "Medium" $rem-medium, "Large" $rem-large;
     }
 
     & > *:last-child{
-      margin-Right: $SizeREM;
+      margin-Right: 0;
     }
   }
+}
+
+.Font-Size-Title{
+  font-size: 3rem;
 }

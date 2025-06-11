@@ -23,7 +23,7 @@ $orange: orange;
   justify-content: center;
   align-items: center;
   // width: calc(1080px / 2);
-  width: auto;
+  width: clamp(calc(6 * 5rem), 100%, calc(6 * 5rem + 5 * 2rem));
   height: 5rem;
   // background-color: ;
 
@@ -44,21 +44,17 @@ $orange: orange;
   // z-index: 999;
 
   & > .NavegationItem{
-    display: grid;
-    grid-template-columns: repeat(6, 5rem);
-    gap: 2rem;
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
-    // width: 100%;
+    // display: grid;
+    // grid-template-columns: repeat(6, 5rem);
+    // gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: clamp(calc(6 * 5rem), 100%, calc(6 * 5rem + 5 * 2rem));
     height: 5rem;
     padding-right: 2rem;
 
     @media screen and (max-width: 660px) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: clamp(calc(340px - (2 * 2rem)), calc(100% - (2 * 2rem)), calc(1080px - 2 * 2rem));
       padding: 0 2rem;
     }
 

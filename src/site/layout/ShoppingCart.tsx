@@ -5,8 +5,8 @@ import "../../css/Layouts/ShoppingCart.scss"
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Content, Data, Description, Display, Image, ImageDiv, Information, Label, Layout, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
-import { arrayIsEmpty, converteToMoney } from "../../typescript/functions.ts";
+import { Action, Actions, Content, Data, Description, Display, Group, Image, ImageDiv, Information, Label, Layout, Price, Product, Products, Resume, ShoppingCart, SubActions, Text, Title, Total } from "../components/components.tsx";
+import { arrayIsEmpty, converteToMoney, toLink } from "../../typescript/functions.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import type { PropsPages } from "../../typescript/props.ts";
 import { Contents } from "../../typescript/content.ts";
@@ -62,26 +62,31 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
     }))
   };
 
-  const indexNavegationItems: number = 2;
+  const indexNavegationItems: number = 3;
 
-  const handComfirmation = () : void => {
-      setNavegationSelected(navegationItems[indexNavegationItems + 1]);
-  }
-
-  const handleToGoBack = () : void => {
+  const handleToGoBack = (e: any) : void => {
     setNavegationSelected(navegationItems[indexNavegationItems - 2]);
+    toLink(e, navegationItems[indexNavegationItems - 2].id);
   };
 
-  // if(selectedProducts.length == 0){
-  //   return (<div>Nenhum Produto no Carrinho!</div>);
-  // }
+  const handComfirmation = (e: any) : void => {
+    setNavegationSelected(navegationItems[indexNavegationItems + 1]);
+    toLink(e, navegationItems[indexNavegationItems + 1].id);
+  }
+
+  if(selectedProducts.length == 0){
+    return (
+      <LayoutLayout id="d" className="ShoppingCart bg-3">
+        <div>Nenhum Produto no Carrinho!</div>
+      </LayoutLayout>
+    );
+  }
 
   return (
-    <LayoutLayout id="d" className="Detail bg-3">
-      <ShoppingCart className="ShoppingCart">
-        {/* {!arrayIsEmpty(selectedProducts) ? (
-          <>
-            <Content className="Content">
+    <LayoutLayout id="d" className="ShoppingCart bg-3">
+        {!arrayIsEmpty(selectedProducts) ? (
+          <div className="Div">
+            <Group className="Group">
               <Resume className="Resume">
                 <Display className="Display">
                   <Label className="Label">
@@ -120,7 +125,7 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
                   </button>
                 </Action>
               </Actions>
-            </Content>
+            </Group>
             <Products className="Products">
               {selectedProducts.map((product: ProductType) => (
                 <Product className="Product-Horizontal" key={product.key}>
@@ -147,49 +152,49 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
                           {converteToMoney(product.price)} &#20;
                         </Text>
                       </Price>
+                      <Total className="Total">
+                        <Label className="Label">
+                          {Contents.Labels.Total}: &#20;
+                        </Label>
+                        <Text className="Text">
+                          {converteToMoney(product.total)}
+                        </Text>
+                      </Total>
                     </Data>
                     <Actions className="Actions">
-                      <SubActions className="SubActions">
-                        <Action className="Action">
-                          <button className="Button" onClick={ _ => handleSubQTDInCart(product)}>
-                            <i className="Icon">
-                              -
-                            </i>
-                          </button>
-                        </Action>
-                        <Display className="Display">
-                          <Text className="Text">
-                            {product.preSelected}
-                          </Text>
-                        </Display>
-                        <Action className="Action">
-                          <button className="Button" onClick={ _ => handleAddQTDInCart(product)}>
-                            <i className="Icon">
-                              +
-                            </i>
-                          </button>
-                        </Action>
-                        <Total className="Total">
-                          <Text className="Text">
-                            {converteToMoney(product.total)}
-                          </Text>
-                        </Total>
-                        <Action className="Action">
-                          <button className="Button" onClick={ _ => handleRemoveFromCart(product)}>
-                            <i className="Icon">
-                              X
-                            </i>
-                          </button>
-                        </Action>
-                      </SubActions>
+                      <Action className="Action">
+                        <button className="Button" onClick={ _ => handleSubQTDInCart(product)}>
+                          <i className="Icon">
+                            -
+                          </i>
+                        </button>
+                      </Action>
+                      <Display className="Display">
+                        <Text className="Text">
+                          {product.preSelected}
+                        </Text>
+                      </Display>
+                      <Action className="Action">
+                        <button className="Button" onClick={ _ => handleAddQTDInCart(product)}>
+                          <i className="Icon">
+                            +
+                          </i>
+                        </button>
+                      </Action>
+                      <Action className="Action">
+                        <button className="Button" onClick={ _ => handleRemoveFromCart(product)}>
+                          <i className="Icon">
+                            X
+                          </i>
+                        </button>
+                      </Action>
                     </Actions>
                   </Information>
                 </Product>
               ))}
             </Products>
-          </>
-        ) : null} */}
-      </ShoppingCart>
+          </div>
+        ) : null}
     </LayoutLayout>
   );
 }

@@ -7,7 +7,7 @@ import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProductShow } from "../../data/redux/slices/restaurant/productsSlice.ts";
 /// TYPESCRIPT ///
-import { arrayIsEmpty } from "../../typescript/functions.ts";
+import { arrayIsEmpty, toLink } from "../../typescript/functions.ts";
 import { Content, Count, Data, Description, Image, ImageDiv, Information, Label, Layout, Price, Product, Products, Store, Text, Title } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
@@ -37,10 +37,13 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
     setProductsFiltered(getAvailableProducts(products));
   }, [products]);
 
-  const handleShow = (index: number) : void => {
+  const handleShow = (e: any, index: number) : void => {
     if(index >= 0){
       dispatch(updateProductShow(index));
-      setNavegationSelected(navegationItems[1]);
+      toLink(e, navegationItems[2].id);
+      setNavegationSelected(navegationItems[2]);
+
+      console.log("asas")
     }
   }
 
@@ -55,7 +58,7 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
   return (
     <LayoutLayout id="b" className="Store bg-1">
         {show ? productsFiltered.map((product: ProductType) => (
-          <Product className="Product-Horizontal" key={product.key} onClick={ () => handleShow(product.index)}>
+          <Product className="Product-Horizontal" key={product.key} onClick={(e: any) => handleShow(e, product.index)}>
             <ImageDiv className="Image">
               <Image className="Img" src={product.image}></Image>
             </ImageDiv>

@@ -4,42 +4,22 @@ import "../../css/Layouts/Home.scss"
 /// IMAGE ///
 import pizza from "../../assets/background/pizza1.jpg";
 
-import { useEffect, useState, type FunctionComponent } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProductShow } from "../../data/redux/slices/restaurant/productsSlice.ts";
+import {  type FunctionComponent } from "react";
 /// TYPESCRIPT ///
-import { arrayIsEmpty } from "../../typescript/functions.ts";
+import { toLink } from "../../typescript/functions.ts";
 import type { PropsPages } from "../../typescript/props.ts";
-import type { ProductType, StateType } from "../../typescript/types.ts";
-import { Buttons, Content, Display, Home, Painel, Slogan, Space } from "../components/components.tsx";
+import { Buttons, Display, Painel, Slogan } from "../components/components.tsx";
 import LayoutLayout from "../components/Layout.tsx";
 
-const toFilterByGreaterThan = <T,>(items: T[] | any[], proprity: string, value: number) : T[] | any[] => items.filter((item: T | any) : boolean => item[proprity] > value);
-const getAvailableProducts = (products: ProductType[]) : ProductType[] => toFilterByGreaterThan<ProductType>(products, "count", 0);
 
 const HomeLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const setNavegationSelected = props.setNavegationSelected;
   const navegationItems = props.navegationItems;
 
-  const dispatch = useDispatch();
-
-  const products: ProductType[] = useSelector((state: StateType) : ProductType[] =>  state.products);
-  
-  const [productsFiltered, setProductsFiltered] = useState<ProductType[]>(getAvailableProducts(products));
-
-  const [show, setShow] = useState<boolean>(false);
-
-  useEffect(() : void => {
-    !arrayIsEmpty(products) ? setShow(true) : setShow(false);
-    setProductsFiltered(getAvailableProducts(products));
-  }, [products]);
-
-  const handleShow = (index: number) : void => {
-    if(index >= 0){
-      dispatch(updateProductShow(index));
-      setNavegationSelected(navegationItems[1]);
-    }
+  const handleToProducts = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    toLink(e, navegationItems[1].id);
+    setNavegationSelected(navegationItems[1]);
   }
 
   // if(productsFiltered.length == 0){
@@ -56,7 +36,7 @@ const HomeLayout: FunctionComponent<any> = (props: PropsPages) => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </Slogan>
         <Buttons className="Buttons">
-          <button className="Button">
+          <button className="Button" onClick={handleToProducts}>
             Acessar o Cardápio
           </button>
         </Buttons>
