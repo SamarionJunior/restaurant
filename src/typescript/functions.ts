@@ -35,7 +35,9 @@ export const getAllProducts = () => {
   // allProducts[0].show = true;
   // allProducts[0].itIsInCart = true;
   // console.log(typeof(allProducts));
+
   return allProducts;
+  // return [];
 }
 
 export const isNotNullAndUndefined = (value: any): boolean => (value != null && value != undefined)
@@ -72,43 +74,38 @@ export const getDataAndHour = (date: string) : string => {
 
 // let intr = 0;
 
-const idString = {id: "a"};
+export const idString = {id: "a"};
+
+export const scrollTo = (parent: HTMLElement, item: HTMLElement) => {
+  const num: number = item.offsetLeft;
+  parent.scrollTo({
+      top: 0,
+      left: num,
+      behavior: "smooth"
+  });
+}
+
+export const resizeScrollTo = () => {
+  const item: HTMLElement | null = document.getElementById(idString.id);
+  const parent: HTMLElement | null = document.getElementById("root");
+  if(item != null && parent != null){
+    scrollTo(parent, item);
+  }
+}
 
 export const toLink = (e: any, id: string) => {
   e?.preventDefault();
-  // const target = document.querySelector(id);
-  // window.smoothScroll.animateScroll( target );
-  const item: HTMLElement | null = document.getElementById(id);
+
+  idString.id = id;
+  const item: HTMLElement | null = document.getElementById(idString.id);
   const parent: HTMLElement | null = document.getElementById("root");
   
   if(item != null && parent != null){
-    const num: number = item.offsetLeft;
-  
-    console.log(id, item, parent);
-    console.log(num);
-    parent.scrollTo({
-        left: num,
-        behavior: "smooth"
-    });
-    idString.id = id;
-    // clearInterval(intr);
-    // const handle = element => {
-    //   // console.log(element, numb, intr);
-    // };
-    removeEventListener("resize", _ => {
-      const numb: number = item.offsetLeft;
-      parent.scrollTo({
-          left: numb,
-          behavior: "smooth"
-      })
-    });
-    addEventListener("resize", _ => {
-      const numb: number = item.offsetLeft;
-      parent.scrollTo({
-          left: numb,
-          behavior: "smooth"
-      })
-    });
-    // intr = setInterval(handle, 1000, parent);
+    // console.log(idString.id, id, item, parent, num);
+
+    scrollTo(parent, item);
+
+    removeEventListener("resize", resizeScrollTo);
+    addEventListener("resize", resizeScrollTo);
   }
 }

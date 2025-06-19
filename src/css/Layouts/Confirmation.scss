@@ -11,12 +11,9 @@ $Product-Size-Collumn: 1fr;
 
     display: grid;
     grid-template-columns: repeat(1, $Products-Size-Collumn);
-    // grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
 
-    justify-content: stretch;
     align-content: start;
-    justify-items: stretch;
-    align-items: stretch;
 
     gap: $rem-large;
 
@@ -25,7 +22,7 @@ $Product-Size-Collumn: 1fr;
       display: grid;
       grid-template-columns: repeat(2, $Products-Size-Collumn);
 
-      gap: $rem-large;
+      gap: $rem-medium;
 
       @media screen and (max-width: $Mobile-Size) {
 
@@ -33,50 +30,61 @@ $Product-Size-Collumn: 1fr;
 
       }
 
-      & > .SubForm-Text{
-        @extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Medium;
+      // background-color: aqua;
+
+      // grid-template-rows: 300px 300px 300px;
+
+      & > .SubFrom{
+
+        display: grid;
+        grid-template-columns: repeat(1, $Products-Size-Collumn);
+
+        gap: $rem-medium;
+
+        justify-content: stretch;
+        // align-content: end;
+        align-content: start;
+        justify-items: stretch;
+        align-items: start;
+
+        // background-color: red;
+
+        & > *{
+          // width: 100%;
+          // background-color: violet
+        }
+
+        // & > .Title{
+        //   @extend .Flex, .WH-Default, .Collumn;
+
+        //   & > .Text{
+        //     @extend .Flex, .WH-Default, .Collumn;
+
+        //   }
+
+        // }
 
         & > .Title{
-          @extend .Flex, .WH-Default, .Collumn;
-
-          & > .Text{
-            @extend .Flex, .WH-Default, .Collumn;
-
-          }
 
         }
 
         & > .Label{
-          @extend .WH-Default;
-          
+
         }
 
         & > .Input-Text{
-          width: calc(100% - (2 * 1px) - (2 * 1rem));
           height: 3rem;
           border: none;
-          // border: 1px solid $Color-Black;
           padding: 0 1rem;
           
         }
 
-      }
-
-      & > .SubForm-Check{
-        @extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Medium;
-
-        & > .Title{
-          @extend .Flex, .WH-Default;
-
-          & > .Text{
-            @extend .Flex, .WH-Default;
-
-          }
-
-        }
-
         & > .GroupCheck{
-          @extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium;
+          @extend .Flex, .WH-Default, .Flex-Center;
+
+          justify-content: flex-start;
+
+          min-height: 3rem;
 
           flex-wrap: wrap;
 
@@ -84,118 +92,127 @@ $Product-Size-Collumn: 1fr;
             @extend .Flex, .WH-Auto, .Flex-Center;
 
             & > .Label{
-              @extend .Flex, .WH-Auto;
+
             }
 
             & > .Input{
-              @extend .Flex, .WH-Auto;
+
             }
 
           }
           
-        }
-
-      }
-
-      & > .SubForm-Troco{
-        @extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium;
-
-        flex-wrap: wrap;
-
-        & > .Title{
-          @extend .Flex, .WH-Default, .Collumn;
-
-          & > .Text{
-            @extend .Flex, .WH-Default, .Collumn;
-
-          }
-
         }
 
         & > .Check{
           @extend .Flex, .WH-Auto, .Flex-Center;
-        
+
+          justify-content: flex-start;
+
+          min-height: 3rem;
+
           & > .Label{
-            @extend .Flex, .WH-Auto;
+
           }
 
-          & > .Input-CheckBox{
-            @extend .Flex, .WH-Auto;
+          & > .Input{
+
           }
 
         }
-
-        & > .Input-Text{
-          @extend .Flex, .WH-Default;
-
-          width: calc(100% - (2 * 1px) - (2 * 1rem));
-          height: 3rem;
-              border: none;
-          // border: 1px solid $Color-Black;
-          padding: 0 1rem;
-
-        }
-
       }
+
+      // & > .SubForm-Check{
+      //   @extend .Flex, .WH-Default, .Collumn, %Bottom-Margin-Children-Medium;
+
+      //   & > .Title{
+      //     @extend .Flex, .WH-Default;
+
+      //     & > .Text{
+      //       @extend .Flex, .WH-Default;
+
+      //     }
+
+      //   }
+
+      //   & > .GroupCheck{
+      //     @extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium;
+
+      //     flex-wrap: wrap;
+
+      //     & > .Check{
+      //       @extend .Flex, .WH-Auto, .Flex-Center;
+
+      //       & > .Label{
+      //         @extend .Flex, .WH-Auto;
+      //       }
+
+      //       & > .Input{
+      //         @extend .Flex, .WH-Auto;
+      //       }
+
+      //     }
+          
+      //   }
+
+      // }
+
+      // & > .SubForm-Troco{
+      //   @extend .Flex, .WH-Default, %Bottom-Margin-Children-Medium;
+
+      //   flex-wrap: wrap;
+
+      //   & > .Title{
+      //     @extend .Flex, .WH-Default, .Collumn;
+
+      //     & > .Text{
+      //       @extend .Flex, .WH-Default, .Collumn;
+
+      //     }
+
+      //   }
+
+      //   & > .Check{
+      //     @extend .Flex, .WH-Auto, .Flex-Center;
+        
+      //     & > .Label{
+      //       @extend .Flex, .WH-Auto;
+      //     }
+
+      //     & > .Input-CheckBox{
+      //       @extend .Flex, .WH-Auto;
+      //     }
+
+      //   }
+
+      //   & > .Input-Text{
+      //     @extend .Flex, .WH-Default;
+
+      //     width: calc(100% - (2 * 1px) - (2 * 1rem));
+      //     height: 3rem;
+      //         border: none;
+      //     // border: 1px solid $Color-Black;
+      //     padding: 0 1rem;
+
+      //   }
+
+      // }
 
     }
-
-    & > .Content{
-
-      display: grid;
-      grid-template-columns: repeat(1, calc(340px - 2 * 2rem));
-
-      justify-content: center;
-      align-content: center;
-      justify-items: center;
-      align-items: center;
-
-      gap: $rem-large;
-
-      @media screen and (max-width: $Mobile-Size) {
-
-        grid-template-columns: repeat(1, $Products-Size-Collumn);
-
-      }
-
-      & > .Resume{
-        @extend .Flex, .WH-Default;
-      
-        & > .Display{
-          @extend .Flex, .WH-Auto;
-          
-          & > .Label{
-            @extend .Flex;
-
-            flex-wrap: nowrap;
-
-          }
-          
-          & > .Text{
-            @extend .Flex;
-
-            flex-wrap: nowrap;
-
-          }
-        }
-      }
-      
-      & > .Actions{
-        @extend .Flex, .WH-Default, %Right-Margin-Children-Large;
         
-        & > .Action{
-          @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
+    & > .Data{
+      @extend .Flex, .WH-Auto, .Flex-Center;
 
-          & > .Button{
-          @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
+    }
+      
+    & > .PageControllers{
+      @extend .Flex, .Flex-Center, .WH-Default, %Right-Margin-Children-Large;
 
-            & > i{
-              @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
+        height: 4rem;
+      
+      & > .Button {
+        @extend .Flex, .Flex-Center, .WH-Default, .Button-Default;
 
-
-            }
-          }
-        }
+        height: 4rem;
       }
     }
 

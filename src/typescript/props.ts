@@ -21,3 +21,8 @@ export type PropsLayout = {
   id: string;
   className: string;
 }
+
+export type PropsComponentDefault = {
+  className: string;
+  children: ReactNode;
+};

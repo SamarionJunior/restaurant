@@ -8,17 +8,17 @@ import { useEffect, useRef, useState, type FunctionComponent, type RefObject } f
 import { useDispatch } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
 /// TYPESCRIPT ///
-import { getAllProducts } from "../../typescript/functions.ts";
+import { getAllProducts, idString, resizeScrollTo, scrollTo } from "../../typescript/functions.ts";
 import { NavegationItems } from "../../typescript/Variables.ts";
 
+import HeaderLayout from "../layout/Header.tsx";
+import NavegationTemplate from "../layout/Navegation.tsx";
+import HomeLayout from "../layout/Home.tsx";
+import ProductsLayout from "../layout/Products.tsx";
+import ProductLayout from "../layout/Product.tsx";
 import ShoppingCartLayout from "../layout/ShoppingCart.tsx";
 import ConfirmationLayout from "../layout/Confirmation.tsx";
 import StatusLayout from "../layout/Status.tsx";
-import NavegationTemplate from "../layout/Navegation.tsx";
-import ProductsLayout from "../layout/Products.tsx";
-import ProductLayout from "../layout/Product.tsx";
-import HomeLayout from "../layout/Home.tsx";
-import HeaderLayout from "../layout/Header.tsx";
 import type { NavegationItemType } from "../../typescript/types.ts";
 
 const Restaurant: FunctionComponent<any> = () => {
@@ -37,22 +37,8 @@ const Restaurant: FunctionComponent<any> = () => {
   const auxRef: RefObject<HTMLHeadingElement | null> = useRef<HTMLHeadingElement | null>(null);
 
   useEffect( () => {
-    removeEventListener("resize", _ => {
-      // const numb: number = ref.offsetLeft;
-      const numb: number = 0;
-      document.getElementById("root")?.scrollTo({
-          left: numb,
-          behavior: "smooth"
-      });
-    });
-    addEventListener("resize", _ => {
-      const numb: number = 0;
-      // console.log(Math.random());
-      document.getElementById("root")?.scrollTo({
-          left: numb,
-          behavior: "smooth"
-      });
-    });
+    removeEventListener("resize", resizeScrollTo);
+    addEventListener("resize", resizeScrollTo);
     dispatch(updateProducts(productsOrigin));
   }, []);
 
@@ -82,16 +68,13 @@ const Restaurant: FunctionComponent<any> = () => {
   }, [navegationSelected]);
 
   if(isFirst == true){
-    // if(auxRef != null && auxRef.current != null){
-      document.getElementById("root")?.scrollTo({
-        // left: auxRef.current.offsetLeft,
-        // left: document.getElementById("c")?.offsetLeft,
-        left: 0,
-        top: 0,
-        behavior: "smooth"
-      });
+    const item: HTMLElement | null = document.getElementById(idString.id);
+    const parent: HTMLElement | null = document.getElementById("root");
+
+    if(item != null && parent != null){
+      scrollTo(parent, item);
       setIsFirst(false);
-    // }
+    }
   }
 
   return (

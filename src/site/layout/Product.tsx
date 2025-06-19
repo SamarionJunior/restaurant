@@ -1,21 +1,39 @@
 /// CSS ///
 import "../../css/global/pre-sets.scss"
+import "../../css/global/classes.scss"
 import "../../css/Layouts/Product.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Data, Description, Display, Image, ImageDiv, Label, Paragraph, Price, Product, Scroll, SubActions, Text, Title, Total } from "../components/components.tsx";
 import { converteToMoney, toLink } from "../../typescript/functions.ts";
 
-import { MdAdd } from "react-icons/md";
-import { GrFormSubtract } from "react-icons/gr";
 import type { PropsPages } from "../../typescript/props.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import {Contents } from "../../typescript/content.ts";
-import LayoutLayout from "../components/Layout.tsx";
+import Warning from "../templates/Warning.tsx";
+import LayoutLayout from "../templates/Layout.tsx";
+import { Product, Scroll } from "../components/components.tsx";
+import ImageDiv from "../templates/ImageDiv.tsx";
+import Title from "../templates/Title.tsx";
+import KeyValue from "../templates/KeyValue.tsx";
+import Data from "../components/Data.tsx";
+import Paragraph from "../templates/Paragraph.tsx";
+import SubActions from "../templates/SubActions.tsx";
+import PageControllers from "../templates/PageControllers.tsx";
 
 const getSelectedProduct = (items: ProductType[]) : ProductType[] => items.filter((item: ProductType) => item.show);
+
+const idTSX: string = "c";
+
+const classNameLayoutDefault: string = "Detail";
+const classNameBackgroundLayout: string = "bg-2";
+
+const classNameTSX: string = `${classNameLayoutDefault} ${classNameBackgroundLayout}`;
+
+const classNameNoItems: string = "NoItems";
+
+const WarningProduct: FunctionComponent<any> = () => (<Warning id={idTSX} className={`${classNameTSX} ${classNameNoItems}`} message={"Nenhum Produto Selecionado!"}></Warning>);
 
 const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
 
@@ -88,7 +106,6 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const handleAddInCart = (e: any) : void => {
     if(QTD + product.preSelected <= product.count && QTD > 0){
-      setNavegationSelected(navegationItems[indexNavegationItems + 1]);
       const total: number = (product.preSelected + QTD) * product.price;
       const newObejct: ProductType = {
         ...product,
@@ -97,16 +114,15 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
         itIsInCart: true,
         show: false
       }
-      toLink(e, navegationItems[indexNavegationItems + 1].id);
       dispatch(updateProduct(newObejct));
+      setNavegationSelected(navegationItems[indexNavegationItems + 1]);
+      toLink(e, navegationItems[indexNavegationItems + 1].id);
     }
   };
 
   if(product == undefined){
     return (
-      <LayoutLayout id="c" className="Detail bg-2">
-        <div>Nenhum Produto Selecionado!</div>
-      </LayoutLayout>
+      <WarningProduct></WarningProduct>
     );
   }
 
@@ -114,61 +130,31 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
     <LayoutLayout id="c" className="Detail bg-2">
       <Product className="Product-Vertical">
         <Scroll className="Scroll">
-          <ImageDiv className="Image">
-            <Image className="Img" src={product.image}/>
-          </ImageDiv>
-          <Title className="Title">
-            <Text className="Text">
-              {product.name}
-            </Text>
-          </Title>
-          <SubActions className="SubActions">
-            <Action className="Action">
-              <button className="Button" onClick={handleSubQTD}>
-                <GrFormSubtract className="Icon"/>
-              </button>
-            </Action>
-            <Display className="Display">
-              <Text className="Text">
-                {QTD}
-              </Text>
-            </Display>
-            <Action className="Action">
-              <button className="Button" onClick={handleAddQTD}>
-                <MdAdd className="Icon"/>
-              </button>
-            </Action>
-            <Total className="Total">
-              <Label className="Label">
-                {Contents.Labels.Total}: &#20;
-              </Label>
-              <Text className="Text">
-                {converteToMoney(totalLocal)} &#20;
-              </Text>
-            </Total>
-          </SubActions>
-          <Action className="Action">
-            <button className="Button" onClick={handleToGoBack}>
-              {Contents.Buttons.Voltar}
-            </button>
-            <button className="Button" onClick={handleAddInCart}>
-              {Contents.Buttons.AddShoppingCart}
-            </button>
-          </Action>
-          <Description className="Description">
-            <Paragraph className="Paragraph">
-              {product.description}
-            </Paragraph>
-          </Description>
+          <ImageDiv className="Image" srcName={product.image}/>
+          <Title className="Title" text={product.name}/>
+          <SubActions className="SubActions"
+            onClickSub = {handleSubQTD}
+            display = {QTD}
+            onClickAdd = {handleAddQTD}
+            labelTotal = {
+              <KeyValue 
+                keyName={`${Contents.Labels.Total}: `}
+                value={`${converteToMoney(totalLocal)} `}
+              />
+            }
+          />
+          <PageControllers className="PageControllers"
+            onClickBack = {handleToGoBack}
+            onClickNext = {handleAddInCart}
+            buttonBack = {Contents.Buttons.Voltar}
+            buttonNext = {Contents.Buttons.AddShoppingCart}
+          />
+          <Paragraph className="Paragraph" text={product.description}/>
           <Data className="Data">
-            <Price className="Price">
-              <Label className="Label">
-                {Contents.Labels.Price}: &#20;
-              </Label>
-              <Text className="Text">
-                {converteToMoney(product.price)} &#20;
-              </Text>
-            </Price>
+            <KeyValue 
+                keyName={`${Contents.Labels.Price}: `}
+                value={`${converteToMoney(product.price)} `}
+            />
           </Data>
         </Scroll>
       </Product>

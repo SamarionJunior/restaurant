@@ -1,21 +1,37 @@
 
-const Labels = {
+export type LabelsType = {
+  Price: string;
+  Count: string;
+  Subtotal: string;
+  Total: string;
+  Items: string;
+  Products: string;
+}
+
+export const Labels: LabelsType = {
   Price: "Preço",
-  Count: "QTD",
+  Count: "Quantidade",
   Subtotal: "SubTotal",
   Total: "Total",
   Items: "Itens",
   Products: "Produtos"
 }
 
-const Buttons = {
+export type ButtonsType = {
+  AddShoppingCart: string;
+  Voltar: string;
+  CloseOrder: string;
+  Confirm: string;
+}
+
+export const Buttons: ButtonsType = {
   AddShoppingCart: "Adicionar ao Carrinho",
   Voltar: "Voltar",
   CloseOrder: "Fechar Pedido",
   Confirm: "Confirmar"
 }
 
-const Form = {
+export const Form = {
   Name: {
     Labels: {
       Default: "Nome"
@@ -66,7 +82,13 @@ const Form = {
   }
 }
 
-export const Contents = {
+export type ContentsType = {
+  Labels: LabelsType;
+  Buttons: ButtonsType;
+  Form: any;
+}
+
+export const Contents: ContentsType = {
   Labels,
   Buttons,
   Form

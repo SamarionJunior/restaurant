@@ -6,20 +6,6 @@ export const Image: FunctionComponent<any> = props => {
       <img id={props.id} className={props.className} src={props.src} width="50rem" height="50rem" alt="" />
   );
 }
-export const ImageDiv: FunctionComponent<any> = props => {
-  return (
-    <div id={props.id} className={props.className}>
-      {props.children}
-    </div>
-  );
-}
-export const Paragraph: FunctionComponent<any> = props => {
-  return (
-    <div id={props.id} className={props.className}>
-      {props.children}
-    </div>
-  );
-}
 export const Label: FunctionComponent<any> = props => {
   return (
     <div id={props.id} className={props.className}>
@@ -28,13 +14,6 @@ export const Label: FunctionComponent<any> = props => {
   );
 }
 export const Text: FunctionComponent<any> = props => {
-  return (
-    <div id={props.id} className={props.className}>
-      {props.children}
-    </div>
-  );
-}
-export const Description: FunctionComponent<any> = props => {
   return (
     <div id={props.id} className={props.className}>
       {props.children}
@@ -69,21 +48,7 @@ export const Products: FunctionComponent<any> = props => {
     </div>
   );
 }
-export const Title: FunctionComponent<any> = props => {
-  return (
-    <div id={props.id} className={props.className}>
-      {props.children}
-    </div>
-  );
-}
 export const Actions: FunctionComponent<any> = props => {
-  return (
-    <div id={props.id} className={props.className}>
-      {props.children}
-    </div>
-  );
-}
-export const SubActions: FunctionComponent<any> = props => {
   return (
     <div id={props.id} className={props.className}>
       {props.children}
@@ -189,13 +154,6 @@ export const Confirmation: FunctionComponent<any> = props => {
   );
 }
 export const Status: FunctionComponent<any> = props => {
-  return (
-    <div id={props.id} className={props.className}>
-      {props.children}
-    </div>
-  );
-}
-export const Data: FunctionComponent<any> = props => {
   return (
     <div id={props.id} className={props.className}>
       {props.children}
@@ -309,6 +267,13 @@ export const GroupCheck: FunctionComponent<any> = props => {
   );
 }
 export const Check: FunctionComponent<any> = props => {
+  return (
+    <div id={props.id} className={props.className}>
+      {props.children}
+    </div>
+  );
+}
+export const Container: FunctionComponent<any> = props => {
   return (
     <div id={props.id} className={props.className}>
       {props.children}

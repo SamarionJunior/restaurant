@@ -1,5 +1,6 @@
 /// CSS ///
 import "../../css/global/pre-sets.scss"
+import "../../css/global/classes.scss"
 import "../../css/Templates/restaurant.scss"
 import "../../css/components/header.scss"
 

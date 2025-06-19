@@ -5,7 +5,7 @@ import "../../css/Layouts/Layout.scss"
 import {  type FunctionComponent } from "react";
 /// TYPESCRIPT ///
 import type { PropsLayout } from "../../typescript/props.ts";
-import { Content, Layout, Space } from "./components.tsx";
+import { Content, Layout, Space } from "../components/components.tsx";
 
 
 const LayoutLayout: FunctionComponent<any> = (props: PropsLayout) => {

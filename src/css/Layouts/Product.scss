@@ -2,7 +2,7 @@
 @use "../global/pre-sets.scss" as *;
 @use "../global/classes.scss" as *;
 
-$Products-Size-Collumn: 1fr;
+$Products-Size-Collumn: 660px;
 $Product-Size-Collumn: 1fr;
 
 .Detail{
@@ -10,7 +10,7 @@ $Product-Size-Collumn: 1fr;
   & > .Content{
 
     display: grid;
-    grid-template-columns: repeat(1, $Products-Size-Collumn);
+    grid-template-columns: repeat(1, clamp(240px, 100%, $Products-Size-Collumn));
     grid-template-rows: calc(100% - (2 * 2rem));
 
     justify-content: center;
@@ -27,7 +27,8 @@ $Product-Size-Collumn: 1fr;
 
       justify-content: flex-start;
       align-items: center;
-      width: calc(340px - 2 * 2rem - 2 * 2rem);
+      // width: calc(340px - 2 * 2rem - 2 * 2rem);
+      width: calc(100% - 2 * 2rem);
       height: 100%;
 
       padding: 2rem;
@@ -151,26 +152,18 @@ $Product-Size-Collumn: 1fr;
             }
           }
 
-          & > .Total{
+          & > span{
             @extend .Flex, .Flex-Center;
 
             justify-content: flex-start;
             padding-left: calc(1rem );
             width: calc(100% - (3 * 2.5rem));
             height: 2.5rem;
-            
 
-            & > .Label{
-
-            }
-
-            & > .Text{
-
-            }
           }
         }
 
-        & > .Action {
+        & > .PageControllers {
           @extend .Flex, .Flex-Center, .WH-Default, %Right-Margin-Children-Large;
 
             height: 4rem;
@@ -182,12 +175,12 @@ $Product-Size-Collumn: 1fr;
           }
         }
 
-        & > .Description {
+        & > .Paragraph {
           @extend .Flex, .WH-Default;
 
           width: 100%;
 
-          & > .Paragraph {
+          & > .Text {
             @extend .Flex, .WH-Default, .Height-Line;
             
           }

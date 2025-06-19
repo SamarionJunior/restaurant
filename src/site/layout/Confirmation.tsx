@@ -1,5 +1,6 @@
 /// CSS ///
 import "../../css/global/pre-sets.scss"
+import "../../css/global/classes.scss"
 import "../../css/Layouts/Confirmation.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
@@ -7,13 +8,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
 import { addOrder } from "../../data/redux/slices/restaurant/ordersSlice.ts";
 import { arrayIsEmpty, converteToMoney, createOrder, toLink } from "../../typescript/functions.ts";
-import { Action, Actions, Check, Content, Count, Data, Description, Display, Form, GroupCheck, Image, ImageDiv, Information, Label, Price, Product, Products, Resume, SubForm, Text, Title, Total } from "../components/components.tsx";
+import { Check, Form, GroupCheck, Label, Products, SubForm } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
 import { Contents } from "../../typescript/content.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
-import LayoutLayout from "../components/Layout.tsx";
+import Warning from "../templates/Warning.tsx";
+import LayoutLayout from "../templates/Layout.tsx";
+import ProductHorizontal from "../templates/ProductHorizontal.tsx";
+import Data from "../components/Data.tsx";
+import KeyValue from "../templates/KeyValue.tsx";
+import PageControllers from "../templates/PageControllers.tsx";
 
 const getFilteredProducts = (products: ProductType[]) : ProductType[] => products.filter((product: ProductType) : boolean => product.itIsInCart);
+
+const idTSX: string = "e";
+
+const classNameLayoutDefault: string = "Confirmation";
+const classNameBackgroundLayout: string = "bg-4";
+
+const classNameTSX: string = `${classNameLayoutDefault} ${classNameBackgroundLayout}`;
+
+const classNameNoItems: string = "NoItems";
+
+const ConfirmationProducts: FunctionComponent<any> = () => (<Warning id={idTSX} className={`${classNameTSX} ${classNameNoItems}`} message={"Nenhum Produto para Confirmar!"}></Warning>);
 
 const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
 
@@ -64,186 +81,127 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
     setNavegationSelected(navegationItems[indexNavegationItems + 1]);
   }
 
-  // if(selectedProduct.length == 0){
-  //   return (<div>Nenhum Produto para Confirmar!</div>);
-  // }
+  if(selectedProduct.length == 0){
+    return (
+      <ConfirmationProducts></ConfirmationProducts>
+    );
+  }
 
   return (
     <LayoutLayout id="e" className="Confirmation bg-4">
-        {!arrayIsEmpty(selectedProduct) ? (
-          <>
-            <Form className="Form">
-              <SubForm className="SubForm-Text">
-                <Title className="Title">
-                  <Text className="Text">
-                    {Contents.Form.Name.Labels.Default}
-                  </Text>
-                </Title>
-                {/* <Label className="Label">
-                  {Contents.Form.Name.Labels.Default}
-                </Label> */}
-                <input className="Input-Text" placeholder={Contents.Form.Name.Placeholders.Default} value={nome} onChange={e => setNome(e.target.value)}/>
-              </SubForm>
-              <SubForm className="SubForm-Check">
-                <Title className="Title">
-                  <Text className="Text">
-                    {Contents.Form.Payment.Title.Default}
-                  </Text>
-                </Title>
-                <GroupCheck className="GroupCheck">
-                  <Check className="Check">
-                    <input className="Input" type="radio" value={Contents.Form.Payment.Labels.Money.toLocaleLowerCase()} checked={formaDePagamento == "dinheiro"} onChange={e => setFormaDePagamento(e.target.value)}/>
-                    <Label className="Label">
-                      &#20; {Contents.Form.Payment.Labels.Money} &#20;
-                    </Label>
-                  </Check>
-                  <Check className="Check">
-                    <input className="Input" type="radio" value={Contents.Form.Payment.Labels.Card.toLocaleLowerCase()} checked={formaDePagamento == "cartão"} onChange={e => setFormaDePagamento(e.target.value)}/> &#20;
-                    <Label className="Label">
-                      &#20; {Contents.Form.Payment.Labels.Card} &#20;
-                    </Label>
-                  </Check>
-                  <Check className="Check">
-                    <input className="Input" type="radio" value={Contents.Form.Payment.Labels.PIX.toLocaleLowerCase()} checked={formaDePagamento == "pix"} onChange={e => setFormaDePagamento(e.target.value)}/> &#20;
-                    <Label className="Label">
-                      &#20; {Contents.Form.Payment.Labels.PIX} &#20;
-                    </Label>
-                  </Check>
-                </GroupCheck>
-              </SubForm>
-              <SubForm className="SubForm-Troco">
-                <Title className="Title">
-                  <Text className="Text">
-                    {Contents.Form.Troco.Title.Default}
-                  </Text>
-                </Title>
+      {!arrayIsEmpty(selectedProduct) ? (
+        <>
+          <Form className="Form">
+            <SubForm className="SubFrom">
+              <h1 className="Title">{Contents.Form.Name.Labels.Default}</h1>
+              <input className="Input-Text" name="nome" placeholder={Contents.Form.Name.Placeholders.Default} value={nome} onChange={e => setNome(e.target.value)}/>
+            </SubForm>
+            <SubForm className="SubFrom">
+              <h1 className="Title">{Contents.Form.Payment.Title.Default}</h1>
+              <GroupCheck className="GroupCheck">
                 <Check className="Check">
-                  <input className="Input-CheckBox" type="checkbox" value={precisaTroco.toString()} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
+                  <input className="Input" type="radio" value={Contents.Form.Payment.Labels.Money.toLocaleLowerCase()} checked={formaDePagamento == "dinheiro"} onChange={e => setFormaDePagamento(e.target.value)}/>
                   <Label className="Label">
-                    &#20; {Contents.Form.Troco.Labels.Default} &#20;
+                    &#20; {Contents.Form.Payment.Labels.Money} &#20;
                   </Label>
                 </Check>
-                <input className="Input-Text" type="text" placeholder={Contents.Form.Troco.Placeholders.Default} value={troco} onChange={e => setTroco(Number.parseFloat(e.target.value))}/>
-              </SubForm>
-              <SubForm className="SubForm-Check">
-                <Title className="Title">
-                  <Text className="Text">
-                    {Contents.Form.Delivery.Title.Default}
-                  </Text>
-                </Title>
-                <GroupCheck className="GroupCheck">
-                  <Check className="Check">
-                    <input className="Input" type="radio" value={Contents.Form.Delivery.Labels.Pickup.toLocaleLowerCase()} checked={formaDeRecebimento == "retirada"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
-                    <Label className="Label">
-                      &#20; {Contents.Form.Delivery.Labels.Pickup} &#20;
-                    </Label>
-                  </Check>
-                  <Check className="Check">
-                    <input className="Input" type="radio" value={Contents.Form.Delivery.Labels.Delivery.toLocaleLowerCase()} checked={formaDeRecebimento == "entegra"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
-                    <Label className="Label">
-                      &#20; {Contents.Form.Delivery.Labels.Delivery} &#20;
-                    </Label>
-                  </Check>
-                </GroupCheck>
-              </SubForm>
-              <SubForm className="SubForm-Text">
-                <Title className="Title">
-                  <Text className="Text">
-                    {Contents.Form.Address.Labels.Default}
-                  </Text>
-                </Title>
-                <input className="Input-Text" placeholder={Contents.Form.Address.Placeholders.Default} value={endereco} onChange={e => setEndereco(e.target.value)}/>
-              </SubForm>
-            </Form>
-            <Content className="Content">
-              <Resume className="Resume">
-                <Display className="Display">
+                <Check className="Check">
+                  <input className="Input" type="radio" value={Contents.Form.Payment.Labels.Card.toLocaleLowerCase()} checked={formaDePagamento == "cartão"} onChange={e => setFormaDePagamento(e.target.value)}/> &#20;
                   <Label className="Label">
-                    {Contents.Labels.Items}: &#20;
+                    &#20; {Contents.Form.Payment.Labels.Card} &#20;
                   </Label>
-                  <Text className="Text">
-                    {selectedProduct.length} &#20;
-                  </Text>
-                </Display>
-                <Display className="Display">
+                </Check>
+                <Check className="Check">
+                  <input className="Input" type="radio" value={Contents.Form.Payment.Labels.PIX.toLocaleLowerCase()} checked={formaDePagamento == "pix"} onChange={e => setFormaDePagamento(e.target.value)}/> &#20;
                   <Label className="Label">
-                    {Contents.Labels.Products}: &#20;
+                    &#20; {Contents.Form.Payment.Labels.PIX} &#20;
                   </Label>
-                  <Text className="Text">
-                    {selectedProduct.reduce((a: number, b: ProductType) => a + b.preSelected, 0)} &#20;
-                  </Text>
-                </Display>
-                <Display className="Display">
+                </Check>
+              </GroupCheck>
+            </SubForm>
+            <SubForm className="SubFrom SubForm-Troco">
+              <h1 className="Title">{Contents.Form.Troco.Title.Default}</h1>
+              <Check className="Check">
+                <input className="Input-CheckBox" type="checkbox" value={precisaTroco.toString()} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>
+                <Label className="Label">
+                  &#20; {Contents.Form.Troco.Labels.Default} &#20;
+                </Label>
+              </Check>
+              <label className="Label" htmlFor="nome">{"Quanto?"}</label>
+              <input className="Input-Text" type="text" placeholder={Contents.Form.Troco.Placeholders.Default} value={troco} onChange={e => setTroco(Number.parseFloat(e.target.value))}/>
+            </SubForm>
+            <SubForm className="SubFrom">
+              <h1 className="Title">{Contents.Form.Delivery.Title.Default}</h1>
+              <GroupCheck className="GroupCheck">
+                <Check className="Check">
+                  <input className="Input" type="radio" value={Contents.Form.Delivery.Labels.Pickup.toLocaleLowerCase()} checked={formaDeRecebimento == "retirada"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
                   <Label className="Label">
-                    {Contents.Labels.Total}: &#20;
+                    &#20; {Contents.Form.Delivery.Labels.Pickup} &#20;
                   </Label>
-                  <Text className="Text">
-                    {converteToMoney(selectedProduct.reduce((a: number, b: ProductType) => a + b.total, 0))} &#20;
-                  </Text>
-                </Display>
-              </Resume>
-              <Actions className="Actions">
-                <Action className="Action">
-                  <button className="Button" onClick={handleToGoBack}>
-                    {Contents.Buttons.Voltar}
-                  </button>
-                </Action>
-                <Action className="Action">
-                  <button className="Button" onClick={handleSetOrder}>
-                    {Contents.Buttons.Confirm}
-                  </button>
-                </Action>
-              </Actions>
-            </Content>
-            <Products className="Products">
-              {selectedProduct.map((product: any) => (
-                <Product className="Product-Horizontal" key={product.key}>
-                  <ImageDiv className="Image">
-                    <Image className="Img" src={product.image}/>
-                  </ImageDiv>
-                  <Information className="Information">
-                    <Title className="Title">
-                      <Text className="Text">
-                        {product.name}
-                      </Text>
-                    </Title>
-                    <Description className="Description">
-                      <Text className="Text">
-                        {product.description}
-                      </Text>
-                    </Description>
-                    <Data className="Data">
-                      <Price className="Price">
-                        <Label className="Label">
-                          {Contents.Labels.Price}: &#20;
-                        </Label>
-                        <Text className="Text">
-                          {converteToMoney(product.price)} &#20;
-                        </Text>
-                      </Price>
-                      <Count className="Count">
-                        <Label className="Label">
-                          {Contents.Labels.Count}: &#20;
-                        </Label>
-                        <Text className="Text">
-                          {product.preSelected} &#20;
-                        </Text>
-                      </Count>
-                      <Total className="Total">
-                        <Label className="Label">
-                          {Contents.Labels.Total}: &#20;
-                        </Label>
-                        <Text className="Text">
-                          {converteToMoney(product.total)} &#20;
-                        </Text>
-                      </Total>
-                    </Data>
-                  </Information>
-                </Product>
-              ))}
-            </Products>
-          </>
-        ) : null}
+                </Check>
+                <Check className="Check">
+                  <input className="Input" type="radio" value={Contents.Form.Delivery.Labels.Delivery.toLocaleLowerCase()} checked={formaDeRecebimento == "entegra"} onChange={e => setFormaDeRecebimento(e.target.value)}/>
+                  <Label className="Label">
+                    &#20; {Contents.Form.Delivery.Labels.Delivery} &#20;
+                  </Label>
+                </Check>
+              </GroupCheck>
+            </SubForm>
+            <SubForm className="SubFrom">
+              <h1 className="Title">{Contents.Form.Address.Labels.Default}</h1>
+              <input className="Input-Text" placeholder={Contents.Form.Address.Placeholders.Default} value={endereco} onChange={e => setEndereco(e.target.value)}/>
+            </SubForm>
+          </Form>
+          <Data className="Data">
+            <KeyValue 
+              keyName={`${Contents.Labels.Items}: `}
+              value={`${selectedProduct.length} `}
+            />
+            <KeyValue 
+              keyName={`${Contents.Labels.Products}: `}
+              value={`${selectedProduct.reduce((a: number, b: ProductType) => a + b.preSelected, 0)} `}
+            />
+            <KeyValue 
+              keyName={`${Contents.Labels.Total}: `}
+              value={`${converteToMoney(selectedProduct.reduce((a: number, b: ProductType) => a + b.total, 0))} `}
+            />
+          </Data>
+          <PageControllers className="PageControllers"
+            onClickBack = {handleToGoBack}
+            onClickNext = {handleSetOrder}
+            buttonBack = {Contents.Buttons.Voltar}
+            buttonNext = {Contents.Buttons.Confirm}
+          />
+          <Products className="Products">
+            {selectedProduct.map((product: any) => (
+              <ProductHorizontal
+                key={product.key}
+
+                className="Product-Horizontal"
+                product={product}
+                onClick={(e: any) => {return}}
+
+                Data={
+                  <Data className="Data">
+                    <KeyValue 
+                    keyName={`${Contents.Labels.Price}: `}
+                    value={`${converteToMoney(product.price)} `}
+                    />
+                    <KeyValue 
+                    keyName={`${Contents.Labels.Count}: `}
+                    value={`${product.preSelected} `}
+                    />
+                    <KeyValue 
+                    keyName={`${Contents.Labels.Total}: `}
+                    value={`${converteToMoney(product.total)} `}
+                    />
+                  </Data>
+                }
+              />
+            ))}
+          </Products>
+        </>
+      ) : null}
     </LayoutLayout>
   );
 }

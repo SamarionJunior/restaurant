@@ -1,23 +1,37 @@
 /// CSS ///
 import "../../css/global/pre-sets.scss"
+import "../../css/global/classes.scss"
 import "../../css/Layouts/Products.scss"
-import "../../css/Layouts/Layout.scss"
 /// IMAGE ///
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProductShow } from "../../data/redux/slices/restaurant/productsSlice.ts";
 /// TYPESCRIPT ///
 import { arrayIsEmpty, toLink } from "../../typescript/functions.ts";
-import { Count, Data, Description, Image, ImageDiv, Information, Label, Price, Product, Text, Title } from "../components/components.tsx";
 import type { PropsPages } from "../../typescript/props.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import { Contents } from "../../typescript/content.ts";
-import LayoutLayout from "../components/Layout.tsx";
+import Warning from "../templates/Warning.tsx";
+import KeyValue from "../templates/KeyValue.tsx";
+import Data from "../components/Data.tsx";
+import ProductHorizontal from "../templates/ProductHorizontal.tsx";
+import LayoutLayout from "../templates/Layout.tsx";
 
 const toFilterByGreaterThan = <T,>(items: T[] | any[], proprity: string, value: number) : T[] | any[] => items.filter((item: T | any) : boolean => item[proprity] > value);
 const getAvailableProducts = (products: ProductType[]) : ProductType[] => toFilterByGreaterThan<ProductType>(products, "count", 0);
 
 // (item: ProductType) : boolean => item.count > 0)
+
+const idTSX: string = "b";
+
+const classNameLayoutDefault: string = "Store";
+const classNameBackgroundLayout: string = "bg-1";
+
+const classNameTSX: string = `${classNameLayoutDefault} ${classNameBackgroundLayout}`;
+
+const classNameNoItems: string = "NoItems";
+
+const WarningProducts: FunctionComponent<any> = () => (<Warning id={idTSX} className={`${classNameTSX} ${classNameNoItems}`} message={"Nenhum Produto no Cardápio!"}></Warning>);
 
 const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
 
@@ -42,60 +56,59 @@ const ProductsLayout: FunctionComponent<any> = (props: PropsPages) => {
       dispatch(updateProductShow(index));
       toLink(e, navegationItems[2].id);
       setNavegationSelected(navegationItems[2]);
-
-      console.log("asas")
     }
   }
 
   if(productsFiltered.length == 0){
     return (
-      <LayoutLayout id="b" className="Store bg-1">
-        <div>Nenhum Produto no Cardápio!</div>
-      </LayoutLayout>
+      <WarningProducts></WarningProducts>
     );
   }
 
   return (
     <LayoutLayout id="b" className="Store bg-1">
         {show ? productsFiltered.map((product: ProductType) => (
-          <Product className="Product-Horizontal" key={product.key} onClick={(e: any) => handleShow(e, product.index)}>
-            <ImageDiv className="Image">
-              <Image className="Img" src={product.image}></Image>
-            </ImageDiv>
-            <Information className="Information">
-              <Title className="Title">
-                <Text className="Text">
-                  {product.name}
-                </Text>
-              </Title>
-              <Description className="Description">
-                <Text className="Text">
-                  {product.description}
-                </Text>
-              </Description>
+          <ProductHorizontal
+            key={product.key}
+
+            className="Product-Horizontal"
+            product={product}
+            onClick={(e: any) => handleShow(e, product.index)}
+
+            Data={
               <Data className="Data">
-                <Price className="Price">
-                  <Label className="Label">
-                    {Contents.Labels.Price}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {product.price} &#20;
-                  </Text>
-                </Price>
-                <Count className="Count">
-                  <Label className="Label">
-                    {Contents.Labels.Count}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {product.count} &#20;
-                  </Text>
-                </Count>
+                <KeyValue 
+                  keyName={`${Contents.Labels.Price}: `}
+                  value={`${product.price} `}
+                />
+                <KeyValue 
+                  keyName={`${Contents.Labels.Count}: `}
+                  value={`${product.count} `}
+                />
               </Data>
-            </Information>
-          </Product>
+            }
+          />
         )) : null}
     </LayoutLayout>
   );
 }
 
 export default ProductsLayout;
+
+{/* <Product className="Product-Horizontal" key={product.key} onClick={(e: any) => handleShow(e, product.index)}>
+  <ImageDiv className="Image" srcName={product.image}/>
+  <Information className="Information">
+    <Title className="Title" text={product.name}/>
+    <Description className="Description" text={product.description}/>
+    <Data className="Data">
+      <KeyValue 
+        keyName={`${Contents.Labels.Price}: `}
+        value={`${product.price} `}
+      />
+      <KeyValue 
+        keyName={`${Contents.Labels.Count}: `}
+        value={`${product.count} `}
+      />
+    </Data>
+  </Information>
+</Product> */}

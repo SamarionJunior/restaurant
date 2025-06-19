@@ -1,144 +1,107 @@
 /// CSS ///
 import "../../css/global/pre-sets.scss"
+import "../../css/global/classes.scss"
 import "../../css/Layouts/Status.scss"
 
 import { type FunctionComponent } from "react";
 import { useSelector } from "react-redux";
-import { Count, Data, DateAndHour, Description, Display, History, Image, ImageDiv, Information, Label, Order, Price, Product, Products, Status, Text, Title, Total } from "../components/components.tsx";
+import { Order, Products } from "../components/components.tsx";
 import { converteToMoney, getDataAndHour } from "../../typescript/functions.ts";
 import { statusImage, statusMenssage } from "../../typescript/Variables.ts";
 import { Contents } from "../../typescript/content.ts";
 import type { OrderType, StateType } from "../../typescript/types.ts";
-import LayoutLayout from "../components/Layout.tsx";
+import Warning from "../templates/Warning.tsx";
+import LayoutLayout from "../templates/Layout.tsx";
+import ImageDiv from "../templates/ImageDiv.tsx";
+import Title from "../templates/Title.tsx";
+import Data from "../components/Data.tsx";
+import KeyValue from "../templates/KeyValue.tsx";
+import ProductHorizontal from "../templates/ProductHorizontal.tsx";
+
+const idTSX: string = "f";
+
+const classNameLayoutDefault: string = "Status";
+const classNameBackgroundLayout: string = "bg-5";
+
+const classNameTSX: string = `${classNameLayoutDefault} ${classNameBackgroundLayout}`;
+
+const classNameNoItems: string = "NoItems";
+
+const WarningStatus: FunctionComponent<any> = () => (<Warning id={idTSX} className={`${classNameTSX} ${classNameNoItems}`} message={"Nenhum Pedido Realizado!"}></Warning>);
 
 const StatusLayout: FunctionComponent<any> = _ => {
 
   const orders: OrderType[] = useSelector((state: StateType) : OrderType[] => state.orders);
 
-  // if(orders.length == 0){
-  //   return (<div>Nenhum Pedido Realizado!</div>);
-  // }
+  if(orders.length == 0){
+    return (
+      <WarningStatus></WarningStatus>
+    );
+  }
 
   return (
     <LayoutLayout id="f" className="Status bg-5">
-      <Status className="Orders">
-        {orders.map((order: any) => (
-          <Order className="Order" key={order.index}>
-            <ImageDiv className="Image">
-              <Image className="Img" src={statusImage[order.status]}/>
-            </ImageDiv>
-            <Display className="Display">
-              <Text className="Text">
-                {statusMenssage[order.status]}
-              </Text>
-            </Display>
-            <History className="History">
-              <Title className="Title">
-                <DateAndHour className="DateAndHour">
-                  {getDataAndHour(order.date)}
-                </DateAndHour>
-              </Title>
-              <Data className="Data">
-                <Display className="Display">
-                  <Label className="Label">
-                    {Contents.Form.Name.Labels.Default}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {order.formulario.name}
-                  </Text>
-                </Display>
-                <Display className="Display">
-                  <Label className="Label">
-                    {Contents.Form.Payment.Title.Default}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {order.formulario.formaDePagamento}
-                  </Text>
-                </Display>
-                <Display className="Display">
-                  <Label className="Label">
-                    {Contents.Form.Troco.Labels.Default}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {order.formulario.precisaTroco.toString()}
-                  </Text>
-                </Display>
-                <Display className="Display">
-                  <Label className="Label">
-                    {Contents.Form.Troco.Title.Default}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {order.formulario.troco}
-                  </Text>
-                </Display>
-                <Display className="Display">
-                  <Label className="Label">
-                    {Contents.Form.Delivery.Title.Default}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {order.formulario.formaDeRecebimento}
-                  </Text>
-                </Display>
-                <Display className="Display">
-                  <Label className="Label">
-                    {Contents.Form.Address.Labels.Default}: &#20;
-                  </Label>
-                  <Text className="Text">
-                    {order.formulario.endereco}
-                  </Text>
-                </Display>
-              </Data>
-              <Products className="Products">
-                {order.products.map((product: any) => (
-                  <Product className="Product-Horizontal" key={product.key}>
-                    <ImageDiv className="Image">
-                      <Image className="Img" src={product.image}/>
-                    </ImageDiv>
-                    <Information className="Information">
-                      <Title className="Title">
-                        <Text className="Text">
-                          {product.name}
-                        </Text>
-                      </Title>
-                      <Description className="Description">
-                        <Text className="Text">
-                          {product.description}
-                        </Text>
-                      </Description>
-                      <Data className="Data">
-                        <Price className="Price">
-                          <Label className="Label">
-                            Price: &#20;
-                          </Label>
-                          <Text className="Text">
-                            {converteToMoney(product.price)} &#20;
-                          </Text>
-                        </Price>
-                        <Count className="Count">
-                          <Label className="Label">
-                            Quantidade: &#20;
-                          </Label>
-                          <Text className="Text">
-                            {product.preSelected} &#20;
-                          </Text>
-                        </Count>
-                        <Total className="Total">
-                          <Label className="Label">
-                            Total: &#20;
-                          </Label>
-                          <Text className="Text">
-                            {converteToMoney(product.total)} &#20;
-                          </Text>
-                        </Total>
-                      </Data>
-                    </Information>
-                  </Product>
-                ))}
-              </Products>
-            </History>
-          </Order>
-        ))}
-      </Status>
+      {orders.map((order: any) => (
+        <Order className="Order" key={order.index}>
+          <ImageDiv className="Image" srcName={statusImage[order.status]}/>
+          <Title className="Title" text={statusMenssage[order.status]}/>
+          <Title className="Title" text={getDataAndHour(order.date)}/>
+          <Data className="Data">
+            <KeyValue
+              keyName={`${Contents.Form.Name.Labels.Default}: `}
+              value={`${order.formulario.name} `}
+            />
+            <KeyValue
+              keyName={`${Contents.Form.Payment.Title.Default}: `}
+              value={`${order.formulario.formaDePagamento} `}
+            />
+            <KeyValue
+              keyName={`${Contents.Form.Troco.Labels.Default}: `}
+              value={`${order.formulario.precisaTroco.toString()} `}
+            />
+            <KeyValue
+              keyName={`${Contents.Form.Troco.Title.Default}: `}
+              value={`${order.formulario.troco} `}
+            />
+            <KeyValue
+              keyName={`${Contents.Form.Delivery.Title.Default}: `}
+              value={`${order.formulario.formaDeRecebimento} `}
+            />
+            <KeyValue
+              keyName={`${Contents.Form.Address.Labels.Default}: `}
+              value={`${order.formulario.endereco} `}
+            />
+          </Data>
+          <Products className="Products">
+            {order.products.map((product: any) => (
+              <ProductHorizontal
+                key={product.key}
+
+                className="Product-Horizontal"
+                product={product}
+                onClick={(e: any) => {return}}
+
+                Data={
+                  <Data className="Data">
+                    <KeyValue 
+                    keyName={`${Contents.Labels.Price}: `}
+                    value={`${converteToMoney(product.price)} `}
+                    />
+                    <KeyValue 
+                    keyName={`${Contents.Labels.Count}: `}
+                    value={`${product.preSelected} `}
+                    />
+                    <KeyValue 
+                    keyName={`${Contents.Labels.Total}: `}
+                    value={`${converteToMoney(product.total)} `}
+                    />
+                  </Data>
+                }
+              />
+            ))}
+          </Products>
+        </Order>
+      ))}
     </LayoutLayout>
   );
 }

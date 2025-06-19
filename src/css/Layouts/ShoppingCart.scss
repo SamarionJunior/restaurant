@@ -11,264 +11,212 @@ $Product-Size-Collumn: 1fr;
 
     display: grid;
     grid-template-columns: repeat(1, $Products-Size-Collumn);
+    // grid-template-rows: calc(100% - (2 * 2rem));
+    grid-template-rows: auto auto 1fr;
 
-    height: 100%;
+    align-content: start;
 
     gap: $rem-large;
 
-    & > .Div{
+    height: 100%;
+        
+    & > .Data{
+      @extend .Flex, .WH-Auto, .Flex-Center;
+
+    }
+    
+    & > .PageControllers{
+      @extend .Flex, .Flex-Center, .WH-Default, %Right-Margin-Children-Large;
+
+        height: 4rem;
+      
+      & > .Button {
+        @extend .Flex, .Flex-Center, .WH-Default, .Button-Default;
+
+        height: 4rem;
+      }
+    }
+
+    & > .Products{
 
       display: grid;
-      grid-template-columns: repeat(1, $Products-Size-Collumn);
-      // grid-template-rows: calc(100% - (2 * 2rem));
-      grid-template-rows: auto 1fr;
+      grid-template-columns: repeat(2, $Products-Size-Collumn);
+      grid-template-rows: repeat(auto-fill, calc($imageSize + 2 * $rem-large));
 
       gap: $rem-large;
 
-      & > .Group{
+      @media screen and (max-width: $Mobile-Size) {
 
-        display: grid;
         grid-template-columns: repeat(1, $Products-Size-Collumn);
-        // grid-template-rows: calc(100% - (2 * 2rem));
-        // grid-template-rows: 50px 1fr;
 
-        justify-items: center;
-
-        gap: $rem-large;
-
-        & > .Resume{
-          @extend .Flex, .WH-Default;
-
-          // width: 340px;
-          width: calc(340px - 2 * 2rem);
-
-          @media screen and (max-width: $Mobile-Size) {
-
-            width: 100%;
-
-          }
-        
-          & > .Display{
-            @extend .Flex, .WH-Auto;
-            
-            & > .Label{
-              @extend .Flex;
-
-              flex-wrap: nowrap;
-
-            }
-            
-            & > .Text{
-              @extend .Flex;
-
-              flex-wrap: nowrap;
-
-            }
-          }
-        }
-        
-        & > .Actions{
-          @extend .Flex, .WH-Default, %Right-Margin-Children-Large;
-
-          // width: 340px;
-          width: calc(340px - 2 * 2rem);
-
-          @media screen and (max-width: $Mobile-Size) {
-
-            width: 100%;
-
-          }
-        
-          & > .Action{
-            @extend .Flex, .Flex-Center, .WH-Button-Half-Space;
-
-            & > .Button{
-              @extend .Flex, .Flex-Center, .WH-Full, .Button-Base;
-
-              & > i{
-                @extend .Flex, .Flex-Center, .WH-Auto, .Icon-Button;
-
-
-              }
-            }
-          }
-        }
       }
 
-      & > .Products{
+      & > .Product-Horizontal{
 
         display: grid;
-        grid-template-columns: repeat(2, $Products-Size-Collumn);
-        grid-template-rows: repeat(auto-fill, calc($imageSize + 2 * $rem-large));
+        grid-template-columns: $imageSize $Product-Size-Collumn;
+        grid-template-rows: $imageSize;
 
         gap: $rem-large;
+        
+        padding: $rem-large;
 
-        @media screen and (max-width: $Mobile-Size) {
+        background-color: $Color-White;
 
-          grid-template-columns: repeat(1, $Products-Size-Collumn);
+        box-shadow: 1px 1px 1px $Color-Gainsboro;
 
-        }
-
-        & > .Product-Horizontal{
-
-          display: grid;
-          grid-template-columns: $imageSize $Product-Size-Collumn;
-          grid-template-rows: $imageSize;
-
-          gap: $rem-large;
-          
-          padding: $rem-large;
-
-          background-color: $Color-White;
-
-          box-shadow: 1px 1px 1px $Color-Gainsboro;
-
-          & > .Image{
+        & > .Image{
+          @extend .Flex;
+          @extend .Image-Size;
+          @extend .Flex-Center;
+      
+          & > .Img{
             @extend .Flex;
             @extend .Image-Size;
             @extend .Flex-Center;
-        
-            & > .Img{
+          }
+        }
+
+        & > .Information{
+          @extend .Flex;
+          @extend .WH-Default;
+          @extend .Collumn;
+
+          & > .Title{
+            @extend .Flex;
+            @extend .WH-Default;
+
+            & > .Text{
               @extend .Flex;
-              @extend .Image-Size;
-              @extend .Flex-Center;
+              @extend .WH-Default;
+              @extend .Name-Size;
+            }
+          }
+          
+          & > .Description{
+            @extend .Flex;
+            @extend .WH-Default;
+
+            & > .Text{
+              @extend .Ellipse;
             }
           }
 
-          & > .Information{
+          & > .Data{
             @extend .Flex;
             @extend .WH-Default;
-            @extend .Collumn;
-
-            & > .Title{
+            @extend .Data-Size ;
+            flex-wrap: wrap;
+          
+            & > .Price{
               @extend .Flex;
-              @extend .WH-Default;
+              @extend .WH-Auto;
+              
+              & > .Label{
+                @extend .Flex;
+                @extend .WH-Auto;
+              }
 
               & > .Text{
                 @extend .Flex;
-                @extend .WH-Default;
-                @extend .Name-Size;
+                @extend .WH-Auto;
               }
             }
-            
-            & > .Description{
+
+            & > .Total{
               @extend .Flex;
-              @extend .WH-Default;
+              @extend .WH-Auto;
+
+              & > .Label{
+                @extend .Flex;
+                @extend .WH-Auto;
+              }
 
               & > .Text{
-                @extend .Ellipse;
-              }
-            }
-
-            & > .Data{
-              @extend .Flex;
-              @extend .WH-Default;
-              @extend .Data-Size ;
-              flex-wrap: wrap;
-            
-              & > .Price{
                 @extend .Flex;
                 @extend .WH-Auto;
-                
-                & > .Label{
-                  @extend .Flex;
-                  @extend .WH-Auto;
-                }
-
-                & > .Text{
-                  @extend .Flex;
-                  @extend .WH-Auto;
-                }
-              }
-
-              & > .Total{
-                @extend .Flex;
-                @extend .WH-Auto;
-
-                & > .Label{
-                  @extend .Flex;
-                  @extend .WH-Auto;
-                }
-
-                & > .Text{
-                  @extend .Flex;
-                  @extend .WH-Auto;
-                }
-
               }
 
             }
 
-            & > .Actions {
+          }
 
-              display: grid;
-              grid-template-columns: repeat(3, auto) 1fr;
+          & > .SubActions {
 
-              justify-content: end;
-              align-content: end;
-              justify-items: end;
-              align-items: end;
+            display: grid;
+            grid-template-columns: repeat(3, auto) 1fr;
 
-              margin-top: 1rem;
+            justify-content: end;
+            align-content: end;
+            justify-items: end;
+            align-items: end;
 
-              width: 100%;
+            margin-top: 1rem;
 
-              & > .Action{
-                width: 3rem;
-                height: 3rem;
+            width: 100%;
+
+            & > .Action{
+              width: 3rem;
+              height: 3rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              & > .Button{
+                padding: 0;
+                line-height: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                background-color: $Color-Black;
+                cursor: pointer;
 
-                & > .Button{
-                  padding: 0;
-                  line-height: 0;
-                  width: 100%;
-                  height: 100%;
-                  border: none;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  background-color: $Color-Black;
-                  cursor: pointer;
-
-                  &:active{
-                    background-color: white;
-
-                    & > .Icon{
-                      color: $Color-Black;
-                    }
-                  }
+                &:active{
+                  background-color: white;
 
                   & > .Icon{
-                    width: 100%;
-                    height: 100%;
-                    padding: 0;
-                    line-height: 0;
-                    white-space: 0;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: white;
-                    cursor: pointer;
+                    color: $Color-Black;
                   }
+
                 }
-              }
 
-              & > .Display{
-                width: 3rem;
-                height: 3rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                & > .Text{
+                & > .Icon{
                   width: 100%;
                   height: 100%;
+                  padding: 0;
+                  line-height: 0;
+                  white-space: 0;
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  color: white;
+                  cursor: pointer;
+
+                  & > *{
+                    color: white;
+                  }
                 }
+
+              }
+
+            }
+
+            & > .Display{
+              width: 3rem;
+              height: 3rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              & > .Text{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
 
             }

@@ -110,3 +110,9 @@ $SizeTiple: "Small" $rem-small, "Medium" $rem-medium, "Large" $rem-large;
 .Font-Size-Title{
   font-size: 3rem;
 }
+
+.NoItems > .Content{
+	display: flex !important;
+	justify-content: center !important;
+	align-items: flex-start !important;
+}

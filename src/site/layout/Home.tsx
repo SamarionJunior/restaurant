@@ -1,5 +1,6 @@
 /// CSS ///
 import "../../css/global/pre-sets.scss"
+import "../../css/global/classes.scss"
 import "../../css/Layouts/Home.scss"
 /// IMAGE ///
 import pizza from "../../assets/background/pizza1.jpg";
@@ -9,8 +10,7 @@ import {  type FunctionComponent } from "react";
 import { toLink } from "../../typescript/functions.ts";
 import type { PropsPages } from "../../typescript/props.ts";
 import { Buttons, Display, Painel, Slogan } from "../components/components.tsx";
-import LayoutLayout from "../components/Layout.tsx";
-
+import LayoutLayout from "../templates/Layout.tsx";
 
 const HomeLayout: FunctionComponent<any> = (props: PropsPages) => {
 
@@ -23,7 +23,9 @@ const HomeLayout: FunctionComponent<any> = (props: PropsPages) => {
   }
 
   // if(productsFiltered.length == 0){
-  //   return (<div>Nenhum Produto no Cardápio!</div>);
+  //   return (
+  //     <div>Nenhum Produto no Cardápio!</div>
+  //   );
   // }
 
   return (
