@@ -179,7 +179,7 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
 
                 className="Product-Horizontal"
                 product={product}
-                onClick={(e: any) => {return}}
+                onClick={() => {return}}
 
                 Data={
                   <Data className="Data">

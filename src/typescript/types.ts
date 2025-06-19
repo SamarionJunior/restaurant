@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 
 export type ProductType = {
     index: number;

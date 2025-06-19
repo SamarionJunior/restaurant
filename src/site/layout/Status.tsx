@@ -79,7 +79,7 @@ const StatusLayout: FunctionComponent<any> = _ => {
 
                 className="Product-Horizontal"
                 product={product}
-                onClick={(e: any) => {return}}
+                onClick={() => {return}}
 
                 Data={
                   <Data className="Data">

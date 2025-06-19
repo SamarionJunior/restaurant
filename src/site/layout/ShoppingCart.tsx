@@ -6,16 +6,13 @@ import "../../css/Layouts/ShoppingCart.scss"
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { Action, Actions, Container, Display, Group, Image, Information, Label, Price, Product, Products, Resume, Text, Total } from "../components/components.tsx";
+import { Action, Products } from "../components/components.tsx";
 import { arrayIsEmpty, converteToMoney, toLink } from "../../typescript/functions.ts";
 import type { ProductType, StateType } from "../../typescript/types.ts";
 import type { PropsPages } from "../../typescript/props.ts";
 import { Contents } from "../../typescript/content.ts";
 import Warning from "../templates/Warning.tsx";
 import LayoutLayout from "../templates/Layout.tsx";
-import ImageDiv from "../templates/ImageDiv.tsx";
-import Title from "../templates/Title.tsx";
-import Description from "../templates/Description.tsx";
 import ProductHorizontal from "../templates/ProductHorizontal.tsx";
 import Data from "../components/Data.tsx";
 import KeyValue from "../templates/KeyValue.tsx";
@@ -132,7 +129,7 @@ const ShoppingCartLayout: FunctionComponent<any> = (props: PropsPages) => {
 
                   className="Product-Horizontal"
                   product={product}
-                  onClick={(e: any) => {return}}
+                  onClick={() => {return}}
 
                   Data={
                     <Data className="Data">
