@@ -1,22 +1,22 @@
 /// CSS ///
-import "../../css/global/pre-sets.scss"
-import "../../css/global/classes.scss"
-import "../../css/Layouts/Status.scss"
+import "../../../css/global/pre-sets.scss"
+import "../../../css/global/classes.scss"
+import "../../../css/Layouts/Status.scss"
 
 import { type FunctionComponent } from "react";
 import { useSelector } from "react-redux";
-import { Order, Products } from "../components/components.tsx";
-import { converteToMoney, getDataAndHour } from "../../typescript/functions.ts";
-import { statusImage, statusMenssage } from "../../typescript/Variables.ts";
-import { Contents } from "../../typescript/content.ts";
-import type { OrderType, StateType } from "../../typescript/types.ts";
-import Warning from "../templates/Warning.tsx";
-import LayoutLayout from "../templates/Layout.tsx";
-import ImageDiv from "../templates/ImageDiv.tsx";
-import Title from "../templates/Title.tsx";
-import Data from "../components/Data.tsx";
-import KeyValue from "../templates/KeyValue.tsx";
-import ProductHorizontal from "../templates/ProductHorizontal.tsx";
+import { Order, Products } from "../../components/components.tsx";
+import { converteToMoney, getDataAndHour } from "../../../typescript/functions.ts";
+import { statusImage, statusMenssage } from "../../../typescript/Variables.ts";
+import { Contents } from "../../../typescript/content.ts";
+import type { OrderType, StateType } from "../../../typescript/types.ts";
+import Warning from "../../templates/Warning.tsx";
+import LayoutLayout from "../../templates/Layout.tsx";
+import ImageDiv from "../../templates/ImageDiv.tsx";
+import Title from "../../templates/Title.tsx";
+import Data from "../../components/Data.tsx";
+import KeyValue from "../../templates/KeyValue.tsx";
+import ProductHorizontal from "../../templates/ProductHorizontal.tsx";
 
 const idTSX: string = "f";
 

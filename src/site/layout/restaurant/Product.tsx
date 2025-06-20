@@ -1,26 +1,26 @@
 /// CSS ///
-import "../../css/global/pre-sets.scss"
-import "../../css/global/classes.scss"
-import "../../css/Layouts/Product.scss"
+import "../../../css/global/pre-sets.scss"
+import "../../../css/global/classes.scss"
+import "../../../css/Layouts/Product.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { converteToMoney, toLink } from "../../typescript/functions.ts";
+import { updateProduct } from "../../../data/redux/slices/restaurant/productsSlice.ts";
+import { converteToMoney, toLink } from "../../../typescript/functions.ts";
 
-import type { PropsPages } from "../../typescript/props.ts";
-import type { ProductType, StateType } from "../../typescript/types.ts";
-import {Contents } from "../../typescript/content.ts";
-import Warning from "../templates/Warning.tsx";
-import LayoutLayout from "../templates/Layout.tsx";
-import { Product, Scroll } from "../components/components.tsx";
-import ImageDiv from "../templates/ImageDiv.tsx";
-import Title from "../templates/Title.tsx";
-import KeyValue from "../templates/KeyValue.tsx";
-import Data from "../components/Data.tsx";
-import Paragraph from "../templates/Paragraph.tsx";
-import SubActions from "../templates/SubActions.tsx";
-import PageControllers from "../templates/PageControllers.tsx";
+import type { PropsPages } from "../../../typescript/props.ts";
+import type { ProductType, StateType } from "../../../typescript/types.ts";
+import {Contents } from "../../../typescript/content.ts";
+import Warning from "../../templates/Warning.tsx";
+import LayoutLayout from "../../templates/Layout.tsx";
+import { Product, Scroll } from "../../components/components.tsx";
+import ImageDiv from "../../templates/ImageDiv.tsx";
+import Title from "../../templates/Title.tsx";
+import KeyValue from "../../templates/KeyValue.tsx";
+import Data from "../../components/Data.tsx";
+import Paragraph from "../../templates/Paragraph.tsx";
+import SubActions from "../../templates/SubActions.tsx";
+import PageControllers from "../../templates/PageControllers.tsx";
 
 const getSelectedProduct = (items: ProductType[]) : ProductType[] => items.filter((item: ProductType) => item.show);
 
@@ -39,6 +39,7 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const setNavegationSelected = props.setNavegationSelected;
   const navegationItems = props.navegationItems;
+  const idPage = props.idPage;
 
   const products : ProductType[] = useSelector((state: StateType) : ProductType[] =>  state.products);
 
@@ -91,8 +92,6 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const handleAddQTD = () : void => setQTD((oldQTD: number) : number => product.preSelected + oldQTD + 1 > product.count ? oldQTD : oldQTD + 1);
   const handleSubQTD = () : void => setQTD((oldQTD: number) : number => oldQTD - 1 < 0 ? oldQTD : oldQTD - 1);
-  
-  const indexNavegationItems = 2;
 
   const handleToGoBack = (e: any) : void => {
     const newObejct: ProductType = {
@@ -100,8 +99,8 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
       show: false
     }
     dispatch(updateProduct(newObejct));
-    toLink(e, navegationItems[indexNavegationItems - 1].id);
-    setNavegationSelected(navegationItems[indexNavegationItems - 1]);
+    toLink(e, navegationItems[(idPage - 1)].id);
+    setNavegationSelected(navegationItems[(idPage - 1)]);
   };
 
   const handleAddInCart = (e: any) : void => {
@@ -115,8 +114,8 @@ const ProductLayout: FunctionComponent<any> = (props: PropsPages) => {
         show: false
       }
       dispatch(updateProduct(newObejct));
-      setNavegationSelected(navegationItems[indexNavegationItems + 1]);
-      toLink(e, navegationItems[indexNavegationItems + 1].id);
+      setNavegationSelected(navegationItems[(idPage + 1)]);
+      toLink(e, navegationItems[(idPage + 1)].id);
     }
   };
 

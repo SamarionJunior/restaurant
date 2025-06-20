@@ -5,12 +5,7 @@ import "../../css/Layouts/Layout.scss"
 import {  type FunctionComponent } from "react";
 /// TYPESCRIPT ///
 import LayoutLayout from "./Layout.tsx";
-
-export type PropsWarning = {
-  id: string;
-  className: string;
-  message: string;
-};
+import type { PropsWarning } from "../../typescript/types.ts";
 
 const Warning: FunctionComponent<PropsWarning> = (props: PropsWarning) => {
 

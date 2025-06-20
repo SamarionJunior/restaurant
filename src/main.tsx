@@ -7,12 +7,16 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import store from './data/redux/store.ts'
 /// COMPONENTS ///
-import Restaurant from './site/pages/Restaurant.tsx'
+// import Restaurant from './site/pages/Restaurant.tsx'
+// import Admin from './site/pages/Admin.tsx'
+import Routes from './site/routes/Routes.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <Restaurant/>
+      {/* <Restaurant/> */}
+      {/* <Admin/> */}
+      <Routes/>
     </Provider>
   </StrictMode>,
 )

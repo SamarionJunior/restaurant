@@ -27,8 +27,13 @@ export const NavegationItems: NavegationItemType[] = [
   {menu: "Products", id: "b"}, 
   {menu: "Product", id: "c"}, 
   {menu: "Shopping Cart", id: "d"}, 
-  {menu: "Confirmation", id: "e"}, 
+  {menu: "Confirmation", id: "e"},
   {menu: "Status", id: "f"}
+];
+export const NavegationItemsAdmin: NavegationItemType[] = [
+  {menu: "Company", id: "a"}, 
+  {menu: "Products", id: "b"}, 
+  {menu: "Orders", id: "c"}
 ];
 
 export const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.";

@@ -1,23 +1,23 @@
 /// CSS ///
-import "../../css/global/pre-sets.scss"
-import "../../css/global/classes.scss"
-import "../../css/Layouts/Confirmation.scss"
+import "../../../css/global/pre-sets.scss"
+import "../../../css/global/classes.scss"
+import "../../../css/Layouts/Confirmation.scss"
 
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
-import { addOrder } from "../../data/redux/slices/restaurant/ordersSlice.ts";
-import { arrayIsEmpty, converteToMoney, createOrder, toLink } from "../../typescript/functions.ts";
-import { Check, Form, GroupCheck, Label, Products, SubForm } from "../components/components.tsx";
-import type { PropsPages } from "../../typescript/props.ts";
-import { Contents } from "../../typescript/content.ts";
-import type { ProductType, StateType } from "../../typescript/types.ts";
-import Warning from "../templates/Warning.tsx";
-import LayoutLayout from "../templates/Layout.tsx";
-import ProductHorizontal from "../templates/ProductHorizontal.tsx";
-import Data from "../components/Data.tsx";
-import KeyValue from "../templates/KeyValue.tsx";
-import PageControllers from "../templates/PageControllers.tsx";
+import { updateProducts } from "../../../data/redux/slices/restaurant/productsSlice.ts";
+import { addOrder } from "../../../data/redux/slices/restaurant/ordersSlice.ts";
+import { arrayIsEmpty, converteToMoney, createOrder, toLink } from "../../../typescript/functions.ts";
+import { Check, Form, GroupCheck, Label, Products, SubForm } from "../../components/components.tsx";
+import type { PropsPages } from "../../../typescript/props.ts";
+import { Contents } from "../../../typescript/content.ts";
+import type { ProductType, StateType } from "../../../typescript/types.ts";
+import Warning from "../../templates/Warning.tsx";
+import LayoutLayout from "../../templates/Layout.tsx";
+import ProductHorizontal from "../../templates/ProductHorizontal.tsx";
+import Data from "../../components/Data.tsx";
+import KeyValue from "../../templates/KeyValue.tsx";
+import PageControllers from "../../templates/PageControllers.tsx";
 
 const getFilteredProducts = (products: ProductType[]) : ProductType[] => products.filter((product: ProductType) : boolean => product.itIsInCart);
 
@@ -36,6 +36,7 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const setNavegationSelected = props.setNavegationSelected;
   const navegationItems = props.navegationItems;
+  const idPage = props.idPage;
 
   const [nome, setNome] = useState<string>("");
   const [formaDePagamento, setFormaDePagamento] = useState<string>("");
@@ -54,11 +55,9 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
     setSelectedProduct(getFilteredProducts(products));
   }, [products]);
 
-  const indexNavegationItems: number = 4;
-
   const handleToGoBack = (e: any) : void => {
-    setNavegationSelected(navegationItems[indexNavegationItems - 1]);
-    toLink(e, navegationItems[indexNavegationItems - 1].id);
+    setNavegationSelected(navegationItems[(idPage - 1)]);
+    toLink(e, navegationItems[(idPage - 1)].id);
   };
 
   const handleSetOrder = (e: any): void => {
@@ -77,8 +76,8 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
       total: 0,
       itIsInCart: false
     }))]));
-    toLink(e, navegationItems[indexNavegationItems + 1].id);
-    setNavegationSelected(navegationItems[indexNavegationItems + 1]);
+    toLink(e, navegationItems[(idPage + 1)].id);
+    setNavegationSelected(navegationItems[(idPage + 1)]);
   }
 
   if(selectedProduct.length == 0){

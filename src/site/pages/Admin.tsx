@@ -3,28 +3,24 @@ import "../../css/global/pre-sets.scss"
 import "../../css/Templates/restaurant.scss"
 import "../../css/components/navegation.scss"
 /// REACT ///
-import { useEffect, useRef, useState, type FunctionComponent, type RefObject } from "react";
+import { useEffect, useState, type FunctionComponent } from "react";
 /// REDUX ///
 import { useDispatch } from "react-redux";
 import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
 /// TYPESCRIPT ///
-import { getAllProducts, idString, resizeScrollTo, scrollTo, toLink } from "../../typescript/functions.ts";
-import { NavegationItems } from "../../typescript/Variables.ts";
+import { getAllProducts, idString, resizeScrollTo, scrollTo } from "../../typescript/functions.ts";
+import { NavegationItemsAdmin } from "../../typescript/Variables.ts";
 
 import HeaderLayout from "../layout/Header.tsx";
 import NavegationTemplate from "../layout/Navegation.tsx";
 import type { NavegationItemType } from "../../typescript/types.ts";
-// import CompanyLayout from "../layout/admin/Company.tsx";
-import HomeLayout from "../layout/restaurant/Home.tsx";
-import ProductsLayout from "../layout/restaurant/Products.tsx";
-import ProductLayout from "../layout/restaurant/Product.tsx";
-import ShoppingCartLayout from "../layout/restaurant/ShoppingCart.tsx";
-import ConfirmationLayout from "../layout/restaurant/Confirmation.tsx";
-import StatusLayout from "../layout/restaurant/Status.tsx";
+import CompanyLayout from "../layout/admin/Company.tsx";
+import MenuLayout from "../layout/admin/Menu.tsx";
+import ControllerLayout from "../layout/admin/Controller.tsx";
 
-const Restaurant: FunctionComponent<any> = () => {
+const Admin: FunctionComponent<any> = () => {
 
-  const [navegationItems, ] = useState<NavegationItemType[]>(NavegationItems);
+  const [navegationItems, ] = useState<NavegationItemType[]>(NavegationItemsAdmin);
   const [navegationSelected, setNavegationSelected] = useState<NavegationItemType>(navegationItems[0]);
 
   const [isFirst, setIsFirst] = useState<boolean>(true);
@@ -32,8 +28,6 @@ const Restaurant: FunctionComponent<any> = () => {
   const [productsOrigin, ] = useState(getAllProducts());
 
   const dispatch = useDispatch();
-
-  const auxRef: RefObject<HTMLHeadingElement | null> = useRef<HTMLHeadingElement | null>(null);
 
   useEffect( () => {
     removeEventListener("resize", resizeScrollTo);
@@ -65,47 +59,33 @@ const Restaurant: FunctionComponent<any> = () => {
         <NavegationTemplate
           setNavegationSelected={setNavegationSelected}
           navegationItems={navegationItems}
-          navegationSelected={navegationSelected}>
+          navegationSelected={navegationSelected}
+          className={"Children-JustifyContent-FlexEnd"}
+        >
         </NavegationTemplate>
 
       </HeaderLayout>
 
-      <HomeLayout
+      <CompanyLayout
         setNavegationSelected={setNavegationSelected}
         navegationItems={navegationItems}
         idPage={0}
-      ></HomeLayout>
+        idPageTag="a"
+      ></CompanyLayout>
 
-      <ProductsLayout
+      <MenuLayout
         setNavegationSelected={setNavegationSelected}
         navegationItems={navegationItems}
         idPage={1}
-      ></ProductsLayout>
+        idPageTag="b"
+      ></MenuLayout>
 
-      <ProductLayout
-        ref={auxRef}
+      <ControllerLayout
         setNavegationSelected={setNavegationSelected}
         navegationItems={navegationItems}
         idPage={2}
-      ></ProductLayout>
-
-      <ShoppingCartLayout
-        setNavegationSelected={setNavegationSelected}
-        navegationItems={navegationItems}
-        idPage={3}
-      ></ShoppingCartLayout>
-
-      <ConfirmationLayout
-        setNavegationSelected={setNavegationSelected}
-        navegationItems={navegationItems}
-        idPage={4}
-      ></ConfirmationLayout>
-
-      <StatusLayout
-        setNavegationSelected={setNavegationSelected}
-        navegationItems={navegationItems}
-        idPage={5}
-      ></StatusLayout>
+        idPageTag="c"
+      ></ControllerLayout>
 
     </div>
   );
@@ -114,4 +94,4 @@ const Restaurant: FunctionComponent<any> = () => {
 
 
 
-export default Restaurant
+export default Admin

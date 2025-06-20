@@ -116,3 +116,7 @@ $SizeTiple: "Small" $rem-small, "Medium" $rem-medium, "Large" $rem-large;
 	justify-content: center !important;
 	align-items: flex-start !important;
 }
+
+.Children-JustifyContent-FlexEnd > *{
+  justify-content: flex-end !important;
+}

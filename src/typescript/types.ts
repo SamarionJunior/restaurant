@@ -13,6 +13,12 @@ export type ProductType = {
     itIsInCart: boolean;
 }
 
+export type CompanyType = {
+  name: string,
+  slogan: string,
+  endereco: string
+}
+
 export type FormType = {
     name: any;
     formaDePagamento: any;
@@ -33,9 +39,17 @@ export type OrderType = {
 export type StateType = {
     products: ProductType[];
     orders: OrderType[];
+    company: CompanyType;
+    page: string;
 }
 
 export type NavegationItemType = {
     menu: string;
     id: string;
 }
+
+export type PropsWarning = {
+  id: string;
+  className: string;
+  message: string;
+};

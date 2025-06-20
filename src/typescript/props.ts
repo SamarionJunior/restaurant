@@ -5,6 +5,8 @@ export type PropsPages = {
   setNavegationSelected: React.Dispatch<React.SetStateAction<NavegationItemType>>;
   navegationItems: NavegationItemType[];
   children?: ReactNode;
+  idPage: number;
+  idPageTag: string;
 }
 
 export type PropsNavagetion = {
@@ -12,6 +14,8 @@ export type PropsNavagetion = {
   navegationItems: NavegationItemType[];
   navegationSelected: NavegationItemType;
   children?: ReactNode;
+  idPageDefault: number;
+  className?: string;
 }
 
 export type PropsLayout = {

@@ -15,23 +15,30 @@ export const createOrder = (products: any, formulario: any): any => {
   };
 }
 
+let count: number = 0;
+
+export const createProduct = (product: any) => {
+  return {
+    ...product,
+    index: count++,
+    key: Math.random(),
+    show: false,
+    preSelected: 0,
+    total: 0,
+    // itIsInCart: true
+    itIsInCart: false
+  }
+}
+
 export const getAllProducts = () => {
 
   const allProducts: ProductType[] = [];
-  let count: number = 0;
   for (let index: number = 0; index < ProductsObject.length; index++) {
-    const newProduct: ProductType = {
-      ...ProductsObject[index],
-      index: count++,
-      key: Math.random(),
-      show: false,
-      preSelected: 0,
-      total: 0,
-      // itIsInCart: true
-      itIsInCart: false
-    }
+    const newProduct: ProductType = createProduct(ProductsObject[index]);
+    // newProduct.itIsInCart = true;
     allProducts.push(newProduct);
   }
+
   // allProducts[0].show = true;
   // allProducts[0].itIsInCart = true;
   // console.log(typeof(allProducts));
@@ -99,9 +106,10 @@ export const toLink = (e: any, id: string) => {
   idString.id = id;
   const item: HTMLElement | null = document.getElementById(idString.id);
   const parent: HTMLElement | null = document.getElementById("root");
+  // console.log(idString.id, id, item, parent);
   
   if(item != null && parent != null){
-    // console.log(idString.id, id, item, parent, num);
+    // console.log(idString.id, id, item, parent, item.offsetLeft);
 
     scrollTo(parent, item);
 

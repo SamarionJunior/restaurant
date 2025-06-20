@@ -1,0 +1,19 @@
+@use "variable.scss" as *;
+@use "pre-sets.scss" as *;
+@use "classes.scss" as *;
+
+.Button-Default-4{
+  @extend .Flex, .Flex-Center, .WH-Default, .Button-Default;
+
+  height: 4rem;
+  background-color: $Color-Black;
+  color: white;
+  border:none;
+  
+  cursor: pointer;
+
+  &:active{
+    background-color: white;
+    color: $Color-Black;
+  }
+}
