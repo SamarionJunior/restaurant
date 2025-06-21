@@ -1,9 +1,10 @@
 /// IMAGE ///
 
 import waitingImage from "../assets/waiting.png";
+import confirmImage from "../assets/confirm.png";
 import cookingImage from "../assets/cooking.png";
 import deliveryImage from "../assets/delivery.png";
-import confirmImage from "../assets/confirm.png";
+import deliveredImage from "../assets/delivered.png";
 
 import hambuguerCard from "../assets/products/hambuguer.jpg";
 import hotdogCard from "../assets/products/hotdog.jpg";
@@ -18,9 +19,39 @@ import waterCard from "../assets/products/water.jpg";
 
 import type { NavegationItemType } from "./types";
 
-export const statusMenssage = ["Aguardando Confirmação", "Em Preparo", "Enviado", "Concluído"];
+export type statusMenssageType = {
+  "waiting": string;
+  "confirmado": string;
+  "cooking": string;
+  "delivery": string;
+  "entregue": string;
+};
 
-export const statusImage = [waitingImage, cookingImage, deliveryImage, confirmImage];
+export const statusMenssage: statusMenssageType = {
+  "waiting": "Aguardando Confirmação do Pedido",
+  "confirmado": "Pedido Confirmado",
+  "cooking": "Pedido Confirmado",
+  "delivery": "Pedido Saiu para Entregar",
+  "entregue": "Pedido Entregue"
+};
+
+export type statusIndexType = {
+  "waiting": number;
+  "confirmado": number;
+  "cooking": number;
+  "delivery": number;
+  "entregue": number;
+}
+
+export const statusIndex: statusIndexType = {
+  "waiting": 0,
+  "confirmado": 1,
+  "cooking": 2,
+  "delivery": 3,
+  "entregue": 4
+}
+
+export const statusImage = [waitingImage, confirmImage, cookingImage, deliveryImage, deliveredImage];
 
 export const NavegationItems: NavegationItemType[] = [
   {menu: "Home", id: "a"}, 

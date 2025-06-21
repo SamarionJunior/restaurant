@@ -6,7 +6,7 @@ import "../../../css/Layouts/Confirmation.scss";
 
 import { useState, type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../../data/redux/slices/restaurant/productsSlice.ts";
+import { addProduct, deleteProduct, updateProduct } from "../../../data/redux/slices/restaurant/productsSlice.ts";
 import { arrayIsEmpty, converteToMoney, createProduct } from "../../../typescript/functions.ts";
 import { Form, Products, SubForm } from "../../components/components.tsx";
 import type { PropsPages } from "../../../typescript/props.ts";
@@ -33,6 +33,8 @@ const MenuLayout: FunctionComponent<any> = (props: PropsPages) => {
   const [preco, setPreco] = useState<number>(0);
   const [quantidade, setQuantidade] = useState<number>(0);
 
+  const [update, setUpdate] = useState<number>(-1);
+
   const products: ProductType[] = useSelector((state: StateType) : ProductType[] => state.products);
 
   // const [selectedProduct, setSelectedProduct] = useState<ProductType[]>(products);
@@ -52,6 +54,40 @@ const MenuLayout: FunctionComponent<any> = (props: PropsPages) => {
       price: preco,
       count: quantidade
     })));
+  }
+
+  const handleSetUpdateProduct = (product: ProductType): void => {
+    setUpdate(product.index);
+    setNome(product.name);
+    setDescricao(product.description);
+    setPreco(product.price);
+    setQuantidade(product.count);
+  }
+
+  const handleUpdateProduct = (): void => {
+    dispatch(updateProduct({
+      index: update,
+      name: nome,
+      description: descricao,
+      price: preco,
+      count: quantidade
+    }));
+    setUpdate(-1);
+    setNome("");
+    setDescricao("");
+    setPreco(0);
+    setQuantidade(0);
+  }
+
+  const handleDeleteProduct = (index: number): void => {
+    dispatch(deleteProduct(index));
+    if(update == index){
+      setUpdate(-1);
+      setNome("");
+      setDescricao("");
+      setPreco(0);
+      setQuantidade(0);
+    }
   }
 
   return (
@@ -110,14 +146,23 @@ const MenuLayout: FunctionComponent<any> = (props: PropsPages) => {
                 />
               </SubForm>
             </Form>
-            <button
-              className="Button-Default-4"
-              onClick={handleAddProduct}
-            >
-              Salvar
-            </button>
+            {update == -1 ? (
+              <button
+                className="Button-Default-4"
+                onClick={handleAddProduct}
+              >
+                Salvar
+              </button>
+            ) : (
+              <button
+                className="Button-Default-4"
+                onClick={handleUpdateProduct}
+              >
+                Update
+              </button>
+            )}
             <Products className="Products">
-              {products.map((product: any) => (
+              {products.map((product: ProductType) => (
                 <ProductHorizontal
                   key={product.key}
 
@@ -126,16 +171,32 @@ const MenuLayout: FunctionComponent<any> = (props: PropsPages) => {
                   onClick={() => {return}}
 
                   Data={
-                    <Data className="Data">
-                      <KeyValue 
-                      keyName={`${Contents.Labels.Price}: `}
-                      value={`${converteToMoney(product.price)} `}
-                      />
-                      <KeyValue 
-                      keyName={`${Contents.Labels.Count}: `}
-                      value={`${product.count} `}
-                      />
-                    </Data>
+                    <>
+                      <Data className="Data">
+                        <KeyValue 
+                        keyName={`${Contents.Labels.Price}: `}
+                        value={`${converteToMoney(product.price)} `}
+                        />
+                        <KeyValue 
+                        keyName={`${Contents.Labels.Count}: `}
+                        value={`${product.count} `}
+                        />
+                      </Data>
+                      <div
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "repeat(2, 1fr)",
+                          gap: "2rem"
+                        }}
+                      >
+                        {update == product.index ? (
+                          <button onClick={() => setUpdate(-1)}>cancel</button>
+                        ) : (
+                          <button onClick={() => handleSetUpdateProduct(product)}>update</button>
+                        )}
+                        <button onClick={() => handleDeleteProduct(product.index)}>delete</button>
+                      </div>
+                    </>
                   }
                 />
               ))}

@@ -29,7 +29,7 @@ const Restaurant: FunctionComponent<any> = () => {
 
   const [isFirst, setIsFirst] = useState<boolean>(true);
 
-  const [productsOrigin, ] = useState(getAllProducts());
+  // const [productsOrigin, ] = useState(getAllProducts());
 
   const dispatch = useDispatch();
 
@@ -38,7 +38,7 @@ const Restaurant: FunctionComponent<any> = () => {
   useEffect( () => {
     removeEventListener("resize", resizeScrollTo);
     addEventListener("resize", resizeScrollTo);
-    dispatch(updateProducts(productsOrigin));
+    // dispatch(updateProducts(productsOrigin));
   }, []);
 
   if(isFirst == true){

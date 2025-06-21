@@ -44,6 +44,7 @@ const StatusLayout: FunctionComponent<any> = _ => {
       {orders.map((order: any) => (
         <Order className="Order" key={order.index}>
           <ImageDiv className="Image" srcName={statusImage[order.status]}/>
+          {order.status}
           <Title className="Title" text={statusMenssage[order.status]}/>
           <Title className="Title" text={getDataAndHour(order.date)}/>
           <Data className="Data">

@@ -118,7 +118,7 @@ const ConfirmationLayout: FunctionComponent<any> = (props: PropsPages) => {
                 </Check>
               </GroupCheck>
             </SubForm>
-            <SubForm className="SubFrom SubForm-Troco">
+            <SubForm className="SubFrom">
               <h1 className="Title">{Contents.Form.Troco.Title.Default}</h1>
               <Check className="Check">
                 <input className="Input-CheckBox" type="checkbox" value={precisaTroco.toString()} checked={precisaTroco} onChange={() => setPrecisaTroco((oldPrecisaTroco: any) => !oldPrecisaTroco)}/>

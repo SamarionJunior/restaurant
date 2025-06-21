@@ -33,7 +33,7 @@ export type OrderType = {
     status: number;
     date: string;
     formulario: FormType;
-    products: ProductType;
+    products: ProductType[];
 };
 
 export type StateType = {

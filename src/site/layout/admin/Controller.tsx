@@ -4,11 +4,10 @@ import "../../../css/global/classes.scss";
 import "../../../css/global/components.scss";
 import "../../../css/Layouts/Confirmation.scss";
 
-import { useState, type FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../../data/redux/slices/restaurant/productsSlice.ts";
-import { arrayIsEmpty, converteToMoney, createProduct, getDataAndHour } from "../../../typescript/functions.ts";
-import { Form, Order, Products, SubForm } from "../../components/components.tsx";
+import { converteToMoney, getDataAndHour } from "../../../typescript/functions.ts";
+import { Check, GroupCheck, Label, Order, Products } from "../../components/components.tsx";
 import type { PropsPages } from "../../../typescript/props.ts";
 import { Contents } from "../../../typescript/content.ts";
 import type { OrderType, ProductType, StateType } from "../../../typescript/types.ts";
@@ -17,9 +16,9 @@ import ProductHorizontal from "../../templates/ProductHorizontal.tsx";
 import Data from "../../components/Data.tsx";
 import KeyValue from "../../templates/KeyValue.tsx";
 import IsEmpty from "../../templates/IsEmpty.tsx";
-import ImageDiv from "../../templates/ImageDiv.tsx";
 import Title from "../../templates/Title.tsx";
-import { statusImage, statusMenssage } from "../../../typescript/Variables.ts";
+import { updateStatusOrder } from "../../../data/redux/slices/restaurant/ordersSlice.ts";
+import { statusIndex, statusMenssage } from "../../../typescript/Variables.ts";
 
 const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
   
@@ -33,20 +32,16 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
   
   const orders: OrderType[] = useSelector((state: StateType) : OrderType[] => state.orders);
 
-  // const [selectedProduct, setSelectedProduct] = useState<ProductType[]>(products);
-
   const dispatch = useDispatch();
 
   const layoutIsEmpty = false;
 
-  // const handleAddProduct = (): void => {
-  //   dispatch(addProduct(createProduct({
-  //     name: nome,
-  //     description: descricao,
-  //     price: preco,
-  //     count: quantidade
-  //   })));
-  // }
+  const handleUpdateStatusOrder = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    dispatch(updateStatusOrder({
+      status: parseInt(e.target.value), 
+      index: index
+    }));
+  }
 
   return (
     <IsEmpty
@@ -58,10 +53,70 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
       }}
     >
       <LayoutLayout id={idPageTag} className="Status bg-5">
-        {orders.map((order: any) => (
+        {orders.map((order: OrderType) => (
           <Order className="Order" key={order.index}>
-            <ImageDiv className="Image" srcName={statusImage[order.status]}/>
-            <Title className="Title" text={statusMenssage[order.status]}/>
+            <GroupCheck className="GroupCheck Flex Collumn WH-Default">
+              <Check className="Check Flex WH-Auto Flex-Center">
+                <input
+                  className="Input"
+                  type="radio"
+                  value={statusIndex["waiting"]}
+                  checked={order.status == statusIndex["waiting"]}
+                  onChange={e => handleUpdateStatusOrder(e, order.index)}
+                />
+                <Label className="Label">
+                  &#20; {statusMenssage["waiting"]} &#20;
+                </Label>
+              </Check>
+              <Check className="Check Flex WH-Auto Flex-Center">
+                <input
+                  className="Input"
+                  type="radio"
+                  value={statusIndex["confirmado"]}
+                  checked={order.status == statusIndex["confirmado"]}
+                  onChange={e => handleUpdateStatusOrder(e, order.index)}
+                />
+                <Label className="Label">
+                  &#20; {statusMenssage["confirmado"]} &#20;
+                </Label>
+              </Check>
+              <Check className="Check Flex WH-Auto Flex-Center">
+                <input
+                  className="Input"
+                  type="radio"
+                  value={statusIndex["cooking"]}
+                  checked={order.status == statusIndex["cooking"]}
+                  onChange={e => handleUpdateStatusOrder(e, order.index)}
+                />
+                <Label className="Label">
+                  &#20; {statusMenssage["cooking"]} &#20;
+                </Label>
+              </Check>
+              <Check className="Check Flex WH-Auto Flex-Center">
+                <input
+                  className="Input"
+                  type="radio"
+                  value={statusIndex["delivery"]}
+                  checked={order.status == statusIndex["delivery"]}
+                  onChange={e => handleUpdateStatusOrder(e, order.index)}
+                />
+                <Label className="Label">
+                  &#20; {statusMenssage["delivery"]} &#20;
+                </Label>
+              </Check>
+              <Check className="Check Flex WH-Auto Flex-Center">
+                <input
+                  className="Input"
+                  type="radio"
+                  value={statusIndex["entregue"]}
+                  checked={order.status == statusIndex["entregue"]}
+                  onChange={e => handleUpdateStatusOrder(e, order.index)}
+                />
+                <Label className="Label">
+                  &#20; {statusMenssage["entregue"]} &#20;
+                </Label>
+              </Check>
+            </GroupCheck>
             <Title className="Title" text={getDataAndHour(order.date)}/>
             <Data className="Data">
               <KeyValue
@@ -90,7 +145,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
               />
             </Data>
             <Products className="Products">
-              {order.products.map((product: any) => (
+              {order.products.map((product: ProductType) => (
                 <ProductHorizontal
                   key={product.key}
 

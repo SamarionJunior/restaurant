@@ -8,7 +8,7 @@ export const arrayIsEmpty = (array: any[]): any => array.length > 0 ? false : tr
 export const createOrder = (products: any, formulario: any): any => {
   return {
     index: Math.random(),
-    status: 3,
+    status: 0,
     date: Date(),
     formulario: {...formulario},
     products: [...products.filter((product: any) => product.itIsInCart)]

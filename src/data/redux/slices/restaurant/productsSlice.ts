@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { ProductType } from "../../../../typescript/types";
+import { getAllProducts } from "../../../../typescript/functions";
 
-const initialState: ProductType[] = []
+const initialState: ProductType[] = getAllProducts();
 
 const productsSlice = createSlice({
     name: "products",
@@ -25,6 +26,7 @@ const productsSlice = createSlice({
             return state.map(
                 product => 
                     product.index == action.payload.index ? {
+                        ...product,
                         ...action.payload
                     } : product
             );
