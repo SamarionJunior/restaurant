@@ -34,7 +34,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   const dispatch = useDispatch();
 
-  const layoutIsEmpty = false;
+  // const layoutIsEmpty = false;
 
   const handleUpdateStatusOrder = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     dispatch(updateStatusOrder({
@@ -45,7 +45,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
 
   return (
     <IsEmpty
-      test={layoutIsEmpty}
+      test={orders.length == 0}
       WarningProps={{
         id: idPageTag,
         className: `${classNameTSX} ${classNameNoItems}`,
@@ -65,7 +65,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
                   onChange={e => handleUpdateStatusOrder(e, order.index)}
                 />
                 <Label className="Label">
-                  &#20; {statusMenssage["waiting"]} &#20;
+                  &#20; {statusMenssage("waiting")} &#20;
                 </Label>
               </Check>
               <Check className="Check Flex WH-Auto Flex-Center">
@@ -77,7 +77,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
                   onChange={e => handleUpdateStatusOrder(e, order.index)}
                 />
                 <Label className="Label">
-                  &#20; {statusMenssage["confirmado"]} &#20;
+                  &#20; {statusMenssage("confirmado")} &#20;
                 </Label>
               </Check>
               <Check className="Check Flex WH-Auto Flex-Center">
@@ -89,7 +89,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
                   onChange={e => handleUpdateStatusOrder(e, order.index)}
                 />
                 <Label className="Label">
-                  &#20; {statusMenssage["cooking"]} &#20;
+                  &#20; {statusMenssage("cooking")} &#20;
                 </Label>
               </Check>
               <Check className="Check Flex WH-Auto Flex-Center">
@@ -101,7 +101,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
                   onChange={e => handleUpdateStatusOrder(e, order.index)}
                 />
                 <Label className="Label">
-                  &#20; {statusMenssage["delivery"]} &#20;
+                  &#20; {statusMenssage("delivery")} &#20;
                 </Label>
               </Check>
               <Check className="Check Flex WH-Auto Flex-Center">
@@ -113,7 +113,7 @@ const ControllerLayout: FunctionComponent<any> = (props: PropsPages) => {
                   onChange={e => handleUpdateStatusOrder(e, order.index)}
                 />
                 <Label className="Label">
-                  &#20; {statusMenssage["entregue"]} &#20;
+                  &#20; {statusMenssage("entregue")} &#20;
                 </Label>
               </Check>
             </GroupCheck>

@@ -19,6 +19,15 @@ import waterCard from "../assets/products/water.jpg";
 
 import type { NavegationItemType } from "./types";
 
+
+export const arrayStatus: string[] = [
+  "waiting",
+  "confirmado",
+  "cooking",
+  "delivery",
+  "entregue"
+]
+
 export type statusMenssageType = {
   "waiting": string;
   "confirmado": string;
@@ -27,13 +36,22 @@ export type statusMenssageType = {
   "entregue": string;
 };
 
-export const statusMenssage: statusMenssageType = {
-  "waiting": "Aguardando Confirmação do Pedido",
-  "confirmado": "Pedido Confirmado",
-  "cooking": "Pedido Confirmado",
-  "delivery": "Pedido Saiu para Entregar",
-  "entregue": "Pedido Entregue"
-};
+export const statusMenssage = (key: string): string => {
+  switch (key) {
+    case "waiting":
+      return "Aguardando Confirmação do Pedido";
+    case "confirmado":
+      return "Pedido Confirmado";
+    case "cooking":
+      return "Pedido Confirmado";
+    case "delivery":
+      return "Pedido Saiu para Entregar";
+    case "entregue":
+      return "Pedido Entregue";
+    default:
+      return "";
+  }
+}
 
 export type statusIndexType = {
   "waiting": number;
@@ -63,8 +81,8 @@ export const NavegationItems: NavegationItemType[] = [
 ];
 export const NavegationItemsAdmin: NavegationItemType[] = [
   {menu: "Company", id: "a"}, 
-  {menu: "Products", id: "b"}, 
-  {menu: "Orders", id: "c"}
+  {menu: "Menu", id: "b"}, 
+  {menu: "Controller", id: "c"}
 ];
 
 export const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.";

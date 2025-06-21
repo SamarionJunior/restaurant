@@ -7,7 +7,7 @@ import { type FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { Order, Products } from "../../components/components.tsx";
 import { converteToMoney, getDataAndHour } from "../../../typescript/functions.ts";
-import { statusImage, statusMenssage } from "../../../typescript/Variables.ts";
+import { arrayStatus, statusImage, statusMenssage } from "../../../typescript/Variables.ts";
 import { Contents } from "../../../typescript/content.ts";
 import type { OrderType, StateType } from "../../../typescript/types.ts";
 import Warning from "../../templates/Warning.tsx";
@@ -41,11 +41,11 @@ const StatusLayout: FunctionComponent<any> = _ => {
 
   return (
     <LayoutLayout id="f" className="Status bg-5">
-      {orders.map((order: any) => (
+      {orders.map((order: OrderType) => (
         <Order className="Order" key={order.index}>
           <ImageDiv className="Image" srcName={statusImage[order.status]}/>
           {order.status}
-          <Title className="Title" text={statusMenssage[order.status]}/>
+          <Title className="Title" text={statusMenssage(arrayStatus[order.status])}/>
           <Title className="Title" text={getDataAndHour(order.date)}/>
           <Data className="Data">
             <KeyValue

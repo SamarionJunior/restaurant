@@ -15,7 +15,7 @@ import { FaMoneyCheck } from "react-icons/fa6";
 import { FaHistory } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import { toLink } from "../../typescript/functions.ts";
-import type { CompanyType, NavegationItemType, StateType } from "../../typescript/types.ts";
+import type { NavegationItemType, StateType } from "../../typescript/types.ts";
 import { FiLogIn } from "react-icons/fi";
 import { BiSolidBusiness } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,9 +42,9 @@ const renderNavegationIcon = (value: NavegationItemType, navegationItems: Navega
           return <FaHistory/>;
         case "Company":
           return <BiSolidBusiness />;
-        case "Products":
+        case "Menu":
           return <FaStore />;
-        case "Orders":
+        case "Controller":
           return <FaHistory />;
         case "Back":
           return <FaHome />;

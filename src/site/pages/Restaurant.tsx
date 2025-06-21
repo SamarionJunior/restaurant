@@ -5,10 +5,8 @@ import "../../css/components/navegation.scss"
 /// REACT ///
 import { useEffect, useRef, useState, type FunctionComponent, type RefObject } from "react";
 /// REDUX ///
-import { useDispatch } from "react-redux";
-import { updateProducts } from "../../data/redux/slices/restaurant/productsSlice.ts";
 /// TYPESCRIPT ///
-import { getAllProducts, idString, resizeScrollTo, scrollTo, toLink } from "../../typescript/functions.ts";
+import { idString, resizeScrollTo, scrollTo } from "../../typescript/functions.ts";
 import { NavegationItems } from "../../typescript/Variables.ts";
 
 import HeaderLayout from "../layout/Header.tsx";
@@ -31,7 +29,7 @@ const Restaurant: FunctionComponent<any> = () => {
 
   // const [productsOrigin, ] = useState(getAllProducts());
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const auxRef: RefObject<HTMLHeadingElement | null> = useRef<HTMLHeadingElement | null>(null);
 
